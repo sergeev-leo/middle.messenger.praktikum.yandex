@@ -1,0 +1,22 @@
+.btn-wrapper {
+  width: 28rem;
+  height: 3.7rem;
+
+  a {
+    display: block;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    text-align: center;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: none;
+  } 
+  
+  a:hover { 
+    cursor: pointer;
+    opacity: 0.9;
+   }
+
+   @include styleTypes;
+}

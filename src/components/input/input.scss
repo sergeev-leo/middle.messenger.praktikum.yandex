@@ -1,0 +1,45 @@
+.input-wrapper {
+  display: block;
+  width: 28rem;
+  position: relative;
+  margin-bottom: 0.25rem;
+
+  input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 0.1rem solid $primaryColor;
+    padding: 1rem 0;
+
+    font-size: 1.3rem;
+  }
+
+  input:focus~label {
+    bottom: 2rem;
+    transform: translate(0, -1.5rem) scale(0.75);
+  }
+
+  label {
+    display: block;
+    position: absolute;
+    left: 0;
+    padding: 0;
+    bottom: 2.4rem;
+
+    color: $greyColor;
+    font-size: 1.3rem;
+
+    transform-origin: left top;
+    transform: translate(0, 1.1rem) scale(1);
+    transition: ease-in-out .2s;
+  }
+
+  &.has-error input {
+    color: $errorColor;
+  }
+
+  .error {
+    font-size: 0.9rem;
+    color: $errorColor;
+  }
+}

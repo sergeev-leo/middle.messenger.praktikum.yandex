@@ -1,0 +1,48 @@
+.avatar-wrapper {
+  width: 13rem;
+  position: relative;
+
+  img,.backdrop {
+    display: block;
+    width: 13rem;
+    height: 13rem;
+    margin: 0;
+    border-radius: 50%;
+  }
+
+  .backdrop-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .backdrop {
+      opacity: 0;
+      background-color: rgba($blackColor, 20%);
+    }
+
+    &:hover .backdrop {
+      opacity: 1;
+    }
+
+    .title {
+      display: none;
+      width: 6.4rem;
+      height: 2.8rem;
+
+      color: $whiteColor;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: center;
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover .title {
+      display: block;
+    }
+  }
+}
+

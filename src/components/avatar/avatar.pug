@@ -1,0 +1,6 @@
+mixin avatar(props)
+  .avatar-wrapper(class=avatar)
+    img(src=props.src)
+    .backdrop-container
+      a.backdrop(href=props.href)
+        .title #{props.title}

@@ -1,0 +1,39 @@
+@mixin styleTypes {
+  &.primary {
+    color: $whiteColor;
+    background: $primaryColor;
+
+    &:active {
+      background: $primaryAccentColor;
+    }
+  }
+
+  &.secondary {
+    color: $primaryColor;
+    background: $whiteColor;
+
+    &:active {
+      background: $whiteAccentColor;
+    }
+  }
+
+  &.error {
+    color: $errorColor;
+    background: $whiteColor;
+
+    &:active {
+      color: $whiteColor;
+      background: $errorAccentColor;
+    }
+  }
+
+  &.neutral {
+    color: $greyColor;
+    background: $whiteColor;
+
+    &:active {
+      color: $whiteColor;
+      background: $greyAccentColor;
+    }
+  }
+}
