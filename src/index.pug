@@ -13,6 +13,8 @@ html(lang="en")
 
       +button({ title: 'Авторизоваться', style: 'primary' })
       +button({ title: 'Авторизоваться', style: 'secondary' })
+      +button({ title: 'Авторизоваться', style: 'error' })
+      +button({ title: 'Авторизоваться', style: 'neutral' })
 
       
       div
@@ -28,8 +30,3 @@ html(lang="en")
         +avatar({ src:"../static/user.png", title: 'Поменять аватар'  })
       div 
         +avatar({ src:"../static/user.png", title: 'Поменять аватар', href: '/about'  })
-
-      +link({ title: 'allo', href: './pages/login/index.pug', style: 'primary' })
-      +link({ title: 'allo', href: './pages/profile/index.pug', style: 'secondary' })
-      +link({ title: 'allo', href: '/allo/3', style: 'error' })
-      +link({ title: 'allo', href: '/allo/3', style: 'neutral' })

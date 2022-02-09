@@ -1,8 +1,15 @@
 @mixin styleTypes {
+  &:hover { 
+    cursor: pointer;
+  }
+
   &.primary {
     color: $whiteColor;
     background-color: $primaryColor;
 
+    &:hover { 
+      background-color: lighten($primaryAccentColor, 10);
+    }
     &:active {
       background-color: $primaryAccentColor;
     }
@@ -15,8 +22,11 @@
     color: $primaryColor;
     background-color: $whiteColor;
 
+    &:hover { 
+      background-color: darken($whiteAccentColor, 10);
+    }
     &:active {
-      background-color: $whiteAccentColor;
+      background-color: darken($whiteAccentColor, 20);
     }
     &:visited {
       color: $primaryColor;
@@ -27,6 +37,10 @@
     color: $errorColor;
     background-color: $whiteColor;
 
+    &:hover { 
+      color: $whiteColor;
+      background-color: lighten($errorAccentColor, 10);
+    }
     &:active {
       color: $whiteColor;
       background-color: $errorAccentColor;
@@ -40,6 +54,10 @@
     color: $greyColor;
     background-color: $whiteColor;
 
+    &:hover { 
+      color: $whiteColor;
+      background-color: lighten($greyAccentColor, 10);
+    }
     &:active {
       color: $whiteColor;
       background-color: $greyAccentColor;
