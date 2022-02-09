@@ -1,5 +1,5 @@
 mixin input(props)
-  .input-wrapper(class=props.className class=`${props.error ? "has-error" : ''}`)
+  .input-wrapper(class=`${props.error ? "has-error" : ''}`)
     input(id=props.id name=props.id type=props.type required=props.isRequired)
     label(for=props.id) #{props.label}
     span.error #{props.error}
