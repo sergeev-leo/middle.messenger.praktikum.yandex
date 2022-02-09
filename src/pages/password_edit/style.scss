@@ -3,32 +3,10 @@
 @import '../../components/avatar/avatar.scss';
 @import '../../components/button/button.scss';
 @import '../../components/input/input.scss';
-@import '../../components/iconButton/iconButton.scss';
+@import '../../components/goBackButtonPanel/goBackButtonPanel.scss';
 
 html {
   @include baseStyles
-}
-
-.password-edit__go-back-btn-section {
-  display: flex;
-  position: fixed;
-
-  width: 5rem;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-
-  overflow: auto;
-  align-items: center;
-
-  background-color: $whiteColor;
-  border-right: 0.1rem solid $greyColor;
-
-  &:hover {
-    background-color: $whiteAccentColor;
-    cursor: pointer;
-  }
-
 }
 
 .password-edit__content-section {

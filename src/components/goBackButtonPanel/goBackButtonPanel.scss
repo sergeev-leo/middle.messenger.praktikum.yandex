@@ -1,0 +1,39 @@
+.go-back-button-panel {
+  display: flex;
+  position: fixed;
+
+  width: 5rem;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow: auto;
+  align-items: center;
+
+  background-color: $whiteColor;
+  border-right: 0.1rem solid $greyColor;
+
+  &:hover {
+    background-color: $whiteAccentColor;
+    cursor: pointer;
+  }
+
+  span {
+    margin-left: 1rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon {
+    font-size: 2.8rem;
+    color: $primaryColor;
+
+    &:last-child {
+      color: $whiteColor;
+      font-size: 1.5rem;
+    }
+  }
+}

@@ -120,7 +120,7 @@ html(lang="en")
             +dialog(item)
 
       .chat__content-section
-        .chat__top-panel
+        nav.chat__top-panel
           .chat__top-panel-user-avatar 
             +avatar(data.reviewingDialogUser.avatar)
             h1 #{data.reviewingDialogUser.name}
@@ -141,7 +141,7 @@ html(lang="en")
           .chat__bottom-panel-attach-menu-icon 
             i.icon.fa.fa-paperclip
           .chat__bottom-panel-message-field
-            input(type="text" placeholder="Сообщение")
+            input(type="text" name="message" placeholder="Сообщение")
           .chat__bottom-panel-send-icon 
             span.fa-stack
               i.icon.fa.fa-circle.fa-stack-2x

@@ -2,15 +2,10 @@ include ../../components/link/link.pug
 include ../../components/avatar/avatar.pug
 include ../../components/input/input.pug
 include ../../components/button/button.pug
-include ../../components/iconButton/iconButton.pug
+include ../../components/goBackButtonPanel/goBackButtonPanel.pug
 
 -
   const data = {
-    iconButton: {
-      iconName: 'fa-arrow-circle-o-left', 
-      href: '/chat', 
-      style: 'primary',
-    },
     avatar: {
       src:"../../../static/user.png", 
       title: 'Поменять аватар', 
@@ -34,8 +29,8 @@ include ../../components/iconButton/iconButton.pug
         label: 'Фамилия', 
       },
       {
-        id: 'chatName', 
-        label: 'Телефон', 
+        id: 'display_name', 
+        label: 'Имя в чате', 
       },
       {
         id: 'phone', 
@@ -58,11 +53,11 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Document
 
+    link(rel="stylesheet" href="/static/css/font-awesome.min.css")
     link(rel="stylesheet" href="style.scss")
   body  
-    .profile-edit
-      .profile-edit__go-back-btn-section
-        +iconButton(data.iconButton)
+    form.profile-edit
+      +goBackButtonPanel
       .profile-edit__content-section 
         .profile-edit__user-avatar-section
           +avatar(data.avatar)
