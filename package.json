@@ -11,6 +11,7 @@
   "devDependencies": {
     "@parcel/transformer-pug": "^2.2.1",
     "@parcel/transformer-sass": "^2.2.1",
+    "express": "^4.17.2",
     "parcel": "^2.2.1",
     "pug": "^3.0.2"
   },
