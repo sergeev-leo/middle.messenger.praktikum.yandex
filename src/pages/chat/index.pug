@@ -130,8 +130,6 @@ html(lang="en")
               i.fa.fa-circle-o.fa-stack-2x
               i.icon.fa.fa-ellipsis-v.fa-stack-1x
 
-
-
         .chat__messages-panel 
           each item in data.messages
             if(typeof item === 'string')
@@ -140,4 +138,12 @@ html(lang="en")
             else  
               +message(item)
 
-        
+        .chat__bottom-panel
+          .chat__bottom-panel-attach-menu-icon 
+            i.icon.fa.fa-paperclip
+          .chat__bottom-panel-message-field
+            input(type="text" placeholder="Сообщение")
+          .chat__bottom-panel-send-icon 
+            span.fa-stack
+              i.icon.fa.fa-circle.fa-stack-2x
+              i.icon.fa.fa-arrow-right.fa-stack-1x

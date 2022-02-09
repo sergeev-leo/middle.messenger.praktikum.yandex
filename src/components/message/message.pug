@@ -3,7 +3,7 @@ mixin message(props)
     p.message-text #{props.text}
     .metadata
       if(props.currentUserMessage && props.status === 0)
-        i.fa.fa-hourglass-o
+        i.icon.fa.fa-hourglass
       else if(props.currentUserMessage && props.status === 1)
         i.icon.fa.fa-check
       else if(props.currentUserMessage && props.status === 2)
