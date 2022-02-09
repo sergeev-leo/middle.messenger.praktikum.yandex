@@ -1,0 +1,15 @@
+include ../avatar/avatar.pug
+
+mixin dialog(props)
+  .dialog
+    +avatar(props.avatar)
+    .dialog__message-section
+      h2 #{props.name}
+      if props.isYourMessage 
+        p.dialog__your-message-label Вы: 
+      p #{props.messagePreview}
+    .dialog__meta-data-section
+      p.dialog__message-time #{props.lastMessageTime}
+      if !!props.amountOfUnreadMessages 
+        .dialog__messages_amount
+          p #{props.amountOfUnreadMessages}

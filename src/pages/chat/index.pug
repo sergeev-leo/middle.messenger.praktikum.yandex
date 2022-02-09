@@ -1,0 +1,142 @@
+include ../../components/link/link.pug
+include ../../components/avatar/avatar.pug
+include ../../components/iconButton/iconButton.pug
+include ../../components/dialog/dialog.pug
+
+-
+  const data = {
+    profileLink: {
+      title: 'Профиль', 
+      style: 'error', 
+      href: '../profile/index.pug',
+    },
+    searchInput: {
+      placeholder: 'Поиск',
+      icon: '',
+    },
+    dialogs: [
+      {
+        name: 'Андрей',
+        avatar: {
+          src: '../../../static/user.png',
+        },
+        lastMessageTime: '10:49',
+        isYourMessage: false,
+        amountOfUnreadMessages: 2,
+        messagePreview: 'Изображение',
+      },
+      {
+        name: 'Киноклуб',
+        avatar: {
+          src: '../../../static/user.png',
+        },
+        lastMessageTime: '12:00',
+        isYourMessage: true,
+        amountOfUnreadMessages: 0,
+        messagePreview: 'стикер',
+      },
+      {
+        name: 'Илья',
+        avatar: {
+          src: '../../../static/user.png',
+        },
+        lastMessageTime: '15:12',
+        isYourMessage: false,
+        amountOfUnreadMessages: 4,
+        messagePreview: 'Друзья, у меня для вас особенный выпуск новостей!...',
+      },
+    ],
+
+
+
+    iconButton: {
+      iconName: 'fa-arrow-circle-o-left', 
+      href: '/chat', 
+      style: 'primary',
+    },
+    avatar: {
+      src:"../../../static/user.png", 
+      title: 'Поменять аватар', 
+      href: '#',
+    },
+    userName: 'User',
+
+    links: {
+      logOut: {
+        title: 'Выйти', 
+        style: 'error', 
+        href: '/logout',
+      },
+      changePassword: {
+        title: 'Изменить пароль', 
+        style: 'secondary', 
+        href: '../password_edit/index.pug',
+      },
+      edit: {
+        title: 'Изменить данные', 
+        style: 'secondary', 
+        href: '../profile_edit/index.pug',
+      },
+    },
+    userData: [
+      {
+        id: 'email', 
+        label: 'Почта', 
+        value: 'pochta@yandex.ru'
+      },
+      {
+        id: 'login', 
+        label: 'Логин', 
+        value: 'ivanivanov'
+      },
+      {
+        id: 'first_name', 
+        label: 'Имя', 
+        value: 'Иван'
+      },
+      {
+        id: 'second_name', 
+        label: 'Фамилия', 
+        value: 'Иванов'
+      },
+      {
+        id: 'chat_name', 
+        label: 'Имя в чате', 
+        value: 'Иван'
+      },
+      {
+        id: 'phone', 
+        label: 'Телефон', 
+        value: '+7(909)9673030'
+      },
+    ],
+
+  };
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+
+    link(rel="stylesheet" href="style.scss")
+    link(rel="stylesheet" href="/static/css/font-awesome.min.css")
+  body  
+    .chat
+      aside
+        .chat__search-section
+          .chat__profile-link
+            +link(data.profileLink)
+            i.icon.fa.fa-angle-right
+          .chat_search-field
+            input(type="search")
+            .input-label
+              i.icon.fa.fa-search
+              p #{data.searchInput.placeholder} 
+        .chat__dialogs-section
+          each item in data.dialogs
+            +dialog(item)
+
+      .chat__content-section

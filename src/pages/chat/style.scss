@@ -1,0 +1,80 @@
+@import '/src/utils/mixins.scss';
+@import '/src/utils/variables.scss';
+@import '../../components/avatar/avatar.scss';
+@import '../../components/button/button.scss';
+@import '../../components/input/input.scss';
+@import '../../components/iconButton/iconButton.scss';
+@import '../../components/dialog/dialog.scss';
+
+html {
+  @include baseStyles
+}
+
+.chat aside {
+  position: fixed;
+
+  width: 31rem;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow: auto;
+
+  background-color: $whiteColor;
+  border-right: 0.1rem solid $lightGreyColor;
+
+  .chat__search-section {
+    height: 10.3rem;
+    border-bottom: 0.1rem solid $lightGreyColor;
+
+    .chat__profile-link {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 1rem;
+      padding-top: 1rem;
+
+      .link {
+        color: $greyColor;
+        outline: none;
+      }
+
+      .icon {
+        padding-left: 0.4rem;
+      }
+    }
+
+    .chat_search-field {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      input {
+        position: relative;
+        width: 29rem;
+        height: 3.2rem;
+        border-radius: 0.5rem;
+        background-color: $lightGreyColor;
+        border: none;
+
+        &:focus + .input-label {
+          display: none;
+        }
+      }
+
+      .input-label {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        color: $greyColor;
+
+        p {
+          margin: 0;
+        }
+
+        .icon {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
