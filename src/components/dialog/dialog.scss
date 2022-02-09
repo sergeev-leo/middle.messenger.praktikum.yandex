@@ -13,6 +13,10 @@ html {
   padding: 1rem;
 
 
+  &.--is-selected {
+    background-color: $primaryLightColor;
+  }
+
   .avatar-wrapper,
   .avatar-wrapper img,
   .avatar-wrapper .backdrop {
@@ -33,7 +37,7 @@ html {
     p {
       font-size: 1.2rem;
 
-      &.dialog__your-message-label {
+      &.dialog__current-user-message-label {
         font-weight: bold;
         color: $blackColor;
       }

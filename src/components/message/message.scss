@@ -1,0 +1,47 @@
+@import '/src/utils/mixins.scss';
+@import '/src/utils/variables.scss';
+
+html {
+  @include baseStyles
+}
+
+.message-wrapper {
+  min-width: 30rem;
+  max-width: 60rem;
+  padding: 1rem;
+  margin: 1rem;
+
+  background-color: $lightGreyColor;
+
+  border-radius: 1rem;
+  border-top-left-radius: 0rem;
+
+  &.current-user-message {
+    background-color: $primaryLightColor;
+    border-top-left-radius: 1rem;
+    border-bottom-right-radius: 0rem;
+
+    .message-time {
+      color: $primaryColor;
+    }
+
+    .icon {
+      color: $primaryColor;
+    }
+  }
+
+  .message-text {
+    font-size: 1.2rem;
+  }
+
+  .message-time {
+    margin-left: 0.5rem;
+    text-align: right;
+    color: $greyColor;
+  }
+
+  .metadata {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

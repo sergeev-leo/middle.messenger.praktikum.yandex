@@ -2,6 +2,7 @@ include ../../components/link/link.pug
 include ../../components/avatar/avatar.pug
 include ../../components/iconButton/iconButton.pug
 include ../../components/dialog/dialog.pug
+include ../../components/message/message.pug
 
 -
   const data = {
@@ -21,7 +22,7 @@ include ../../components/dialog/dialog.pug
           src: '../../../static/user.png',
         },
         lastMessageTime: '10:49',
-        isYourMessage: false,
+        currentUserMessage: false,
         amountOfUnreadMessages: 2,
         messagePreview: 'Изображение',
       },
@@ -31,7 +32,8 @@ include ../../components/dialog/dialog.pug
           src: '../../../static/user.png',
         },
         lastMessageTime: '12:00',
-        isYourMessage: true,
+        currentUserMessage: true,
+        isSelected: true,
         amountOfUnreadMessages: 0,
         messagePreview: 'стикер',
       },
@@ -41,76 +43,55 @@ include ../../components/dialog/dialog.pug
           src: '../../../static/user.png',
         },
         lastMessageTime: '15:12',
-        isYourMessage: false,
+        currentUserMessage: false,
         amountOfUnreadMessages: 4,
         messagePreview: 'Друзья, у меня для вас особенный выпуск новостей!...',
       },
     ],
-
-
-
-    iconButton: {
-      iconName: 'fa-arrow-circle-o-left', 
-      href: '/chat', 
-      style: 'primary',
+    reviewingDialogUser: {
+      avatar: {
+        src: '../../../static/user.png',
+      },
+      name: 'Киноклуб',
     },
-    avatar: {
-      src:"../../../static/user.png", 
-      title: 'Поменять аватар', 
-      href: '#',
-    },
-    userName: 'User',
-
-    links: {
-      logOut: {
-        title: 'Выйти', 
-        style: 'error', 
-        href: '/logout',
-      },
-      changePassword: {
-        title: 'Изменить пароль', 
-        style: 'secondary', 
-        href: '../password_edit/index.pug',
-      },
-      edit: {
-        title: 'Изменить данные', 
-        style: 'secondary', 
-        href: '../profile_edit/index.pug',
-      },
-    },
-    userData: [
+    messages: [
       {
-        id: 'email', 
-        label: 'Почта', 
-        value: 'pochta@yandex.ru'
+        type: 0,
+        time: '12:00',
+        status: 0,
+        text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex?',
+        currentUserMessage: false,
       },
       {
-        id: 'login', 
-        label: 'Логин', 
-        value: 'ivanivanov'
+        type: 0,
+        time: '12:00',
+        status: 0,
+        text: 'Lorem ipsum dolor, sit amet consectetur. Distinctio sed, esse cum libero obcaecati voluptate debitis.',
+        currentUserMessage: false,
+      },
+      '19 июля',
+      {
+        type: 0,
+        time: '12:00',
+        status: 2,
+        text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex? Distinctio sed, esse cum libero obcaecati voluptate debitis.',
+        currentUserMessage: true,
       },
       {
-        id: 'first_name', 
-        label: 'Имя', 
-        value: 'Иван'
+        type: 0,
+        time: '12:00',
+        status: 1,
+        text: 'Lorem ipsum dolor',
+        currentUserMessage: true,
       },
       {
-        id: 'second_name', 
-        label: 'Фамилия', 
-        value: 'Иванов'
-      },
-      {
-        id: 'chat_name', 
-        label: 'Имя в чате', 
-        value: 'Иван'
-      },
-      {
-        id: 'phone', 
-        label: 'Телефон', 
-        value: '+7(909)9673030'
+        type: 0,
+        time: '12:00',
+        status: 0,
+        text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex? Distinctio sed, esse cum libero obcaecati voluptate debitis.',
+        currentUserMessage: true,
       },
     ],
-
   };
 
 doctype html
@@ -140,3 +121,23 @@ html(lang="en")
             +dialog(item)
 
       .chat__content-section
+        .chat__top-panel
+          .chat__top-panel-user-avatar 
+            +avatar(data.reviewingDialogUser.avatar)
+            h1 #{data.reviewingDialogUser.name}
+          .chat__top-panel-menu-icon 
+            span.fa-stack
+              i.fa.fa-circle-o.fa-stack-2x
+              i.icon.fa.fa-ellipsis-v.fa-stack-1x
+
+
+
+        .chat__messages-panel 
+          each item in data.messages
+            if(typeof item === 'string')
+              .date-string
+                p #{item}
+            else  
+              +message(item)
+
+        

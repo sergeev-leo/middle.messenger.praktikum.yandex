@@ -5,6 +5,7 @@
 @import '../../components/input/input.scss';
 @import '../../components/iconButton/iconButton.scss';
 @import '../../components/dialog/dialog.scss';
+@import '../../components/message/message.scss';
 
 html {
   @include baseStyles
@@ -13,7 +14,8 @@ html {
 .chat aside {
   position: fixed;
 
-  width: 31rem;
+  width: 20%;
+  min-width: 30rem;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -48,9 +50,10 @@ html {
       justify-content: center;
       align-items: center;
       margin-top: 2rem;
+      padding: 0 1.5rem;
       input {
         position: relative;
-        width: 29rem;
+        width: 100%;
         height: 3.2rem;
         border-radius: 0.5rem;
         background-color: $lightGreyColor;
@@ -75,6 +78,85 @@ html {
           margin-right: 0.5rem;
         }
       }
+    }
+  }
+
+  .chat__dialogs-section {
+    .dialog:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.chat__content-section {
+  width: 80%;
+  float: right;
+
+  .chat__top-panel {
+    height: 5.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 2rem;
+    border-bottom: 1px solid $lightGreyColor;
+
+    .chat__top-panel-user-avatar {
+      display: flex;
+      align-items: center;
+
+      .avatar-wrapper,
+      .avatar-wrapper img,
+      .avatar-wrapper .backdrop {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+
+      .avatar-wrapper {
+        :hover {
+          cursor: pointer;
+        }
+      }
+
+      h1 {
+        font-size: 1.3rem;
+        margin-left: 1rem;
+      }
+    }
+
+
+    .chat__top-panel-menu-icon {
+      font-size: 1.3rem;
+      color: $greyColor;
+
+      :hover {
+        color: $lightGreyColor;
+        cursor: pointer;
+      }
+    }
+  }
+
+
+  .chat__messages-panel {
+    display: flex;
+    flex-direction: column;
+
+    .date-string {
+      margin: 2rem;
+      position: relative;
+      color: $greyColor;
+      border-top: 0.1rem solid $lightGreyColor;
+
+      p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .current-user-message {
+      align-self: flex-end;
     }
   }
 }

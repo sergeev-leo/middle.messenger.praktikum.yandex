@@ -1,0 +1,12 @@
+mixin message(props)
+  .message-wrapper(class=`${props.currentUserMessage ? 'current-user-message' : ''}`)
+    p.message-text #{props.text}
+    .metadata
+      if(props.currentUserMessage && props.status === 0)
+        i.fa.fa-hourglass-o
+      else if(props.currentUserMessage && props.status === 1)
+        i.icon.fa.fa-check
+      else if(props.currentUserMessage && props.status === 2)
+        i.icon.fa.fa-check
+        i.icon.fa.fa-check
+      .message-time #{props.time}
