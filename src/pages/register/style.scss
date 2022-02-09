@@ -1,0 +1,49 @@
+@import '../../utils/mixins.scss';
+@import '../../utils/variables.scss';
+@import '../../components/button/button.scss';
+@import '../../components/input/input.scss';
+
+html {
+  @include baseStyles
+}
+
+.register-form {
+  display: flex;
+  justify-content: center;
+
+  .register-form__card {
+    width: 34rem;
+    height: 61.5rem;
+    margin-top: 12rem;
+    border: 1px solid $shadowColor;
+    padding: 3rem;
+    border-radius: 1.2rem;
+  }
+
+  .register-form__header {
+    margin: 5rem auto 4rem;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .register-form__inputs-section {
+
+    .input-wrapper {
+      margin: 0 auto;
+      margin-bottom: 1.5rem;
+    }
+
+    margin-bottom: 6rem;
+  }
+
+  .register-form__buttons-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  li {
+    list-style-type: none;
+    padding: 0;
+  }
+}

@@ -1,0 +1,47 @@
+@import '../../utils/mixins.scss';
+@import '../../utils/variables.scss';
+@import '../../components/button/button.scss';
+@import '../../components/input/input.scss';
+
+html {
+  @include baseStyles
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+
+  .login-form__card {
+    width: 34rem;
+    height: 45rem;
+    margin-top: 18rem;
+    border: 0.1rem solid $shadowColor;
+    padding: 3rem;
+    border-radius: 1.2rem;
+  }
+
+  .login-form__header {
+    margin: 4rem auto;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .login-form__inputs-section {
+
+    .input-wrapper {
+      margin: 0 auto;
+
+      &:first-child {
+        margin-bottom: 1.6rem;
+      }
+    }
+
+    margin-bottom: 16rem;
+  }
+
+  .login-form__buttons-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
