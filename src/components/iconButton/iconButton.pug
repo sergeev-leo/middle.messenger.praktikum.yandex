@@ -1,0 +1,4 @@
+mixin iconButton(props={})
+  a.icon-button-wrapper(href=props.href class=props.className)
+    //div(data-icon-name=props.iconName class=props.style)
+    i(class=`fa ${props.iconName} ${props.style}`)

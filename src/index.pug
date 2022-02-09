@@ -1,23 +1,25 @@
+include components/button/button.pug
+include components/input/input.pug
+include components/avatar/avatar.pug
+include components/link/link.pug
+include components/iconButton/iconButton.pug  
+
+
 doctype html
 html(lang="en")
   head
     link(rel="stylesheet" href="style.scss")
+    link(rel="stylesheet" href="../static/css/font-awesome.min.css")
   body
-    .root
-      include components/button/button.pug
-      include components/input/input.pug
-      include components/avatar/avatar.pug
-      include components/link/link.pug
-
 
       +button({ title: 'Авторизоваться', style: 'primary' })
       +button({ title: 'Авторизоваться', style: 'secondary' })
 
       
       div
-        +input({ id: 'login', label: 'Логин', error: 'ошибка' })
+        +input({ id: 'login', label: 'Логин', type: 'text', error: 'ошибка' })
       div
-        +input({ id: 'login', label: 'Логин', error: 'ошибка' })
+        +input({ id: 'login', label: 'Логин', type: 'password', error: 'ошибка' })
       div
         +input({ id: 'login', label: 'Логин' })
       
@@ -28,7 +30,16 @@ html(lang="en")
       div 
         +avatar({ src:"../static/user.png", title: 'Поменять аватар', href: '/about'  })
 
-      +link({ title: 'allo', href: '/allo/1', style: 'primary' })
-      +link({ title: 'allo', href: '/allo/2', style: 'secondary' })
+      +link({ title: 'allo', href: './pages/login/index.pug', style: 'primary' })
+      +link({ title: 'allo', href: './pages/profile/index.pug', style: 'secondary' })
       +link({ title: 'allo', href: '/allo/3', style: 'error' })
       +link({ title: 'allo', href: '/allo/3', style: 'neutral' })
+
+      div
+        +iconButton({ iconName: 'fa-arrow-circle-o-right', href: '/allo/1', style: 'primary' })
+      div
+        +iconButton({ iconName: 'fa-arrow-circle-o-right', href: '/allo/2', style: 'secondary' })
+      div
+        +iconButton({ iconName: 'fa-arrow-circle-o-right', href: '/allo/3', style: 'error'  })
+      div
+        +iconButton({ iconName: 'fa-arrow-circle-o-right', href: '/allo/3', style: 'neutral' })
