@@ -1,6 +1,8 @@
 mixin avatar(props)
   .avatar-wrapper(class=avatar)
     img(src=props.src)
-    .backdrop-container
-      a.backdrop(href=props.href)
-        .title #{props.title}
+    if(props.withUpload === true)
+      .backdrop-container 
+        label(for="upload").backdrop 
+          .title #{props.title}
+          input(id="upload" type="file")
