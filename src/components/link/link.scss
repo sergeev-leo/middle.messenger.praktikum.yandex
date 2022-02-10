@@ -6,5 +6,10 @@ a.link {
     text-decoration: underline;
   }
 
-  @include styleTypes;
+  &.primary {
+    color: $primaryColor;
+  }
+  &.error {
+    color: $errorColor;
+  }
 }

@@ -1,7 +1,3 @@
-@import '/src/utils/mixins.scss';
-@import '/src/utils/variables.scss';
-@import '../avatar/avatar.scss';
-
 html {
   @include baseStyles
 }
