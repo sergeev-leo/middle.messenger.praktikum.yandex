@@ -19,3 +19,7 @@
 ## Прототипы
 
 [Ссылка на прототипы в Figma](https://www.figma.com/file/8gnkzuXApabC9CMNaVN5E8/Chat-(Copy)?node-id=0%3A1)
+
+## Netlify
+
+[автодеплой из deploy](https://gallant-euclid-0ba5e8.netlify.app/)
