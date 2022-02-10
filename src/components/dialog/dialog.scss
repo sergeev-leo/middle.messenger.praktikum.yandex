@@ -12,6 +12,9 @@ html {
   border-bottom: 0.1rem solid $lightGreyColor;
   padding: 1rem;
 
+  &:hover {
+    background-color: $lightGreyColor;
+  }
 
   &.--is-selected {
     background-color: $primaryLightColor;
