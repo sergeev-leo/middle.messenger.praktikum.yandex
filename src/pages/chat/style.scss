@@ -5,6 +5,7 @@
 @import '../../components/input/input.scss';
 @import '../../components/dialog/dialog.scss';
 @import '../../components/message/message.scss';
+@import '../../components/menu/menu.scss';
 
 html {
   @include baseStyles
@@ -136,12 +137,6 @@ html {
 
     .chat__top-panel-menu-icon {
       font-size: 1.3rem;
-      color: $greyColor;
-
-      :hover {
-        color: $lightGreyColor;
-        cursor: pointer;
-      }
     }
   }
 
@@ -189,9 +184,7 @@ html {
     .chat__bottom-panel-attach-menu-icon {
       margin: 0 1.5rem;
 
-      .icon {
-        font-size: 2.3rem;
-        color: $primaryColor;
+      .dropdown-button .icon {
         transform: rotate(-90deg);
       }
     }
@@ -212,6 +205,10 @@ html {
 
     .chat__bottom-panel-send-icon {
       margin: 0 1.5rem;
+
+      &:hover {
+        cursor: pointer;
+      }
 
       span {
         display: flex;

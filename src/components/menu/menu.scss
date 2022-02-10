@@ -1,0 +1,94 @@
+@import '/src/utils/variables.scss';
+
+.menu-wrapper {
+  position: relative;
+  display: inline-block;
+
+  &:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+
+    background-color: $lightGreyColor;
+    color: $primaryColor;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  ul.dropdown-content {
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin: 0rem;
+    border-radius: 0.5rem;
+
+    &.top-right {
+      right: 0rem;
+      top: 3rem;
+    }
+
+    &.top-left {
+      left: 0rem;
+      top: 3rem;
+    }
+
+    &.bottom-right {
+      right: 0rem;
+      bottom: 3rem;
+    }
+
+    &.bottom-left {
+      left: 0rem;
+      bottom: 3rem;
+    }
+
+    background-color: $whiteColor;
+    box-shadow: 0 0.5rem 1rem 0.2rem $shadowColor;
+    min-width: 20rem;
+    z-index: 1;
+
+    li {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      padding: 0.5rem;
+      list-style-type: none;
+      text-decoration: none;
+      color: $primaryColor;
+
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.5rem;
+      }
+
+      p {
+        color: $blackColor;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: $lightGreyColor;
+      }
+
+      &:active {
+        background-color: darken($lightGreyColor, 5);
+      }
+    }
+  }
+}

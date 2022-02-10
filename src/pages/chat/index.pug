@@ -2,6 +2,7 @@ include ../../components/link/link.pug
 include ../../components/avatar/avatar.pug
 include ../../components/dialog/dialog.pug
 include ../../components/message/message.pug
+include ../../components/menu/menu.pug
 
 -
   const data = {
@@ -52,6 +53,55 @@ include ../../components/message/message.pug
         src: '../../../static/user.png',
       },
       name: 'Киноклуб',
+    },
+    chatMenu: {
+      iconClassName:'fa-circle-thin',
+      innerIconClassName: 'fa-ellipsis-v',
+      data: [
+        {
+          id: '1',
+          text: 'Добавить пользователя',
+          iconClassName:'fa-circle-thin',
+          innerIconClassName: 'fa-plus',
+        },
+        {
+          id: '2',
+          text: 'удалить пользователя',
+          iconClassName:'fa-circle-thin',
+          innerIconClassName: 'fa-close',
+        },
+        {
+          id: '2',
+          text: 'удалить чат',
+          iconClassName:'fa-circle-thin',
+          innerIconClassName: 'fa-trash',
+        },
+      ],
+    },
+    attachMenu: {
+      iconClassName:'fa-circle-thin',
+      innerIconClassName: 'fa-paperclip',
+      position: 'bottom-left',
+      data: [
+        {
+          id: '1',
+          text: 'Добавить пользователя',
+          iconClassName:'fa-circle-thin',
+          innerIconClassName: 'fa-picture-o',
+        },
+        {
+          id: '2',
+          text: 'удалить пользователя',
+          iconClassName:'fa-circle-thin',
+          innerIconClassName: 'fa-file-o',
+        },
+        {
+          id: '2',
+          text: 'удалить чат',
+          iconClassName:'fa-circle-thin',
+          innerIconClassName: 'fa-map-marker',
+        },
+      ],
     },
     messages: [
       {
@@ -125,9 +175,7 @@ html(lang="en")
             +avatar(data.reviewingDialogUser.avatar)
             h1 #{data.reviewingDialogUser.name}
           .chat__top-panel-menu-icon 
-            span.fa-stack
-              i.fa.fa-circle-o.fa-stack-2x
-              i.icon.fa.fa-ellipsis-v.fa-stack-1x
+            +menu(data.chatMenu)
 
         .chat__messages-panel 
           each item in data.messages
@@ -139,7 +187,7 @@ html(lang="en")
 
         .chat__bottom-panel
           .chat__bottom-panel-attach-menu-icon 
-            i.icon.fa.fa-paperclip
+            +menu(data.attachMenu)
           .chat__bottom-panel-message-field
             input(type="text" name="message" placeholder="Сообщение")
           .chat__bottom-panel-send-icon 
