@@ -59,19 +59,19 @@ include ../../components/menu/menu.pug
       innerIconClassName: 'fa-ellipsis-v',
       data: [
         {
-          id: '1',
+          id: 'chat-menu-1',
           text: 'Добавить пользователя',
           iconClassName:'fa-circle-thin',
           innerIconClassName: 'fa-plus',
         },
         {
-          id: '2',
+          id: 'chat-menu-2',
           text: 'удалить пользователя',
           iconClassName:'fa-circle-thin',
           innerIconClassName: 'fa-close',
         },
         {
-          id: '2',
+          id: 'chat-menu-3',
           text: 'удалить чат',
           iconClassName:'fa-circle-thin',
           innerIconClassName: 'fa-trash',
@@ -84,19 +84,19 @@ include ../../components/menu/menu.pug
       position: 'bottom-left',
       data: [
         {
-          id: '1',
-          text: 'Добавить пользователя',
+          id: 'attach-menu-1',
+          text: 'Фото или видео',
           iconClassName:'fa-circle-thin',
           innerIconClassName: 'fa-picture-o',
         },
         {
-          id: '2',
+          id: 'attach-menu-2',
           text: 'удалить пользователя',
           iconClassName:'fa-circle-thin',
           innerIconClassName: 'fa-file-o',
         },
         {
-          id: '2',
+          id: 'attach-menu-3',
           text: 'удалить чат',
           iconClassName:'fa-circle-thin',
           innerIconClassName: 'fa-map-marker',
@@ -141,6 +141,10 @@ include ../../components/menu/menu.pug
         currentUserMessage: true,
       },
     ],
+    sendIcon: {
+      iconClassName: 'fa-circle',
+      innerIconClassName: 'fa-arrow-right',
+    }
   };
 
 doctype html
@@ -191,6 +195,4 @@ html(lang="en")
           .chat__bottom-panel-message-field
             input(type="text" name="message" placeholder="Сообщение")
           .chat__bottom-panel-send-icon 
-            span.fa-stack
-              i.icon.fa.fa-circle.fa-stack-2x
-              i.icon.fa.fa-arrow-right.fa-stack-1x
+            +iconButton(data.sendIcon)

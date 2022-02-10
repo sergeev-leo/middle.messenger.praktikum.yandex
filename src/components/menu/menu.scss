@@ -1,4 +1,6 @@
 @import '/src/utils/variables.scss';
+@import '../iconButton/iconButton.scss';
+
 
 .menu-wrapper {
   position: relative;
@@ -6,24 +8,6 @@
 
   &:hover .dropdown-content {
     display: block;
-  }
-
-  .dropdown-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    border: none;
-
-    background-color: $lightGreyColor;
-    color: $primaryColor;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   ul.dropdown-content {

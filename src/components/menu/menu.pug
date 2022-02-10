@@ -1,14 +1,12 @@
+include ../iconButton/iconButton.pug
+
+
 mixin menu(props)
   .menu-wrapper
-    .dropdown-button
-      span.fa-stack
-        i.fa.fa-stack-2x(class=props.iconClassName)
-        i.icon.fa.fa-stack-1x(class=props.innerIconClassName)
+    +iconButton(props)
     ul.dropdown-content(class=props.position || 'top-right')
       each item in props.data 
         li(id=item.id)
           .icon-container
-            span.fa-stack
-              i.fa.fa-stack-2x(class=item.iconClassName)
-              i.icon.fa.fa-stack-1x(class=item.innerIconClassName)
+            +iconButton(item)
           p #{item.text}
