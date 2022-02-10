@@ -5,6 +5,7 @@
   margin-bottom: 0.25rem;
 
   input {
+    display: block;
     width: 100%;
     outline: none;
     border: none;
@@ -14,7 +15,8 @@
     font-size: 1.3rem;
   }
 
-  input:focus~label {
+  input:focus~label,
+  input:valid~label {
     bottom: 2rem;
     transform: translate(0, -1.5rem) scale(0.75);
   }
