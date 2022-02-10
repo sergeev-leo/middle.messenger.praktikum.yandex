@@ -3,6 +3,6 @@ mixin avatar(props)
     img(src=props.src)
     if(props.withUpload === true)
       .backdrop-container 
-        label(for="upload").backdrop 
+        label(for="avatar").backdrop 
           .title #{props.title}
-          input(id="upload" type="file")
+          input(id="avatar" name="avatar" type="file")
