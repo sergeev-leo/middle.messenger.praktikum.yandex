@@ -1,49 +1,42 @@
-include ../../components/button/button.pug
-include ../../components/input/input.pug
+extends ../../components/html/html.pug
 
--
-  const data = {
-    title: 'Регистрация',
-    header: 'Вход',
-    inputs: {
-      login: {
-        id: 'login', 
-        label: 'Логин', 
-        type: 'text', 
-        error: 'Неверный логин',
-      },
-      password: {
-        id: 'password', 
-        label: 'Пароль',
-        type: 'password',
-      },
-    },
-    buttons: {
-      logIn: {
-        title: 'Авторизоваться', 
-        style: 'primary',
-        type: 'submit',
-      },
-      register: {
-        title: 'Нет аккаунта?',
-        style: 'secondary',
-      },
-    },
-  };
+block includes
+  include ../../components/button/button.pug
+  include ../../components/input/input.pug
 
+block data
+  -
+    const data = {
+      title: 'Регистрация',
+      header: 'Вход',
+      inputs: {
+        login: {
+          id: 'login', 
+          label: 'Логин', 
+          type: 'text', 
+          error: 'Неверный логин',
+        },
+        password: {
+          id: 'password', 
+          label: 'Пароль',
+          type: 'password',
+        },
+      },
+      buttons: {
+        logIn: {
+          title: 'Авторизоваться', 
+          style: 'primary',
+          type: 'submit',
+        },
+        register: {
+          title: 'Нет аккаунта?',
+          style: 'secondary',
+        },
+      },
+    };
 
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title #{data.title}
-
-    link(rel="stylesheet" href="style.scss")
-    
-  body
-    form.login-form 
+block content 
+  form.login-form 
       .login-form__card
         .login-form__header
           p #{data.header}

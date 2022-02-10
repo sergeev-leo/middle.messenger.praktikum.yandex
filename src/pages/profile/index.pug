@@ -1,90 +1,84 @@
-include ../../components/link/link.pug
-include ../../components/avatar/avatar.pug
-include ../../components/goBackButtonPanel/goBackButtonPanel.pug
+extends ../../components/html/html.pug
 
--
-  const data = {
-    avatar: {
-      src:"../../../static/user.png", 
-      title: 'Поменять аватар',
-      withUpload: true,
-    },
-    userName: 'User',
+block includes
+  include ../../components/link/link.pug
+  include ../../components/avatar/avatar.pug
+  include ../../components/goBackButtonPanel/goBackButtonPanel.pug
 
-    links: {
-      logOut: {
-        title: 'Выйти', 
-        style: 'error', 
-        href: '/logout',
+block data
+  -
+    const data = {
+      avatar: {
+        src:"../../../static/user.png", 
+        title: 'Поменять аватар',
+        withUpload: true,
       },
-      changePassword: {
-        title: 'Изменить пароль', 
-        style: 'secondary', 
-        href: '../password_edit/index.pug',
-      },
-      edit: {
-        title: 'Изменить данные', 
-        style: 'secondary', 
-        href: '../profile_edit/index.pug',
-      },
-    },
-    userData: [
-      {
-        id: 'email', 
-        label: 'Почта', 
-        value: 'pochta@yandex.ru'
-      },
-      {
-        id: 'login', 
-        label: 'Логин', 
-        value: 'ivanivanov'
-      },
-      {
-        id: 'first_name', 
-        label: 'Имя', 
-        value: 'Иван'
-      },
-      {
-        id: 'second_name', 
-        label: 'Фамилия', 
-        value: 'Иванов'
-      },
-      {
-        id: 'display_name', 
-        label: 'Имя в чате', 
-        value: 'Иван'
-      },
-      {
-        id: 'phone', 
-        label: 'Телефон', 
-        value: '+7(909)9673030'
-      },
-    ],
+      userName: 'User',
 
-  };
+      links: {
+        logOut: {
+          title: 'Выйти', 
+          style: 'error', 
+          href: '/logout',
+        },
+        changePassword: {
+          title: 'Изменить пароль', 
+          style: 'secondary', 
+          href: '../password_edit/index.pug',
+        },
+        edit: {
+          title: 'Изменить данные', 
+          style: 'secondary', 
+          href: '../profile_edit/index.pug',
+        },
+      },
+      userData: [
+        {
+          id: 'email', 
+          label: 'Почта', 
+          value: 'pochta@yandex.ru'
+        },
+        {
+          id: 'login', 
+          label: 'Логин', 
+          value: 'ivanivanov'
+        },
+        {
+          id: 'first_name', 
+          label: 'Имя', 
+          value: 'Иван'
+        },
+        {
+          id: 'second_name', 
+          label: 'Фамилия', 
+          value: 'Иванов'
+        },
+        {
+          id: 'display_name', 
+          label: 'Имя в чате', 
+          value: 'Иван'
+        },
+        {
+          id: 'phone', 
+          label: 'Телефон', 
+          value: '+7(909)9673030'
+        },
+      ],
+    };
 
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
-
-    link(rel="stylesheet" href="/static/css/font-awesome.min.css")
-    link(rel="stylesheet" href="style.scss")
-  body  
-    .profile
-      +goBackButtonPanel
-      .profile__content-section 
-        .profile__user-avatar-section
-          +avatar(data.avatar)
-          h1 #{data.userName}
-        ul.profile__user-data 
-          each item in data.userData
-            li.profile__user-data-row(class=item.id)
-              p.label #{item.label}
-              p.value #{item.value}
-        .proifle__links-section 
-          each item in data.links
-            +link(item)
+block content
+  .profile
+    +goBackButtonPanel
+    .profile__content-section 
+      .profile__user-avatar-section
+        +avatar(data.avatar)
+        h1 #{data.userName}
+      ul.profile__user-data 
+        each item in data.userData
+          li.profile__user-data-row(class=item.id)
+            p.label #{item.label}
+            p.value #{item.value}
+      .proifle__links-section 
+        each item in data.links
+          +link(item)
+    

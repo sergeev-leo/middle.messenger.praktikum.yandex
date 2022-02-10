@@ -1,21 +1,16 @@
-include ../../components/error/error.pug
+extends ../../components/html/html.pug
 
+block data 
+  - 
+    const data = {
+      errorCode: '500', 
+      errorText: 'Мы уже фиксим', 
+      href: '../login/index.pug',
+    };
 
-- 
-  const data = {
-    errorCode: '500', 
-    errorText: 'Мы уже фиксим', 
-    href: '../login/index.pug',
-  };
+block includes
+  include ../../components/error/error.pug
 
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Ошибка
-
-    link(rel="stylesheet" href="style.scss")
-  body 
-    +error(data)
+block content
+  +error(data)
+    

@@ -1,56 +1,51 @@
-include ../../components/link/link.pug
-include ../../components/avatar/avatar.pug
-include ../../components/input/input.pug
-include ../../components/button/button.pug
-include ../../components/goBackButtonPanel/goBackButtonPanel.pug
+extends ../../components/html/html.pug
 
--
-  const data = {
-    avatar: {
-      src:"../../../static/user.png", 
-      title: 'Поменять аватар',
-    },
+block includes
+  include ../../components/link/link.pug
+  include ../../components/avatar/avatar.pug
+  include ../../components/input/input.pug
+  include ../../components/button/button.pug
+  include ../../components/goBackButtonPanel/goBackButtonPanel.pug
 
-    inputs: [
-      {
-        id: 'oldPassword', 
-        label: 'Старый пароль', 
+block data
+  -
+    const data = {
+      avatar: {
+        src:"../../../static/user.png", 
+        title: 'Поменять аватар',
       },
-      {
-        id: 'newPassword', 
-        label: 'Новый пароль', 
+
+      inputs: [
+        {
+          id: 'oldPassword', 
+          label: 'Старый пароль', 
+        },
+        {
+          id: 'newPassword', 
+          label: 'Новый пароль', 
+        },
+        {
+          id: 'repeatNewPassword', 
+          label: 'Повторите пароль', 
+        },
+      ],
+      button: {
+        title: 'Сохранить', 
+        style: 'primary',
       },
-      {
-        id: 'repeatNewPassword', 
-        label: 'Повторите пароль', 
-      },
-    ],
-    button: {
-      title: 'Сохранить', 
-      style: 'primary',
-    },
 
-  };
+    };
 
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
-
-    link(rel="stylesheet" href="/static/css/font-awesome.min.css")
-    link(rel="stylesheet" href="style.scss")
-  body  
-    .password-edit
-      +goBackButtonPanel
-      .password-edit__content-section 
-        .password-edit__user-avatar-section
-          +avatar(data.avatar)
-        ul.password-edit__user-data 
-          each item in data.inputs
-            li.password-edit__user-data-row(class=item.id)
-              +input(item)
-        .password-edit__btn-section 
-          +button(data.button)
+block content 
+  .password-edit
+    +goBackButtonPanel
+    .password-edit__content-section 
+      .password-edit__user-avatar-section
+        +avatar(data.avatar)
+      ul.password-edit__user-data 
+        each item in data.inputs
+          li.password-edit__user-data-row(class=item.id)
+            +input(item)
+      .password-edit__btn-section 
+        +button(data.button)
+    
