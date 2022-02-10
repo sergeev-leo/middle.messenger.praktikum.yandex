@@ -154,6 +154,7 @@ block data
 
 block content 
   .chat
+  
     aside
       .chat__search-section
         .chat__profile-link
@@ -168,26 +169,25 @@ block content
         each item in data.dialogs
           +dialog(item)
 
-    .chat__content-section
-      nav.chat__top-panel
-        .chat__top-panel-user-avatar 
-          +avatar(data.reviewingDialogUser.avatar)
-          h1 #{data.reviewingDialogUser.name}
-        .chat__top-panel-menu-icon 
-          +menu(data.chatMenu)
+    nav.chat__top-panel
+      .chat__top-panel-user-avatar 
+        +avatar(data.reviewingDialogUser.avatar)
+        h1 #{data.reviewingDialogUser.name}
+      .chat__top-panel-menu-icon 
+        +menu(data.chatMenu)
 
-      .chat__messages-panel 
-        each item in data.messages
-          if(typeof item === 'string')
-            .date-string
-              p #{item}
-          else  
-            +message(item)
+    .chat__messages-panel 
+      each item in data.messages
+        if(typeof item === 'string')
+          .date-string
+            p #{item}
+        else  
+          +message(item)
 
-      .chat__bottom-panel
-        .chat__bottom-panel-attach-menu-icon 
-          +menu(data.attachMenu)
-        .chat__bottom-panel-message-field
-          input(type="text" name="message" id="message" placeholder="Сообщение")
-        .chat__bottom-panel-send-icon 
-          +iconButton(data.sendIcon)
+    .chat__bottom-panel
+      .chat__bottom-panel-attach-menu-icon 
+        +menu(data.attachMenu)
+      .chat__bottom-panel-message-field
+        input(type="text" name="message" id="message" placeholder="Сообщение")
+      .chat__bottom-panel-send-icon 
+        +iconButton(data.sendIcon)

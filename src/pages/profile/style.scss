@@ -41,7 +41,7 @@ html {
       }
 
       &:not(:last-child) {
-        border-bottom: 1px solid $greyColor;
+        border-bottom: 0.1rem solid $greyColor;
       }
     }
   }
@@ -55,7 +55,7 @@ html {
       display: block;
 
       &:not(:last-child) {
-        border-bottom: 1px solid $greyColor;
+        border-bottom: 0.1rem solid $greyColor;
       }
     }
 

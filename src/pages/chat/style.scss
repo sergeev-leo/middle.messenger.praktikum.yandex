@@ -13,14 +13,15 @@ html {
   @include baseStyles
 }
 
-.chat aside {
-  position: fixed;
+.chat {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 5.5rem calc(100vh - 11rem) 5.5rem;
+}
 
-  width: 20%;
-  min-width: 30rem;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+.chat aside {
+  grid-column: 1/2;
+  grid-row: 1/4;
 
   overflow: auto;
 
@@ -92,119 +93,110 @@ html {
   }
 }
 
-.chat__content-section {
-  margin-left: 20%;
+.chat__top-panel {
+  grid-column: 2/3;
+  grid-row: 1/2;
+
+  background-color: $whiteColor;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 2rem;
+  border-bottom: 0.1rem solid $lightGreyColor;
+
+  .chat__top-panel-user-avatar {
+    display: flex;
+    align-items: center;
+
+    .avatar-wrapper,
+    .avatar-wrapper img,
+    .avatar-wrapper .backdrop {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      margin-left: 1rem;
+    }
+  }
+
+  .chat__top-panel-menu-icon {
+    font-size: 1.3rem;
+  }
+}
+
+.chat__messages-panel {
+  grid-column: 2/3;
+  grid-row: 2/3;
+
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 
-  .chat__top-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 5.5rem;
-    width: 77.7%;
-    background-color: $whiteColor;
-    z-index: 10000;
+  .date-string {
+    margin: 2rem;
+    position: relative;
+    color: $greyColor;
+    border-top: 0.1rem solid $lightGreyColor;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 0 2rem;
-    border-bottom: 1px solid $lightGreyColor;
-
-    .chat__top-panel-user-avatar {
-      display: flex;
-      align-items: center;
-
-      .avatar-wrapper,
-      .avatar-wrapper img,
-      .avatar-wrapper .backdrop {
-        width: 3.5rem;
-        height: 3.5rem;
-      }
-
-      h1 {
-        font-size: 1.3rem;
-        margin-left: 1rem;
-      }
-    }
-
-    .chat__top-panel-menu-icon {
-      font-size: 1.3rem;
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 
-  .chat__messages-panel {
-    margin-top: 6rem;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+  .current-user-message {
+    align-self: flex-end;
+  }
+}
 
-    .date-string {
-      margin: 2rem;
-      position: relative;
-      color: $greyColor;
-      border-top: 0.1rem solid $lightGreyColor;
+.chat__bottom-panel {
+  grid-column: 2/3;
+  grid-row: 3/4;
 
-      p {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
+  padding: 0rem;
+  border-top: 0.1rem solid $lightGreyColor;
+  background-color: $whiteColor;
 
-    .current-user-message {
-      align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.3rem;
+
+  .chat__bottom-panel-attach-menu-icon {
+    margin: 0 1.5rem;
+
+    .dropdown-button .icon {
+      transform: rotate(-90deg);
     }
   }
 
-  .chat__bottom-panel {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    height: 5.5rem;
-    width: 79.9%;
-    padding: 0rem;
-    border-top: 1px solid $lightGreyColor;
-    background-color: $whiteColor;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    font-size: 1.3rem;
-
-    .chat__bottom-panel-attach-menu-icon {
-      margin: 0 1.5rem;
-
-      .dropdown-button .icon {
-        transform: rotate(-90deg);
-      }
-    }
-
-    .chat__bottom-panel-message-field {
+  .chat__bottom-panel-message-field {
+    width: 100%;
+    margin: 0 1.5rem 0 0;
+    input {
       width: 100%;
-      margin: 0 1.5rem 0 0;
-      input {
-        width: 100%;
-        padding: 0 1rem;
-        height: 3.2rem;
-        border-radius: 3rem;
-        background-color: $lightGreyColor;
-        border: none;
-        color: $greyAccentColor;
-      }
+      padding: 0 1rem;
+      height: 3.2rem;
+      border-radius: 3rem;
+      background-color: $lightGreyColor;
+      border: none;
+      color: $greyAccentColor;
     }
+  }
 
-    .chat__bottom-panel-send-icon {
-      margin: 0 1.5rem;
+  .chat__bottom-panel-send-icon {
+    margin: 0 1.5rem;
 
-      .icon-button-container {
-        i:last-child {
-          color: $whiteColor;
-        }
+    .icon-button-container {
+      i:last-child {
+        color: $whiteColor;
       }
     }
   }
