@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "parcel src/*.pug --no-cache",
-    "build": "parcel dist src/*.pug --no-cache"
+    "build": "parcel build src/*.pug --no-cache",
+    "start": "npm run build && node server.js"
   },
   "author": "",
   "license": "ISC",
