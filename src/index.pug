@@ -11,24 +11,19 @@ html(lang="en")
     link(rel="stylesheet" href="../static/css/font-awesome.min.css")
   body
 
-      +button({ title: 'Авторизоваться', style: 'primary' })
-      +button({ title: 'Авторизоваться', style: 'secondary' })
-      +button({ title: 'Авторизоваться', style: 'error' })
-      +button({ title: 'Авторизоваться', style: 'neutral' })
-
-      
-      div
-        +input({ id: 'login', label: 'Логин', type: 'text', error: 'ошибка' })
-      div
-        +input({ id: 'login', label: 'Логин', type: 'password', error: 'ошибка' })
-      div
-        +input({ id: 'login', label: 'Логин' })
-      
-      div 
-        +avatar({ src:"../static/user.png", title: 'Поменять аватар' })
-      div 
-        +avatar({ src:"../static/user.png", title: 'Поменять аватар'  })
-      div 
-        +avatar({ src:"../static/user.png", title: 'Поменять аватар'  })
-
-      a(href='./pages/chat/index.pug')
+    div
+      a(href='./pages/404/index.pug') 404
+    div
+      a(href='./pages/500/index.pug') 500
+    div
+      a(href='./pages/chat/index.pug') чат
+    div
+      a(href='./pages/login/index.pug') форма логина
+    div
+      a(href='./pages/register/index.pug') форма регистрации
+    div
+      a(href='./pages/profile/index.pug') профиль
+    div
+      a(href='./pages/profile_edit/index.pug') редактирование данных
+    div
+      a(href='./pages/password_edit/index.pug') изменение пароля
