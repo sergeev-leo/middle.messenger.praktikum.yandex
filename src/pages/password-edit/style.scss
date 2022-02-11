@@ -1,0 +1,38 @@
+@import '/src/utils/mixins.scss';
+@import '/src/utils/variables.scss';
+@import '../../components/avatar/avatar.scss';
+@import '../../components/button/button.scss';
+@import '../../components/input/input.scss';
+@import '../../components/goBackButtonPanel/goBackButtonPanel.scss';
+
+html {
+  @include baseStyles
+}
+
+.password-edit__content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .password-edit__user-avatar-section {
+    margin: 6rem 0 4rem;
+    text-align: center;
+  }
+
+  .password-edit__user-data {
+    list-style-type: none;
+    margin-bottom: 5rem;
+    padding-left: 0;
+
+    .input-wrapper {
+      width: 51rem;
+      margin: 1.5rem 0;
+    }
+  }
+
+  .password-edit__btn-section {
+    width: 51rem;   
+    display: flex;
+    justify-content: center;
+  }
+}

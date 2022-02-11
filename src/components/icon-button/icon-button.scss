@@ -1,0 +1,16 @@
+.icon-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+
+  @include styleTypes;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

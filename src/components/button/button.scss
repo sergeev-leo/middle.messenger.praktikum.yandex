@@ -1,0 +1,17 @@
+.btn-wrapper {
+  button {
+    @include styleTypes;
+
+    width: 28rem;
+    height: 3.7rem;
+    display: block;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    border:none;
+    text-align: center;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: none;
+  } 
+}

@@ -1,0 +1,84 @@
+extends ../../components/html/html.pug
+
+block includes
+  include ../../components/link/link.pug
+  include ../../components/avatar/avatar.pug
+  include ../../components/goBackButtonPanel/goBackButtonPanel.pug
+
+block data
+  -
+    const data = {
+      avatar: {
+        src: '../../../static/user.png',
+        title: 'Поменять аватар',
+        withUpload: true,
+      },
+      userName: 'User',
+
+      links: {
+        logOut: {
+          title: 'Выйти', 
+          style: 'error', 
+          href: '/logout',
+        },
+        changePassword: {
+          title: 'Изменить пароль', 
+          style: 'secondary', 
+          href: '../password-edit/index.pug',
+        },
+        edit: {
+          title: 'Изменить данные', 
+          style: 'secondary', 
+          href: '../profile-edit/index.pug',
+        },
+      },
+      userData: [
+        {
+          id: 'email', 
+          label: 'Почта', 
+          value: 'pochta@yandex.ru',
+        },
+        {
+          id: 'login', 
+          label: 'Логин', 
+          value: 'ivanivanov'
+        },
+        {
+          id: 'first_name', 
+          label: 'Имя', 
+          value: 'Иван'
+        },
+        {
+          id: 'second_name', 
+          label: 'Фамилия', 
+          value: 'Иванов'
+        },
+        {
+          id: 'display_name', 
+          label: 'Имя в чате', 
+          value: 'Иван'
+        },
+        {
+          id: 'phone', 
+          label: 'Телефон', 
+          value: '+7(909)9673030'
+        },
+      ],
+    };
+
+block content
+  .profile
+    +goBackButtonPanel
+    .profile__content-section 
+      .profile__user-avatar-section
+        +avatar(data.avatar)
+        h1.profile__user-name #{data.userName}
+      ul.profile__user-data 
+        each item in data.userData
+          li.profile__user-data-row(class=item.id)
+            p.label #{item.label}
+            p.value #{item.value}
+      .proifle__links-section 
+        each item in data.links
+          +link(item)
+    

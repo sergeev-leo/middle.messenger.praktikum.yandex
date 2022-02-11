@@ -1,0 +1,31 @@
+@import '../icon-button/icon-button.scss';
+
+
+.go-back-button-panel {
+  display: flex;
+  position: fixed;
+
+  width: 5rem;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow: auto;
+  align-items: center;
+
+  background-color: $whiteColor;
+  border-right: 0.1rem solid $greyColor;
+
+  &:hover {
+    background-color: $whiteAccentColor;
+    cursor: pointer;
+  }
+
+  .icon-button-container {
+    margin-left: 1rem;
+
+    .inner {
+      color:white;
+    }
+  }
+}

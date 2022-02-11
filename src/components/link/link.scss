@@ -1,0 +1,15 @@
+a.link {
+  padding: 1rem 2rem;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.primary {
+    color: $primaryColor;
+  }
+  &.error {
+    color: $errorColor;
+  }
+}

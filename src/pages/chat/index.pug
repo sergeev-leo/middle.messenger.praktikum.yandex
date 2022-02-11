@@ -1,0 +1,193 @@
+extends ../../components/html/html.pug
+
+block includes
+  include ../../components/link/link.pug
+  include ../../components/avatar/avatar.pug
+  include ../../components/dialog/dialog.pug
+  include ../../components/message/message.pug
+  include ../../components/menu/menu.pug
+  include ../../components/icon-button/icon-button.pug
+
+block data
+  -
+    const data = {
+      profileLink: {
+        title: 'Профиль', 
+        style: 'error', 
+        href: '../profile/index.pug',
+      },
+      searchInput: {
+        placeholder: 'Поиск',
+        icon: '',
+      },
+      dialogs: [
+        {
+          name: 'Андрей',
+          avatar: {
+            src: '../../../static/user.png',
+          },
+          lastMessageTime: '10:49',
+          currentUserMessage: false,
+          amountOfUnreadMessages: 2,
+          messagePreview: 'Изображение',
+        },
+        {
+          name: 'Киноклуб',
+          avatar: {
+            src: '../../../static/user.png',
+          },
+          lastMessageTime: '12:00',
+          currentUserMessage: true,
+          isSelected: true,
+          amountOfUnreadMessages: 0,
+          messagePreview: 'стикер',
+        },
+        {
+          name: 'Илья',
+          avatar: {
+            src: '../../../static/user.png',
+          },
+          lastMessageTime: '15:12',
+          currentUserMessage: false,
+          amountOfUnreadMessages: 4,
+          messagePreview: 'Друзья, у меня для вас особенный выпуск новостей!...',
+        },
+      ],
+      reviewingDialogUser: {
+        avatar: {
+          src: '../../../static/user.png',
+        },
+        name: 'Киноклуб',
+      },
+      chatMenu: {
+        iconClassName:'fa-circle-thin',
+        innerIconClassName: 'fa-ellipsis-v',
+        data: [
+          {
+            id: 'chat-menu-1',
+            text: 'Добавить пользователя',
+            iconClassName:'fa-circle-thin',
+            innerIconClassName: 'fa-plus',
+          },
+          {
+            id: 'chat-menu-2',
+            text: 'удалить пользователя',
+            iconClassName:'fa-circle-thin',
+            innerIconClassName: 'fa-close',
+          },
+          {
+            id: 'chat-menu-3',
+            text: 'удалить чат',
+            iconClassName:'fa-circle-thin',
+            innerIconClassName: 'fa-trash',
+          },
+        ],
+      },
+      attachMenu: {
+        iconClassName:'fa-circle-thin',
+        innerIconClassName: 'fa-paperclip',
+        position: 'bottom-left',
+        data: [
+          {
+            id: 'attach-menu-1',
+            text: 'Фото или видео',
+            iconClassName:'fa-circle-thin',
+            innerIconClassName: 'fa-picture-o',
+          },
+          {
+            id: 'attach-menu-2',
+            text: 'удалить пользователя',
+            iconClassName:'fa-circle-thin',
+            innerIconClassName: 'fa-file-o',
+          },
+          {
+            id: 'attach-menu-3',
+            text: 'удалить чат',
+            iconClassName:'fa-circle-thin',
+            innerIconClassName: 'fa-map-marker',
+          },
+        ],
+      },
+      messages: [
+        {
+          type: 0,
+          time: '12:00',
+          status: 'read',
+          text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex?',
+          currentUserMessage: false,
+        },
+        {
+          type: 0,
+          time: '12:00',
+          status: 'read',
+          text: 'Lorem ipsum dolor, sit amet consectetur. Distinctio sed, esse cum libero obcaecati voluptate debitis.',
+          currentUserMessage: false,
+        },
+        '19 июля',
+        {
+          type: 0,
+          time: '12:00',
+          status: 'read',
+          text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex? Distinctio sed, esse cum libero obcaecati voluptate debitis.',
+          currentUserMessage: true,
+        },
+        {
+          type: 0,
+          time: '12:00',
+          status: 'delievered',
+          text: 'Lorem ipsum dolor',
+          currentUserMessage: true,
+        },
+        {
+          type: 0,
+          time: '12:00',
+          status: 'sent',
+          text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex? Distinctio sed, esse cum libero obcaecati voluptate debitis.',
+          currentUserMessage: true,
+        },
+      ],
+      sendIcon: {
+        iconClassName: 'fa-circle',
+        innerIconClassName: 'fa-arrow-right',
+      }
+    };
+
+block content 
+  .chat
+  
+    aside
+      .chat__search-section
+        .chat__profile-link
+          +link(data.profileLink)
+          i.icon.fa.fa-angle-right
+        .chat_search-field
+          input(type="search")
+          .input-label
+            i.icon.fa.fa-search
+            p.input-label-placeholder #{data.searchInput.placeholder} 
+      .chat__dialogs-section
+        each item in data.dialogs
+          +dialog(item)
+
+    nav.chat__top-panel
+      .chat__top-panel-user-avatar 
+        +avatar(data.reviewingDialogUser.avatar)
+        h1.chat__top-panel-user-name #{data.reviewingDialogUser.name}
+      .chat__top-panel-menu-icon 
+        +menu(data.chatMenu)
+
+    .chat__messages-panel 
+      each item in data.messages
+        if(typeof item === 'string')
+          .date-string-line
+            p.date-string-label #{item}
+        else  
+          +message(item)
+
+    .chat__bottom-panel
+      .chat__bottom-panel-attach-menu-icon 
+        +menu(data.attachMenu)
+      .chat__bottom-panel-message-field
+        input(type="text" name="message" id="message" placeholder="Сообщение")
+      .chat__bottom-panel-send-icon 
+        +icon-button(data.sendIcon)
