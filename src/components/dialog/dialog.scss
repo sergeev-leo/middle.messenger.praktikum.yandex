@@ -30,13 +30,14 @@ html {
     flex-grow: 3;
     margin-left: 1rem;
 
-    h2 {
+    .dialog__message-author-name {
       margin-top: 0;
       font-weight: bold;
       font-size: 1.3rem;
     }
 
-    p {
+    .dialog__message-preview,
+    .dialog__current-user-message-label {
       font-size: 1.2rem;
 
       &.dialog__current-user-message-label {

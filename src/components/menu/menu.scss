@@ -41,7 +41,7 @@
     min-width: 20rem;
     z-index: 1;
 
-    li {
+    .dropdown-item {
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -60,7 +60,7 @@
         margin-right: 0.5rem;
       }
 
-      p {
+      .dropdown-item-text {
         color: $blackColor;
       }
 

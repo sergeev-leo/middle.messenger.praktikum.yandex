@@ -164,7 +164,7 @@ block content
           input(type="search")
           .input-label
             i.icon.fa.fa-search
-            p #{data.searchInput.placeholder} 
+            p.input-label-placeholder #{data.searchInput.placeholder} 
       .chat__dialogs-section
         each item in data.dialogs
           +dialog(item)
@@ -172,15 +172,15 @@ block content
     nav.chat__top-panel
       .chat__top-panel-user-avatar 
         +avatar(data.reviewingDialogUser.avatar)
-        h1 #{data.reviewingDialogUser.name}
+        h1.chat__top-panel-user-name #{data.reviewingDialogUser.name}
       .chat__top-panel-menu-icon 
         +menu(data.chatMenu)
 
     .chat__messages-panel 
       each item in data.messages
         if(typeof item === 'string')
-          .date-string
-            p #{item}
+          .date-string-line
+            p.date-string-label #{item}
         else  
           +message(item)
 

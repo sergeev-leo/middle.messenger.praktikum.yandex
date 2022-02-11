@@ -5,10 +5,10 @@ mixin dialog(props)
   .dialog(class=`${props.isSelected ? '--is-selected' : ''}`)
     +avatar(props.avatar)
     .dialog__message-section
-      h2 #{props.name}
+      h2.dialog__message-author-name #{props.name}
       if props.currentUserMessage 
         p.dialog__current-user-message-label Вы: 
-      p #{props.messagePreview}
+      p.dialog__message-preview #{props.messagePreview}
     .dialog__meta-data-section
       p.dialog__message-time #{props.lastMessageTime}
       if !!props.amountOfUnreadMessages 

@@ -6,7 +6,7 @@ mixin menu(props)
     +icon-button(props)
     ul.dropdown-content(class=props.position || 'top-right')
       each item in props.data 
-        li(id=item.id)
+        li.dropdown-item(id=item.id)
           .icon-container
             +icon-button(item)
-          p #{item.text}
+          p.dropdown-item-text #{item.text}

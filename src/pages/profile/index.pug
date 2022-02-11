@@ -72,7 +72,7 @@ block content
     .profile__content-section 
       .profile__user-avatar-section
         +avatar(data.avatar)
-        h1 #{data.userName}
+        h1.profile__user-name #{data.userName}
       ul.profile__user-data 
         each item in data.userData
           li.profile__user-data-row(class=item.id)

@@ -76,7 +76,7 @@ html {
         justify-content: center;
         color: $greyColor;
 
-        p {
+        .input-label-placeholder {
           margin: 0;
         }
         .icon {
@@ -117,7 +117,7 @@ html {
       height: 3.5rem;
     }
 
-    h1 {
+    .chat__top-panel-user-name {
       font-size: 1.3rem;
       margin-left: 1rem;
     }
@@ -136,13 +136,13 @@ html {
   flex-direction: column;
   overflow-y: auto;
 
-  .date-string {
+  .date-string-line {
     margin: 2rem;
     position: relative;
     color: $greyColor;
     border-top: 0.1rem solid $lightGreyColor;
 
-    p {
+    .date-string-label {
       position: absolute;
       top: 50%;
       left: 50%;
