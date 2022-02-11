@@ -6,7 +6,7 @@ block includes
   include ../../components/dialog/dialog.pug
   include ../../components/message/message.pug
   include ../../components/menu/menu.pug
-  include ../../components/iconButton/iconButton.pug
+  include ../../components/icon-button/icon-button.pug
 
 block data
   -
@@ -190,4 +190,4 @@ block content
       .chat__bottom-panel-message-field
         input(type="text" name="message" id="message" placeholder="Сообщение")
       .chat__bottom-panel-send-icon 
-        +iconButton(data.sendIcon)
+        +icon-button(data.sendIcon)

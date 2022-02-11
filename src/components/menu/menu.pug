@@ -1,12 +1,12 @@
-include ../iconButton/iconButton.pug
+include ../icon-button/icon-button.pug
 
 
 mixin menu(props)
   .menu-wrapper
-    +iconButton(props)
+    +icon-button(props)
     ul.dropdown-content(class=props.position || 'top-right')
       each item in props.data 
         li(id=item.id)
           .icon-container
-            +iconButton(item)
+            +icon-button(item)
           p #{item.text}
