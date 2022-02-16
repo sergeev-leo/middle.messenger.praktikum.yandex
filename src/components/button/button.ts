@@ -9,9 +9,6 @@ export class Button extends Block {
   }
 
   render() {
-    const { _id } = this.props;
-    console.log(_id);
-
-    return compileTemplate(this.props);
+    return this.compile(compileTemplate, this.props);
   }
 }
