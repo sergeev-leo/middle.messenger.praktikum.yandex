@@ -11,6 +11,7 @@ export class Block {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
+    FLOW_CDU: "flow:component-did-update",
     FLOW_RENDER: "flow:render"
   };
 
@@ -18,43 +19,57 @@ export class Block {
   _meta: TMeta;
 
   listeners: TListeners;
+  eventBus: () => TEventBusInstance;
 
   props: TComponentProps;
-  getEventBus: () => TEventBusInstance;
 
   constructor(tagName = "div", props: TComponentProps = {}) {
     const eventBus = new EventBus();
 
-    // сохраняем данные о теге и пропсах компонента
+    /*
+    * сохраняем данные о теге и пропсах компонента
+    * */
     this._meta = {
       tagName,
       props
     };
 
+    /*
+    * формируем объект listeners для хранения массивов обработчиков событий создаваемого компонента в разрезе событий
+    * */
     this.listeners = {};
 
-    //
+    /*
+    * расширяем логику работы с пропсами компонента
+    * */
     this.props = this._makePropsProxy(props);
 
-    //
-    this.getEventBus = () => eventBus;
+    /*
+    * сохраняем eventBus в замыкании, чтобы каждый компонент работал со своим экземпляром
+    * */
+    this.eventBus = () => eventBus;
 
-    // подключаем обработку событий жизненного цикла для созданного компонента
+    /*
+    * подключаем обработку событий жизненного цикла для созданного компонента
+    * */
     this._registerEvents(eventBus);
 
-    // запускаем жизненный цикл
+    /*
+    * запускаем жизненный цикл
+    * */
     eventBus.emit(Block.EVENTS.INIT);
   }
 
   _registerEvents(eventBus: TEventBusInstance) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
   init() {
     this._createResources();
-    this.getEventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   _createResources() {
@@ -78,9 +93,14 @@ export class Block {
           this.listeners[eventName] = [];
         }
 
-        // сохраняем обработчики событий чтобы была возможность их позже удалить
+        /*
+        * сохраняем обработчики событий чтобы была возможность их позже удалить
+        * */
         this.listeners[eventName].push(events[eventName]);
 
+        /*
+        * добавляем обработчики на созданный элемент
+        * */
         this._element.addEventListener(eventName, events[eventName]);
       });
   }
@@ -101,20 +121,23 @@ export class Block {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   componentDidMount(oldProps: TComponentProps) {
-    console.log(oldProps);
+    console.log('componentDidMount', oldProps);
   }
 
   dispatchComponentDidMount() {
-    this.getEventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
   _componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
-    console.log(oldProps, newProps);
+    const response = this.componentDidUpdate(oldProps, newProps);
+
+    if(response) {
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    }
   }
 
-
   componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
-    console.log(oldProps, newProps);
+    console.log('componentDidUpdate', oldProps, newProps);
     return true;
   }
 
@@ -127,7 +150,10 @@ export class Block {
   };
 
   _render() {
+    console.log('render', this.props);
     const block = this.render();
+
+    this._removeEvents();
 
     this._element.innerHTML = block;
 
@@ -145,19 +171,26 @@ export class Block {
   }
 
   _makePropsProxy(props: TComponentProps) {
-
-    // Здесь вам предстоит реализовать метод
     return new Proxy(
       props,
       {
-        set(target, prop: string, value: any) {
+        get(target, prop: string) {
+          const value = target[prop];
+          return typeof value === "function" ?
+            value.bind(target) :
+            value;
+        },
+        set: (target, prop: string, value: any) => {
           target[prop] = value;
 
-          this._removeEvents();
+          console.log('propsChanged');
 
-          this.getEventBus().emit(Block.EVENTS.FLOW_RENDER);
+          this.eventBus().emit(Block.EVENTS.FLOW_CDU, [{...target}]);
 
           return true;
+        },
+        deleteProperty() {
+          throw new Error('нет доступа')
         },
       },
     );

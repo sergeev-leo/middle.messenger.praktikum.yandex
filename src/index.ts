@@ -1,4 +1,27 @@
-import compileTemplate from './components/button/button.pug';
+import { Button } from "./components/button/button";
+import { render } from "./modules/renderDOM";
 
-const app = document.getElementById('app');
-app.innerHTML = compileTemplate({ style: 'error', title: 'awesome', type: 'submit' });
+
+const button = new Button({
+  style: 'error',
+  title: 'prettyAwesome',
+  type: 'submit',
+  events: {
+    click: (e: Event) => console.log('click1!', e),
+  }
+});
+
+
+render("#app", button);
+
+setTimeout(() => {
+  button.setProps({
+    style: 'primary',
+    title: 'Awesome',
+    type: 'submit',
+    events: {
+      click: (e: Event) => console.log('click2!', e),
+    },
+  });
+}, 10000);
+
