@@ -1,3 +1,6 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixins.scss';
+
 .btn-wrapper {
   button {
     @include styleTypes;
@@ -13,5 +16,5 @@
     font-size: 1.3rem;
     font-weight: bold;
     text-decoration: none;
-  } 
+  }
 }
