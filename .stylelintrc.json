@@ -1,10 +1,15 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-order-config-standard"
+  ],
   "plugins": [
-    "stylelint-scss"
+    "stylelint-scss",
+    "stylelint-declaration-block-no-ignored-properties",
+    "stylelint-order"
   ],
   "rules": {
-    "color-hex-case": "lower"
+    "plugin/declaration-block-no-ignored-properties": true
   },
   "ignoreFiles": [
     "dist/*",
