@@ -11,8 +11,18 @@ const button = new Button({
   }
 });
 
+const button2 = new Button({
+  style: 'error',
+  title: 'prettyAwesome',
+  type: 'submit',
+  withInternalID: true,
+  events: {
+    click: (e: Event) => console.log('click1!', e),
+  }
+});
 
 render("#app", button);
+render("#app", button2);
 
 setTimeout(() => {
   button.setProps({

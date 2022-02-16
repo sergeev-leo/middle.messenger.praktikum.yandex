@@ -1,6 +1,6 @@
 import { EventBus } from '../EventBus/EventBus';
 import {TCallback, TComponentProps, TEventBusInstance, TListeners} from "../types";
-
+import { v4 as makeUUID } from 'uuid';
 
 type TMeta = {
   tagName: string,
@@ -17,10 +17,10 @@ export class Block {
 
   _element: HTMLElement;
   _meta: TMeta;
+  _listeners: TListeners;
+  _id: string | null = null;
 
-  listeners: TListeners;
   eventBus: () => TEventBusInstance;
-
   props: TComponentProps;
 
   constructor(tagName = "div", props: TComponentProps = {}) {
@@ -35,14 +35,24 @@ export class Block {
     };
 
     /*
-    * формируем объект listeners для хранения массивов обработчиков событий создаваемого компонента в разрезе событий
+    * UUID V4
     * */
-    this.listeners = {};
+    if(props.withInternalID) {
+      this._id = makeUUID();
+    }
 
     /*
-    * расширяем логику работы с пропсами компонента
+    * формируем объект listeners для хранения массивов обработчиков событий создаваемого компонента в разрезе событий
     * */
-    this.props = this._makePropsProxy(props);
+    this._listeners = {};
+
+    /*
+    * расширяем логику работы с пропсами компонента + добавляем уникальный идентификатор
+    * */
+    this.props = this._makePropsProxy({
+      ...props,
+      _id: this._id,
+    });
 
     /*
     * сохраняем eventBus в замыкании, чтобы каждый компонент работал со своим экземпляром
@@ -78,7 +88,13 @@ export class Block {
   }
 
   _createDocumentElement(tagName: string) {
-    return document.createElement(tagName);
+    const element = document.createElement(tagName);
+
+    if(this._id !== null) {
+      element.setAttribute('data-id', this._id);
+    }
+
+    return element;
   }
 
   _addEvents() {
@@ -89,14 +105,14 @@ export class Block {
     Object
       .keys(events)
       .forEach(eventName => {
-        if(!this.listeners[eventName]) {
-          this.listeners[eventName] = [];
+        if(!this._listeners[eventName]) {
+          this._listeners[eventName] = [];
         }
 
         /*
         * сохраняем обработчики событий чтобы была возможность их позже удалить
         * */
-        this.listeners[eventName].push(events[eventName]);
+        this._listeners[eventName].push(events[eventName]);
 
         /*
         * добавляем обработчики на созданный элемент
@@ -107,9 +123,9 @@ export class Block {
 
   _removeEvents() {
     Object
-      .keys(this.listeners)
+      .keys(this._listeners)
       .forEach(eventName => {
-        const handlersArray = this.listeners[eventName];
+        const handlersArray = this._listeners[eventName];
 
         handlersArray.forEach(handler => this._element.removeEventListener(eventName, handler));
       });
