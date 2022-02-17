@@ -1,6 +1,7 @@
 import { Block } from "../../modules/Block/Block";
 import compileTemplate from './dialog.pug';
 import {Avatar, TAvatarProps} from "../avatar/avatar";
+import {TEvents} from "../../modules/types";
 
 
 export type TDialogProps = {
@@ -11,6 +12,7 @@ export type TDialogProps = {
   messagePreview: string,
   lastMessageTime: string,
   amountOfUnreadMessages: string | number,
+  events?: TEvents,
 };
 
 export class Dialog extends Block {

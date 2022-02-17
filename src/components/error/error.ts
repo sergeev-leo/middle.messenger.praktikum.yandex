@@ -1,12 +1,14 @@
 import { Block } from "../../modules/Block/Block";
 import compileTemplate from './error.pug';
 import {Link, TLinkProps} from "../link/link";
+import {TEvents} from "../../modules/types";
 
 
 export type TErrorProps = {
   errorCode: string | number,
   errorText: string,
   link: TLinkProps,
+  events?: TEvents,
 };
 
 export class ErrorPage extends Block {

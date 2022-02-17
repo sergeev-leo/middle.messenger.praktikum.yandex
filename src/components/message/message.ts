@@ -1,5 +1,6 @@
 import { Block } from "../../modules/Block/Block";
 import compileTemplate from './message.pug';
+import {TEvents} from "../../modules/types";
 
 
 export type TMessageProps = {
@@ -7,6 +8,7 @@ export type TMessageProps = {
   status: string,
   text: string,
   time: string,
+  events?: TEvents,
 };
 
 export class Message extends Block {

@@ -1,5 +1,5 @@
 import { EventBus } from '../EventBus/EventBus';
-import {TCallback, TComponentProps, TEventBusInstance, TListeners} from "../types";
+import { TComponentProps, TEventBusInstance, TEvents, TListeners } from "../types";
 import { v4 as makeUUID } from 'uuid';
 
 
@@ -216,7 +216,7 @@ export class Block {
   * */
   _addEvents() {
     const {
-      events = {} as Record <string, TCallback>,
+      events = {} as TEvents,
     } = this.props;
 
     Object

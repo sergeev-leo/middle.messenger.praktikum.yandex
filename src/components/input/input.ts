@@ -1,5 +1,6 @@
 import { Block } from "../../modules/Block/Block";
 import compileTemplate from './input.pug';
+import {TEvents} from "../../modules/types";
 
 
 export type TInputProps = {
@@ -7,6 +8,7 @@ export type TInputProps = {
   type?: string,
   label: string,
   error?: string,
+  events?: TEvents,
 };
 
 export class Input extends Block {

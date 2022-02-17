@@ -1,6 +1,7 @@
 import { Block } from "../../modules/Block/Block";
 import compileTemplate from './menu.pug';
 import {IconButton, TIconButtonProps} from "../icon-button/icon-button";
+import {TEvents} from "../../modules/types";
 
 
 type TMenuItem = {
@@ -13,6 +14,7 @@ export type TMenuProps = {
   iconButton: TIconButtonProps,
   position?: string,
   data: TMenuItem[],
+  events?: TEvents,
 };
 
 export class Menu extends Block {
