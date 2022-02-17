@@ -2,7 +2,7 @@ import { Block } from "../../modules/Block/Block";
 import compileTemplate from './link.pug';
 
 
-type TLinkProps = {
+export type TLinkProps = {
   style: string,
   title: string,
   href: string,

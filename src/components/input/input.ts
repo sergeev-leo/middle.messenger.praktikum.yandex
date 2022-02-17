@@ -2,7 +2,7 @@ import { Block } from "../../modules/Block/Block";
 import compileTemplate from './input.pug';
 
 
-type TInputProps = {
+export type TInputProps = {
   id: string,
   type?: string,
   label: string,

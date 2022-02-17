@@ -2,7 +2,7 @@ import { Block } from "../../modules/Block/Block";
 import compileTemplate from './icon-button.pug';
 
 
-type TIconButtonProps = {
+export type TIconButtonProps = {
   iconClassName: string,
   style?: string,
   outerIconClassName?: string,

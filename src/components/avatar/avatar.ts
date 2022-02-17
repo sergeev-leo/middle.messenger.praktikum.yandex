@@ -2,7 +2,7 @@ import { Block } from "../../modules/Block/Block";
 import compileTemplate from './avatar.pug';
 
 
-type TAvatarProps = {
+export type TAvatarProps = {
   src: string,
   withUpload: boolean,
   title: string,

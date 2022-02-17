@@ -2,7 +2,7 @@ import { Block } from "../../modules/Block/Block";
 import compileTemplate from './button.pug';
 
 
-type TButtonProps = {
+export type TButtonProps = {
   style: string,
   type: string,
   title: string,

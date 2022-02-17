@@ -2,7 +2,7 @@ import { Block } from "../../modules/Block/Block";
 import compileTemplate from './message.pug';
 
 
-type TMessageProps = {
+export type TMessageProps = {
   currentUserMessage: boolean,
   status: string,
   text: string,

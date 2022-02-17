@@ -8,7 +8,7 @@ enum HTTP_METHOD {
 
 type TOptions = {
   method: HTTP_METHOD,
-  data?: any,
+  data?: Record<string, unknown>,
 };
 
 type TOptionsWithoutMethod = Omit<TOptions, 'method'>;
