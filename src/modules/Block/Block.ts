@@ -21,7 +21,7 @@ export class Block {
   _meta: TMeta;
   _listeners: TListeners;
   _id: string | null = null;
-  _children: TComponentProps;
+  _children: any;
 
   eventBus: () => TEventBusInstance;
   props: TComponentProps;
@@ -51,11 +51,9 @@ export class Block {
     };
 
     /*
-    * UUID V4
+    * каждый компонент получает свой уникальный идентификатор UUID V4
     * */
-    if(props.withInternalID) {
-      this._id = makeUUID();
-    }
+    this._id = makeUUID();
 
     /*
     * формируем объект listeners для хранения массивов обработчиков событий создаваемого компонента в разрезе событий
@@ -153,6 +151,7 @@ export class Block {
       .keys(this._children)
       .forEach((key: string) => {
         const child = this._children[key]
+
         /*
         * ищем элемент-заглушку с необходимым идентификатором в контейнере и заменяем ее на реальный элемент из child
         * */
@@ -334,6 +333,7 @@ export class Block {
     /*
     * очищаем все вложенные узлы компонента и вставляем итоговую разметку
     * */
+    console.log('children', this._children)
     this._element.innerHTML = '';
     this._element.appendChild(block);
 
@@ -371,7 +371,7 @@ export class Block {
             value.bind(target) :
             value;
         },
-        set: (target, prop: string, value: any) => {
+        set: (target, prop: string, value: unknown) => {
           target[prop] = value;
 
           console.log('propsChanged');
