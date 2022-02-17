@@ -1,12 +1,11 @@
-mixin message(props)
-  .message-wrapper(class=`${props.currentUserMessage ? 'current-user-message' : ''}`)
-    p.message-text #{props.text}
+.message-wrapper(class=`${currentUserMessage ? 'current-user-message' : ''}`)
+    p.message-text #{text}
     .metadata
-      if(props.currentUserMessage && props.status === 'sent')
-        i.icon.fa.fa-hourglass
-      else if(props.currentUserMessage && props.status === 'delievered')
-        i.icon.fa.fa-check
-      else if(props.currentUserMessage && props.status === 'read')
-        i.icon.fa.fa-check
-        i.icon.fa.fa-check
-      .message-time #{props.time}
+        if(currentUserMessage && status === 'sent')
+            i.icon.fa.fa-hourglass
+        else if(currentUserMessage && status === 'delievered')
+            i.icon.fa.fa-check
+        else if(currentUserMessage && status === 'read')
+            i.icon.fa.fa-check
+            i.icon.fa.fa-check
+        .message-time #{time}
