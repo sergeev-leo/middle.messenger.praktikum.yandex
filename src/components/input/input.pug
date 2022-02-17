@@ -1,5 +1,4 @@
-mixin input(props)
-  .input-wrapper(class=`${props.error ? "has-error" : ''}`)
-    input(id=props.id name=props.id type=props.type required)
-    label(for=props.id) #{props.label}
-    span.error #{props.error}
+.input-wrapper(class=`${error ? "has-error" : ''}`)
+    input(id=id name=id type=type || "text" required)
+    label(for=id) #{label}
+    span.error #{error}
