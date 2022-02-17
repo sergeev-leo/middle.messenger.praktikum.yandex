@@ -1,4 +1,4 @@
-import { TCallback, TListeners } from "../types";
+import { TCallback, TListeners } from '../types';
 
 
 export class EventBus {
@@ -18,7 +18,7 @@ export class EventBus {
 
   off(event: string, callback: TCallback) {
     if(!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`)
+      throw new Error(`Нет события: ${event}`);
     }
 
     this.listeners[event] = this.listeners[event].filter(eventHandler => eventHandler !== callback);
@@ -26,10 +26,10 @@ export class EventBus {
 
   emit(event: string, ...args: never[]) {
     if(!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`)
+      throw new Error(`Нет события: ${event}`);
     }
 
     this.listeners[event]
-      .forEach((eventHandler: TCallback) => eventHandler(...args))
+      .forEach((eventHandler: TCallback) => eventHandler(...args));
   }
 }

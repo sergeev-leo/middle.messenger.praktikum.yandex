@@ -1,4 +1,4 @@
-import {Block} from "../modules/Block/Block";
+import { Block } from '../modules/Block/Block';
 import profileTemplate from './template.pug';
 
 

@@ -1,6 +1,6 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './input.pug';
-import {TEvents} from "../../modules/types";
+import { TEvents } from '../../modules/types';
 
 
 export type TInputProps = {
@@ -13,7 +13,7 @@ export type TInputProps = {
 
 export class Input extends Block {
   constructor(props: TInputProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {

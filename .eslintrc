@@ -8,5 +8,49 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
-  ]
+  ],
+  "rules": {
+    "indent": "off",
+    "indent-legacy": [
+      2,
+      2
+    ],
+    "quotes": [
+      1,
+      "single",
+      {"avoidEscape": true, "allowTemplateLiterals": true}
+    ],
+    "quote-props": [2, "as-needed"],
+    "no-case-declarations": 0,
+    "no-console": [1],
+    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+    "comma-spacing": [1, {"before": false, "after": true}],
+    "space-before-function-paren": ["error", "never"],
+    "space-before-blocks": [1, "always"],
+    "arrow-spacing": [1, { "before": true, "after": true }],
+    "no-param-reassign": [
+      1,
+      { "props": true, "ignorePropertyModificationsForRegex": ["acc$", "Acc$", "accumulator$", "Accumulator$"] }
+    ],
+    "function-paren-newline": [1, "consistent"],
+    "prefer-arrow-callback": [1],
+    "arrow-parens": [1, "as-needed"],
+    "arrow-body-style": [1, "as-needed"],
+    "no-useless-constructor": 2,
+    "no-dupe-class-members": 2,
+    "no-duplicate-imports": [2, {"includeExports": true}],
+    "dot-notation": [1, {"allowKeywords": true}],
+    "one-var": [2, "never"],
+    "no-nested-ternary": 1,
+    "no-unneeded-ternary": 1,
+    "object-curly-spacing": [1, "always"],
+    "semi": [1, "always"],
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "always-multiline"
+    }]
+  }
 }

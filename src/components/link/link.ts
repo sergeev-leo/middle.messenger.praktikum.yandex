@@ -1,6 +1,6 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './link.pug';
-import {TEvents} from "../../modules/types";
+import { TEvents } from '../../modules/types';
 
 
 export type TLinkProps = {
@@ -12,7 +12,7 @@ export type TLinkProps = {
 
 export class Link extends Block {
   constructor(props: TLinkProps) {
-    super("span", props);
+    super('span', props);
   }
 
   render() {

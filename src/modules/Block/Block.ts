@@ -1,5 +1,5 @@
 import { EventBus } from '../EventBus/EventBus';
-import { TComponentProps, TEventBusInstance, TEvents, TListeners } from "../types";
+import { TComponentProps, TEventBusInstance, TEvents, TListeners } from '../types';
 import { v4 as makeUUID } from 'uuid';
 
 
@@ -11,10 +11,10 @@ type TMeta = {
 
 export class Block {
   static EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render"
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render',
   };
 
   _element: HTMLElement;
@@ -26,7 +26,7 @@ export class Block {
   eventBus: () => TEventBusInstance;
   props: TComponentProps;
 
-  constructor(tagName = "div", propsWithChildren: TComponentProps = {}) {
+  constructor(tagName = 'div', propsWithChildren: TComponentProps = {}) {
     /*
     * создаем экземпляр EventBus, с помощью которого будем реализовывать работу с событиями в пределах компонента
     * */
@@ -47,7 +47,7 @@ export class Block {
     * */
     this._meta = {
       tagName,
-      props
+      props,
     };
 
     /*
@@ -150,7 +150,7 @@ export class Block {
     Object
       .keys(this._children)
       .forEach((key: string) => {
-        const child = this._children[key]
+        const child = this._children[key];
 
         /*
         * ищем элемент-заглушку с необходимым идентификатором в контейнере и заменяем ее на реальный элемент из child
@@ -333,7 +333,7 @@ export class Block {
     /*
     * очищаем все вложенные узлы компонента и вставляем итоговую разметку
     * */
-    console.log('children', this._children)
+    console.log('children', this._children);
     this._element.innerHTML = '';
     this._element.appendChild(block);
 
@@ -343,7 +343,7 @@ export class Block {
     this._addEvents();
   }
 
-  render(): Node | null { return null }
+  render(): Node | null { return null; }
 
   /*
   * метод для запроса DOM-элемента
@@ -367,21 +367,25 @@ export class Block {
       {
         get(target, prop: string) {
           const value = target[prop];
-          return typeof value === "function" ?
+          return typeof value === 'function' ?
             value.bind(target) :
             value;
         },
         set: (target, prop: string, value: unknown) => {
-          target[prop] = value;
-
           console.log('propsChanged');
 
-          this.eventBus().emit(Block.EVENTS.FLOW_CDU, [{...target}]);
+          this.eventBus().emit(
+            Block.EVENTS.FLOW_CDU,
+            [{
+              ...target,
+              [prop]: value,
+            }],
+          );
 
           return true;
         },
         deleteProperty() {
-          throw new Error('нет доступа')
+          throw new Error('нет доступа');
         },
       },
     );
@@ -391,13 +395,13 @@ export class Block {
   *
   * */
   show() {
-    this.getContent().style.display = "block";
+    this.getContent().style.display = 'block';
   }
 
   /*
   *
   * */
   hide() {
-    this.getContent().style.display = "none";
+    this.getContent().style.display = 'none';
   }
 }

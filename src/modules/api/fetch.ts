@@ -15,7 +15,7 @@ type TOptionsWithoutMethod = Omit<TOptions, 'method'>;
 
 const makeHTTPRequest = (
   url: string,
-  options: TOptions
+  options: TOptions,
 ): Promise<XMLHttpRequest> => {
   const {
     method,
@@ -30,7 +30,7 @@ const makeHTTPRequest = (
 
     xhr.onload = () => {
       resolve(xhr);
-    }
+    };
 
     xhr.onabort = reject;
     xhr.onerror = reject;

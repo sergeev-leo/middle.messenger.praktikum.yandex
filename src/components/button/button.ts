@@ -1,6 +1,6 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './button.pug';
-import {TEvents} from "../../modules/types";
+import { TEvents } from '../../modules/types';
 
 
 export type TButtonProps = {
@@ -12,7 +12,7 @@ export type TButtonProps = {
 
 export class Button extends Block {
   constructor(props: TButtonProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {

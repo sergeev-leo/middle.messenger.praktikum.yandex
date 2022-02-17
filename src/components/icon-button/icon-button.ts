@@ -1,6 +1,6 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './icon-button.pug';
-import {TEvents} from "../../modules/types";
+import { TEvents } from '../../modules/types';
 
 
 export type TIconButtonProps = {
@@ -12,7 +12,7 @@ export type TIconButtonProps = {
 
 export class IconButton extends Block {
   constructor(props: TIconButtonProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {

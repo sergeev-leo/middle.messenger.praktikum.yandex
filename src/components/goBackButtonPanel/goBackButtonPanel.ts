@@ -1,7 +1,7 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './goBackButtonPanel.pug';
-import { IconButton } from "../icon-button/icon-button";
-import {TEvents} from "../../modules/types";
+import { IconButton } from '../icon-button/icon-button';
+import { TEvents } from '../../modules/types';
 
 
 export type TGoBackButtonPanelProps = {
@@ -10,7 +10,7 @@ export type TGoBackButtonPanelProps = {
 
 export class GoBackButtonPanel extends Block {
   constructor(props: TGoBackButtonPanelProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {
@@ -26,6 +26,7 @@ export class GoBackButtonPanel extends Block {
       compileTemplate, {
         ...this.props,
         iconButton: this._children.iconButton,
-      });
+      },
+);
   }
 }

@@ -1,7 +1,7 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './dialog.pug';
-import {Avatar, TAvatarProps} from "../avatar/avatar";
-import {TEvents} from "../../modules/types";
+import { Avatar, TAvatarProps } from '../avatar/avatar';
+import { TEvents } from '../../modules/types';
 
 
 export type TDialogProps = {
@@ -17,7 +17,7 @@ export type TDialogProps = {
 
 export class Dialog extends Block {
   constructor(props: TDialogProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {

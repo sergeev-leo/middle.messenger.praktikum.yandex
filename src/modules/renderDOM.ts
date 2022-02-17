@@ -11,4 +11,4 @@ export const render = (query: string, block: any) => {
   block.dispatchComponentDidMount();
 
   return root;
-}
+};

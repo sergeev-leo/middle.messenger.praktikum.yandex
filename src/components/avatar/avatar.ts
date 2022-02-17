@@ -1,6 +1,6 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './avatar.pug';
-import {TEvents} from "../../modules/types";
+import { TEvents } from '../../modules/types';
 
 
 export type TAvatarProps = {
@@ -12,7 +12,7 @@ export type TAvatarProps = {
 
 export class Avatar extends Block {
   constructor(props: TAvatarProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {

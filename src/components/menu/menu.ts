@@ -1,7 +1,7 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './menu.pug';
-import {IconButton, TIconButtonProps} from "../icon-button/icon-button";
-import {TEvents} from "../../modules/types";
+import { IconButton, TIconButtonProps } from '../icon-button/icon-button';
+import { TEvents } from '../../modules/types';
 
 
 type TMenuItem = {
@@ -19,7 +19,7 @@ export type TMenuProps = {
 
 export class Menu extends Block {
   constructor(props: TMenuProps) {
-    super("div", props);
+    super('div', props);
 
   }
 

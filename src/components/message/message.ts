@@ -1,6 +1,6 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './message.pug';
-import {TEvents} from "../../modules/types";
+import { TEvents } from '../../modules/types';
 
 
 export type TMessageProps = {
@@ -13,7 +13,7 @@ export type TMessageProps = {
 
 export class Message extends Block {
   constructor(props: TMessageProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {

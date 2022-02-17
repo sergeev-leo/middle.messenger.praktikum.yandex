@@ -1,7 +1,7 @@
-import { Block } from "../../modules/Block/Block";
+import { Block } from '../../modules/Block/Block';
 import compileTemplate from './error.pug';
-import {Link, TLinkProps} from "../link/link";
-import {TEvents} from "../../modules/types";
+import { Link, TLinkProps } from '../link/link';
+import { TEvents } from '../../modules/types';
 
 
 export type TErrorProps = {
@@ -13,7 +13,7 @@ export type TErrorProps = {
 
 export class ErrorPage extends Block {
   constructor(props: TErrorProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render() {
