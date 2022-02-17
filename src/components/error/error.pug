@@ -1,9 +1,5 @@
-include ../link/link.pug
-
-
-mixin error(props)
-  .error-wrapper
-    h1 #{props.errorCode}
-    p #{props.errorText}
-    .link-wrapper
-      +link({ title: 'Назад к чатам', href: props.href, style: 'primary' })
+.error-wrapper
+  h1 #{errorCode}
+  p #{errorText}
+  .link-wrapper
+    span !{link}

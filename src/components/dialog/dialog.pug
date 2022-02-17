@@ -1,16 +1,12 @@
-include ../avatar/avatar.pug
-
-
-mixin dialog(props)
-  .dialog(class=`${props.isSelected ? '--is-selected' : ''}`)
-    +avatar(props.avatar)
-    .dialog__message-section
-      h2.dialog__message-author-name #{props.name}
-      if props.currentUserMessage 
-        p.dialog__current-user-message-label Вы: 
-      p.dialog__message-preview #{props.messagePreview}
-    .dialog__meta-data-section
-      p.dialog__message-time #{props.lastMessageTime}
-      if !!props.amountOfUnreadMessages 
-        .dialog__messages_amount
-          p #{props.amountOfUnreadMessages}
+.dialog(class=`${isSelected ? '--is-selected' : ''}`)
+  span.dialog-avatar !{avatar}
+  .dialog__message-section
+    h2.dialog__message-author-name #{name}
+    if currentUserMessage
+      p.dialog__current-user-message-label Вы:
+    p.dialog__message-preview #{messagePreview}
+  .dialog__meta-data-section
+    p.dialog__message-time #{lastMessageTime}
+    if !!amountOfUnreadMessages
+      .dialog__messages_amount
+        p #{amountOfUnreadMessages}
