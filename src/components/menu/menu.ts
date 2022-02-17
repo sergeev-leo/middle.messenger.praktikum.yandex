@@ -19,16 +19,22 @@ export class Menu extends Block {
   constructor(props: TMenuProps) {
     super("div", props);
 
-    this._children.iconButton = new IconButton(props.iconButton);
-    props.data.forEach(({ icon }, index) => {
+  }
+
+  render() {
+    const {
+      data,
+      iconButton,
+    } = this.props as TMenuProps;
+
+    //------------------------------------------------------------------
+    this._children.iconButton = new IconButton(iconButton);
+    data.forEach(({ icon }, index) => {
       const key = ['menuButton', index].join('_');
 
       this._children[key] = new IconButton(icon);
     });
-  }
-
-  render() {
-    const { data } = this.props;
+    //------------------------------------------------------------------
 
     return this.compile(
       compileTemplate,

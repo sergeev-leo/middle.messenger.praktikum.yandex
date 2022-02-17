@@ -12,12 +12,15 @@ export type TErrorProps = {
 export class ErrorPage extends Block {
   constructor(props: TErrorProps) {
     super("div", props);
-
-    this._children.link = new Link(props.link);
   }
 
   render() {
-    console.log(this.props)
+    const { link } = this.props as TErrorProps;
+
+    //------------------------------------------------------------------
+    this._children.link = new Link(link);
+    //------------------------------------------------------------------
+
     return this.compile(compileTemplate, { ...this.props, link: this._children.link });
   }
 }
