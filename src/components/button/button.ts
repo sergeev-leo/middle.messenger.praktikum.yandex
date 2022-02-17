@@ -1,10 +1,15 @@
 import { Block } from "../../modules/Block/Block";
-import { TComponentProps } from "../../modules/types";
 import compileTemplate from './button.pug';
 
 
+type TButtonProps = {
+  style: string,
+  type: string,
+  title: string,
+};
+
 export class Button extends Block {
-  constructor(props: TComponentProps) {
+  constructor(props: TButtonProps) {
     super("div", props);
   }
 
