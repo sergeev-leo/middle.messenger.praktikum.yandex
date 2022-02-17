@@ -372,15 +372,16 @@ export class Block {
             value;
         },
         set: (target, prop: string, value: unknown) => {
+          const oldProps = { ...target };
+
           target[prop] = value;
 
           console.log('propsChanged');
 
           this.eventBus().emit(
             Block.EVENTS.FLOW_CDU,
-            [{
-              ...target,
-            }],
+            { ...target },
+            oldProps,
           );
 
           return true;
