@@ -1,5 +1,4 @@
-mixin icon-button(props)
-  .icon-button-container(class=props.styleType || 'secondary')
-    span.fa-stack
-      i.fa.fa-stack-2x(class=props.iconClassName)
-      i.icon.fa.fa-stack-1x(class=props.innerIconClassName)
+.icon-button-container(class=style || 'secondary')
+  span.fa-stack
+    i.fa.fa-stack-2x(class=outerIconClassName)
+    i.icon.fa.fa-stack-1x(class=iconClassName)
