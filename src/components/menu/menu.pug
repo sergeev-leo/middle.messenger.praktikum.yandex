@@ -1,8 +1,6 @@
-.menu-wrapper
-  span !{iconButton}
-  ul.dropdown-content(class=position || 'top-right')
-    each item in data || []
-      li.dropdown-item(id=item.id)
-        .icon-container
-          span !{item.icon}
-        p.dropdown-item-text #{item.text}
+- const arrayOfMenuItemsKeys = [menuItem_0, menuItem_1, menuItem_2, menuItem_3, menuItem_4];
+  .menu-wrapper
+    span !{iconButton}
+    ul.dropdown-content(class=position || 'top-left')
+      each item, index in data || []
+        li !{arrayOfMenuItemsKeys[index]}

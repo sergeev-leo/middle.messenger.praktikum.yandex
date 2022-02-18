@@ -40,38 +40,5 @@
     box-shadow: 0 0.5rem 1rem 0.2rem $shadowColor;
     min-width: 20rem;
     z-index: 1;
-
-    .dropdown-item {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      padding: 0.5rem;
-      list-style-type: none;
-      text-decoration: none;
-      color: $primaryColor;
-
-      .icon-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 3rem;
-        height: 3rem;
-        margin-right: 0.5rem;
-      }
-
-      .dropdown-item-text {
-        color: $blackColor;
-      }
-
-      &:hover {
-        cursor: pointer;
-        background-color: $lightGreyColor;
-      }
-
-      &:active {
-        background-color: darken($lightGreyColor, 5);
-      }
-    }
   }
 }
