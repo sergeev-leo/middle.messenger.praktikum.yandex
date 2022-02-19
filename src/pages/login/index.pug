@@ -1,48 +1,13 @@
 extends ../../components/html/html.pug
 
-block includes
-  include ../../components/button/button.pug
-  include ../../components/input/input.pug
-
-block data
-  -
-    const data = {
-      title: 'Регистрация',
-      header: 'Вход',
-      inputs: {
-        login: {
-          id: 'login', 
-          label: 'Логин', 
-          type: 'text', 
-          error: 'Неверный логин',
-        },
-        password: {
-          id: 'password', 
-          label: 'Пароль',
-          type: 'password',
-        },
-      },
-      buttons: {
-        logIn: {
-          title: 'Вход', 
-          style: 'primary',
-          type: 'submit',
-        },
-        register: {
-          title: 'Нет аккаунта?',
-          style: 'secondary',
-        },
-      },
-    };
-
-block content 
-  form.login-form 
+block content
+  form.login-form
       .login-form__card
         .login-form__header
-          p #{data.header}
+          p #{header}
         .login-form__inputs-section
-          +input(data.inputs.login)
-          +input(data.inputs.password)
+          span !{loginInput}
+          span !{passwordInput}
         .login-form__buttons-section
-          +button(data.buttons.logIn)
-          +button(data.buttons.register)
+          span !{logInButton}
+          span !{registerButton}

@@ -1,68 +1,19 @@
 extends ../../components/html/html.pug
 
-block includes
-  include ../../components/button/button.pug
-  include ../../components/input/input.pug
-
-block data 
-  -
-    const data = {
-      header: 'Регистрация',
-      inputs: {
-        email: {
-          id: 'email', 
-          label: 'Почта', 
-        },
-        login: {
-          id: 'login', 
-          label: 'Логин', 
-        },
-        firstName: {
-          id: 'first_name', 
-          label: 'Имя', 
-        },
-        secondName: {
-          id: 'second_name', 
-          label: 'Фамилия', 
-        },
-        phone: {
-          id: 'phone', 
-          label: 'Телефон', 
-        },
-        password: {
-          id: 'password',
-          label: 'Пароль',
-          type: 'password',
-        },
-        passwordRepeat: {
-          id: 'password_repeat', 
-          label: 'Пароль (ещё раз)', 
-          type: 'password',
-        },
-      },
-      buttons: {
-        register: {
-          title: 'Зарегистрироваться', 
-          style: 'primary',
-          type: 'submit',
-        },
-        logIn: {
-          title: 'Войти', 
-          style: 'secondary',
-        },
-      },
-    };
 
 block content
-  form.register-form 
+  - const inputsKeysArray = [emailInput, loginInput, firstNameInput, secondNameInput, phoneInput, passwordInput, passwordRepeatInput];
+  - const buttonsKeysArray = [logInButton, registerButton];
+
+  form.register-form
     .register-form__card
       .register-form__header
-        p #{data.header}
+        p #{header}
       .register-form__inputs-section
-        each item in data.inputs
+        each item in inputsKeysArray
           li
-            +input(item)
+            span !{item}
       .register-form__buttons-section
-        each item in data.buttons
+        each item in buttonsKeysArray
           li
-            +button(item)
+            span !{item}
