@@ -1,11 +1,15 @@
-.message-wrapper(class=`${currentUserMessage ? 'current-user-message' : ''}`)
+if(status === 'dateTimeMsg')
+  .date-string-line
+    p.date-string-label #{text}
+else
+  .message-wrapper(class=`${currentUserMessage ? 'current-user-message' : ''}`)
     p.message-text #{text}
-    .metadata
+      .metadata
         if(currentUserMessage && status === 'sent')
-            i.icon.fa.fa-hourglass
+          i.icon.fa.fa-hourglass
         else if(currentUserMessage && status === 'delivered')
-            i.icon.fa.fa-check
+          i.icon.fa.fa-check
         else if(currentUserMessage && status === 'read')
-            i.icon.fa.fa-check
-            i.icon.fa.fa-check
+          i.icon.fa.fa-check
+          i.icon.fa.fa-check
         .message-time #{time}

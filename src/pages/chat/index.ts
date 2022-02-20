@@ -153,7 +153,10 @@ const data = {
       text: 'Lorem ipsum dolor, sit amet consectetur. Distinctio sed, esse cum libero obcaecati voluptate debitis.',
       currentUserMessage: false,
     },
-    '19 июля',
+    {
+      status: 'dateTimeMsg',
+      text: '19 июля',
+    },
     {
       type: 0,
       time: '12:00',
@@ -208,7 +211,10 @@ export class ChatPage extends Block {
       profileLink,
       chatMenu,
       attachMenu,
-      reviewingDialogUser,
+      reviewingDialogUser: {
+        name,
+        avatar,
+      },
       searchInputPlaceholder,
       sendIcon,
       dialogs,
@@ -219,7 +225,7 @@ export class ChatPage extends Block {
     this._children.profileLink = new Link(profileLink);
     this._children.chatMenu = new Menu(chatMenu);
     this._children.attachMenu = new Menu(attachMenu);
-    this._children.reviewingDialogUserAvatar = new Avatar(reviewingDialogUser.avatar);
+    this._children.reviewingDialogUserAvatar = new Avatar(avatar);
     this._children.sendIcon = new IconButton(sendIcon);
 
     //------------------------------------------------------------------
@@ -238,7 +244,7 @@ export class ChatPage extends Block {
       {
         searchInputPlaceholder,
         messagesPanelInfoText,
-        reviewingDialogUserName: reviewingDialogUser.name,
+        reviewingDialogUserName: name,
         ...this._children,
       },
     );
