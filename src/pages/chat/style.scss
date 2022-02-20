@@ -135,6 +135,16 @@ html {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  position: relative;
+
+  .messages-panel-info-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: $greyColor;
+  }
 
   .date-string-line {
     margin: 2rem;
@@ -142,6 +152,7 @@ html {
     color: $greyColor;
     border-top: 0.1rem solid $lightGreyColor;
 
+    .no-messages-text,
     .date-string-label {
       position: absolute;
       top: 50%;
