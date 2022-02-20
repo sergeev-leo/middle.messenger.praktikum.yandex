@@ -23,6 +23,7 @@ export class Menu extends Block {
     const {
       data,
       iconButton,
+      position,
     } = this.props as TMenuProps;
 
     //------------------------------------------------------------------
@@ -38,6 +39,7 @@ export class Menu extends Block {
       compileTemplate,
       {
         ...this._children,
+        position,
         data,
       },
     );
