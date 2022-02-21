@@ -13,20 +13,14 @@ export class GoBackButtonPanel extends Block {
     super('div', props);
   }
 
-  render() {
-
-    //------------------------------------------------------------------
+  initChildren() {
     this._children.iconButton = new IconButton({
       outerIconClassName: 'fa-circle',
       iconClassName: 'inner fa-arrow-left',
     });
-    //------------------------------------------------------------------
+  }
 
-    return this.compile(
-      compileTemplate, {
-        ...this.props,
-        iconButton: this._children.iconButton,
-      },
-);
+  render() {
+    return this.compile(compileTemplate, { ...this.props });
   }
 }

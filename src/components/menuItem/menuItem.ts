@@ -16,23 +16,25 @@ export class MenuItem extends Block {
     super('span', props);
   }
 
+  initChildren() {
+    const {
+      iconButton,
+    } = this.props as TMenuItemProps;
+
+    this._children.iconButton = new IconButton(iconButton);
+  }
+
   render() {
     const {
       text,
       id,
-      iconButton,
     } = this.props as TMenuItemProps;
-
-    //------------------------------------------------------------------
-    this._children.iconButton = new IconButton(iconButton);
-    //------------------------------------------------------------------
 
     return this.compile(
       compileTemplate,
       {
         id,
         text,
-        iconButton: this._children.iconButton,
       },
     );
   }

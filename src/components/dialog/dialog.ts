@@ -20,14 +20,13 @@ export class Dialog extends Block {
     super('div', props);
   }
 
-  render() {
-
-    //------------------------------------------------------------------
+  initChildren() {
     const { avatar } = this.props as TDialogProps;
-    //------------------------------------------------------------------
 
     this._children.avatar = new Avatar(avatar);
+  }
 
-    return this.compile(compileTemplate, { ...this.props, avatar: this._children.avatar });
+  render() {
+    return this.compile(compileTemplate, { ...this.props });
   }
 }

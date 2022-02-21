@@ -16,13 +16,13 @@ export class ErrorPage extends Block {
     super('div', props);
   }
 
-  render() {
+  initChildren() {
     const { link } = this.props as TErrorProps;
 
-    //------------------------------------------------------------------
     this._children.link = new Link(link);
-    //------------------------------------------------------------------
+  }
 
-    return this.compile(compileTemplate, { ...this.props, link: this._children.link });
+  render() {
+    return this.compile(compileTemplate, { ...this.props });
   }
 }
