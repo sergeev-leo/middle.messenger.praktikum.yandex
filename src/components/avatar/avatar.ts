@@ -12,7 +12,7 @@ export type TAvatarProps = {
 
 export class Avatar extends Block {
   constructor(props: TAvatarProps) {
-    super('div', props);
+    super(props);
   }
 
   render() {

@@ -12,7 +12,7 @@ export type TLinkProps = {
 
 export class Link extends Block {
   constructor(props: TLinkProps) {
-    super('span', props);
+    super(props);
   }
 
   render() {

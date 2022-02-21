@@ -14,7 +14,7 @@ export type TInputProps = {
 
 export class Input extends Block {
   constructor(props: TInputProps) {
-    super('div', props);
+    super(props);
   }
 
   render() {

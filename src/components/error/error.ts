@@ -13,7 +13,7 @@ export type TErrorProps = {
 
 export class ErrorPage extends Block {
   constructor(props: TErrorProps) {
-    super('div', props);
+    super(props);
   }
 
   initChildren() {

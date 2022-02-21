@@ -13,7 +13,7 @@ export type TMenuItemProps = {
 
 export class MenuItem extends Block {
   constructor(props: TMenuItemProps) {
-    super('span', props);
+    super(props);
   }
 
   initChildren() {

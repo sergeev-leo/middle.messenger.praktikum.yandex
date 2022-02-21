@@ -12,7 +12,7 @@ export type TButtonProps = {
 
 export class Button extends Block {
   constructor(props: TButtonProps) {
-    super('div', props);
+    super(props);
   }
 
   render() {

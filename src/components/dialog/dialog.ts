@@ -17,7 +17,7 @@ export type TDialogProps = {
 
 export class Dialog extends Block {
   constructor(props: TDialogProps) {
-    super('div', props);
+    super(props);
   }
 
   initChildren() {

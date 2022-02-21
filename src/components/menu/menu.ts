@@ -15,7 +15,7 @@ export type TMenuProps = {
 
 export class Menu extends Block {
   constructor(props: TMenuProps) {
-    super('div', props);
+    super(props);
   }
 
   initChildren() {

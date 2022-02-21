@@ -12,7 +12,7 @@ export type TIconButtonProps = {
 
 export class IconButton extends Block {
   constructor(props: TIconButtonProps) {
-    super('div', props);
+    super(props);
   }
 
   render() {
