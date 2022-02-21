@@ -16,31 +16,28 @@ export type TMenuProps = {
 export class Menu extends Block {
   constructor(props: TMenuProps) {
     super('div', props);
+  }
 
+  initChildren() {
+    const {
+      iconButton,
+      data,
+    } = this.props as TMenuProps;
+
+    this._children.iconButton = new IconButton(iconButton);
+    this._children.data = data.map(item => new MenuItem(item));
   }
 
   render() {
     const {
-      data,
-      iconButton,
       position,
     } = this.props as TMenuProps;
-
-    //------------------------------------------------------------------
-    this._children.iconButton = new IconButton(iconButton);
-    data.forEach(({ id, text, iconButton, events }, index) => {
-      const key = ['menuItem', index].join('_');
-
-      this._children[key] = new MenuItem({ id, text, iconButton, events });
-    });
-    //------------------------------------------------------------------
 
     return this.compile(
       compileTemplate,
       {
         ...this._children,
         position,
-        data,
       },
     );
   }
