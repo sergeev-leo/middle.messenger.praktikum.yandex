@@ -2,13 +2,13 @@ extends ../../components/html/html.pug
 
 block content
   .password-edit
-    span !{goBackButtonPanel}
+    | !{goBackButtonPanel}
     .password-edit__content-section
       .password-edit__user-avatar-section
-        span !{avatar}
+        | !{avatar}
       ul.password-edit__user-data
         each item in inputs
           li.password-edit__user-data-row
-            span !{item}
+            | !{item}
       .password-edit__btn-section
-        span !{button}
+        | !{button}

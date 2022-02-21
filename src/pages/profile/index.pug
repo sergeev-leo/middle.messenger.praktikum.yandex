@@ -2,10 +2,10 @@ extends ../../components/html/html.pug
 
 block content
   .profile
-    span !{GoBackButtonPanel}
+    | !{GoBackButtonPanel}
     .profile__content-section
       .profile__user-avatar-section
-        span !{avatar}
+        | !{avatar}
         h1.profile__user-name #{userName}
       ul.profile__user-data
         each item in userData
@@ -13,6 +13,6 @@ block content
             p.label #{item.label}
             p.value #{item.value}
       .proifle__links-section
-        span !{logOut}
-        span !{changePassword}
-        span !{edit}
+        | !{logOut}
+        | !{changePassword}
+        | !{edit}

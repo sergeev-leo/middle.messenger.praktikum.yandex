@@ -5,35 +5,35 @@ block content
     aside
       .chat__search-section
         .chat__profile-link
-          span !{profileLink}
+          | !{profileLink}
           i.icon.fa.fa-angle-right
         .chat_search-field
-          span.input-component-wrapper !{searchInput}
+          .input-component-wrapper !{searchInput}
           .input-label
             i.icon.fa.fa-search
             p.input-label-placeholder #{searchInputPlaceholder}
       .chat__dialogs-section
         each item in dialogs
-          span !{item}
+          | !{item}
 
     nav.chat__top-panel
       .chat__top-panel-user-avatar
-        span !{reviewingDialogUserAvatar}
+        | !{reviewingDialogUserAvatar}
         h1.chat__top-panel-user-name #{reviewingDialogUserName}
       .chat__top-panel-menu-icon
-        span !{chatMenu}
+        | !{chatMenu}
 
     .chat__messages-panel
        each item in messages
-         span !{item}
+         | !{item}
        else
          p.messages-panel-info-text #{messagesPanelInfoText}
 
 
     .chat__bottom-panel
       .chat__bottom-panel-attach-menu-icon
-        span !{attachMenu}
+        | !{attachMenu}
       .chat__bottom-panel-message-field
-        span.input-component-wrapper !{messageInput}
+        .input-component-wrapper !{messageInput}
       .chat__bottom-panel-send-icon
-        span !{sendIcon}
+        | !{sendIcon}

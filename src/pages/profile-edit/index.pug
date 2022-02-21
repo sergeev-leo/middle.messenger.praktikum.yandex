@@ -3,13 +3,13 @@ extends ../../components/html/html.pug
 
 block content
   form.profile-edit
-    span !{goBackButtonPanel}
+    | !{goBackButtonPanel}
     .profile-edit__content-section
       .profile-edit__user-avatar-section
-        span !{avatar}
+        | !{avatar}
       ul.profile-edit__user-data
         each item in inputs
           li.profile-edit__user-data-row
-            span !{item}
+            | !{item}
       .profile-edit__btn-section
-        span !{button}
+        | !{button}
