@@ -2,7 +2,7 @@ export type TCallback = (...args: unknown[]) => void;
 
 export type TEvents = Record <string, TCallback>;
 
-export type TComponentProps = Record<string, unknown>;
+export type TComponentProps = any;
 
 export type TListeners = Record<string, TCallback[]>;
 
