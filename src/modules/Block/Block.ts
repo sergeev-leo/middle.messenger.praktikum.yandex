@@ -3,12 +3,6 @@ import { TComponentProps, TEventBusInstance, TEvents, TListeners } from '../type
 import { v4 as makeUUID } from 'uuid';
 
 
-type TMeta = {
-  tagName: string,
-  props: TComponentProps,
-};
-
-
 export class Block {
   static EVENTS = {
     INIT: 'init',
@@ -18,7 +12,6 @@ export class Block {
   };
 
   _element: HTMLElement;
-  _meta: TMeta;
   _listeners: TListeners;
   _id: string | null = null;
   _children: TComponentProps;
@@ -26,7 +19,7 @@ export class Block {
   eventBus: () => TEventBusInstance;
   props: TComponentProps;
 
-  constructor(tagName = 'div', propsWithChildren: TComponentProps = {}) {
+  constructor(propsWithChildren: TComponentProps = {}) {
     /*
     * создаем экземпляр EventBus, с помощью которого будем реализовывать работу с событиями в пределах компонента
     * */
@@ -41,14 +34,6 @@ export class Block {
     } = this._getChildren(propsWithChildren);
 
     this._children = children;
-
-    /*
-    * сохраняем данные о теге и пропсах компонента
-    * */
-    this._meta = {
-      tagName,
-      props,
-    };
 
     /*
     * каждый компонент получает свой уникальный идентификатор UUID V4
@@ -113,7 +98,7 @@ export class Block {
     };
   }
 
-  initChildren(): void {}
+  protected initChildren(): void {}
 
   /*
   * метод вызывает формирование строки из шаблона с подставлением заглушек вместо элементов children
@@ -208,16 +193,7 @@ export class Block {
   * - делает вызов события первоначальной отрисовки
   * */
   init() {
-    this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-  }
-
-  /*
-  * инициация поля _element элементом с заданным тегом
-  * */
-  _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
   }
 
   /*
@@ -298,7 +274,7 @@ export class Block {
       });
   }
 
-  componentDidMount(oldProps: TComponentProps) {
+  protected componentDidMount(oldProps: TComponentProps) {
     console.log('componentDidMount', oldProps);
   }
 
@@ -320,7 +296,7 @@ export class Block {
     }
   }
 
-  componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
+  protected componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
     console.log('componentDidUpdate', oldProps, newProps);
     return true;
   }
@@ -343,13 +319,25 @@ export class Block {
   * */
   _render() {
     console.log('render', this.props);
+    console.log('render: children', this._children);
 
     /*
     * получаем итоговую разметку компонента
     * */
-    const block: Node | null = this.render();
+    const block = this.render();
 
-    if(!block) {
+    /*
+    * берем верхний элемент из шаблона
+    * */
+    const newElement = block.firstElementChild as HTMLElement;
+
+    /*
+    * если это первый рендер то создаем элемент и добавляем обработчики событий
+    * */
+    if(!this._element) {
+      this._element = newElement;
+
+      this._addEvents();
       return;
     }
 
@@ -361,9 +349,7 @@ export class Block {
     /*
     * очищаем все вложенные узлы компонента и вставляем итоговую разметку
     * */
-    console.log('children', this._children);
-    this._element.innerHTML = '';
-    this._element.appendChild(block);
+    this._element.replaceWith(newElement);
 
     /*
     * добавляем новые обработчики событий
@@ -371,7 +357,7 @@ export class Block {
     this._addEvents();
   }
 
-  render(): Node | null { return null; }
+  protected render(): DocumentFragment { return new DocumentFragment(); }
 
   /*
   * метод для запроса DOM-элемента
@@ -408,8 +394,8 @@ export class Block {
 
           this.eventBus().emit(
             Block.EVENTS.FLOW_CDU,
-            { ...target },
             oldProps,
+            { ...target },
           );
 
           return true;
