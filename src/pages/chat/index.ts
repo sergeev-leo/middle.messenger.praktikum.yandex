@@ -6,6 +6,7 @@ import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { IconButton, TIconButtonProps } from '../../components/icon-button/icon-button';
 import { Dialog, TDialogProps } from '../../components/dialog/dialog';
 import { Message, TMessageProps } from '../../components/message/message';
+import {Input, TInputProps} from "../../components/input/input";
 
 const data = {
   profileLink: {
@@ -14,6 +15,14 @@ const data = {
     href: '../profile/index.pug',
   },
   searchInputPlaceholder: 'Поиск',
+  searchInput: {
+    id: 'search',
+    type: 'search',
+    events: {
+      focusin: () => console.log('focus'),
+      focusout: () => console.log('blur'),
+    },
+  },
   dialogs: [
     {
       name: 'Андрей',
@@ -184,6 +193,14 @@ const data = {
     iconClassName: 'fa-arrow-right',
   },
   messagesPanelInfoText: 'Выберите чат чтобы отправить сообщение',
+  messageInput: {
+    id: 'message',
+    placeholder: 'Сообщение',
+    events: {
+      focusin: () => console.log('focus'),
+      focusout: () => console.log('blur'),
+    },
+  },
 };
 
 type TChatPageProps = {
@@ -194,11 +211,13 @@ type TChatPageProps = {
     name: string,
     avatar: TAvatarProps,
   },
+  searchInput: TInputProps,
   searchInputPlaceholder: string,
   sendIcon: TIconButtonProps,
   dialogs: TDialogProps[],
   messages: TMessageProps[],
   messagesPanelInfoText: string,
+  messageInput: TInputProps,
 };
 
 export class ChatPage extends Block {
@@ -215,11 +234,13 @@ export class ChatPage extends Block {
         name,
         avatar,
       },
+      searchInput,
       searchInputPlaceholder,
       sendIcon,
       dialogs,
       messages,
       messagesPanelInfoText,
+      messageInput,
     } = this.props as TChatPageProps;
 
     this._children.profileLink = new Link(profileLink);
@@ -227,6 +248,8 @@ export class ChatPage extends Block {
     this._children.attachMenu = new Menu(attachMenu);
     this._children.reviewingDialogUserAvatar = new Avatar(avatar);
     this._children.sendIcon = new IconButton(sendIcon);
+    this._children.searchInput = new Input(searchInput);
+    this._children.messageInput = new Input(messageInput);
 
     //------------------------------------------------------------------
     dialogs.forEach((item: TDialogProps, index: number) => {

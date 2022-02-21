@@ -8,6 +8,7 @@ export type TInputProps = {
   type?: string,
   label: string,
   error?: string,
+  placeholder?: string,
   events?: TEvents,
 };
 

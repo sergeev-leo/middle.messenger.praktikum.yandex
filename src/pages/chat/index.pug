@@ -10,7 +10,7 @@ block content
           span !{profileLink}
           i.icon.fa.fa-angle-right
         .chat_search-field
-          input(type="search")
+          span.input-component-wrapper !{searchInput}
           .input-label
             i.icon.fa.fa-search
             p.input-label-placeholder #{searchInputPlaceholder}
@@ -36,6 +36,6 @@ block content
       .chat__bottom-panel-attach-menu-icon
         span !{attachMenu}
       .chat__bottom-panel-message-field
-        input(type="text" name="message" id="message" placeholder="Сообщение")
+        span.input-component-wrapper !{messageInput}
       .chat__bottom-panel-send-icon
         span !{sendIcon}
