@@ -1,18 +1,14 @@
-extends ../../components/html/html.pug
-
-block content
-  .profile
-    | !{GoBackButtonPanel}
-    .profile__content-section
-      .profile__user-avatar-section
-        | !{avatar}
-        h1.profile__user-name #{userName}
-      ul.profile__user-data
-        each item in userData
-          li.profile__user-data-row(class=item.id)
-            p.label #{item.label}
-            p.value #{item.value}
-      .proifle__links-section
-        | !{logOut}
-        | !{changePassword}
-        | !{edit}
+.profile
+  | !{GoBackButtonPanel}
+  .profile__content-section
+    .profile__user-avatar-section
+      | !{avatar}
+      h1.profile__user-name #{userName}
+    ul.profile__user-data
+      each item in userData
+        li.profile__user-data-row(class=item.id)
+          p.label #{item.label}
+          p.value #{item.value}
+    .profile__links-section
+      each item in links
+        | !{item}

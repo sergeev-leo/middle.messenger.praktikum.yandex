@@ -39,7 +39,7 @@ export type TPasswordEditPageProps = {
 
 export class PasswordEditPage extends Block {
   constructor(props: TPasswordEditPageProps) {
-    super('div', data);
+    super(data);
   }
 
   initChildren() {

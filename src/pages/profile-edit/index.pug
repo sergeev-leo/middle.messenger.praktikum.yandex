@@ -1,15 +1,11 @@
-extends ../../components/html/html.pug
-
-
-block content
-  form.profile-edit
-    | !{goBackButtonPanel}
-    .profile-edit__content-section
-      .profile-edit__user-avatar-section
-        | !{avatar}
-      ul.profile-edit__user-data
-        each item in inputs
-          li.profile-edit__user-data-row
-            | !{item}
-      .profile-edit__btn-section
-        | !{button}
+form.profile-edit
+  | !{goBackButtonPanel}
+  .profile-edit__content-section
+    .profile-edit__user-avatar-section
+      | !{avatar}
+    ul.profile-edit__user-data
+      each item in inputs
+        li.profile-edit__user-data-row
+          | !{item}
+    .profile-edit__btn-section
+      | !{button}

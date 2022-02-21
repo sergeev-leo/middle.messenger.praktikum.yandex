@@ -60,7 +60,7 @@ export type TRegisterFormProps = {
 
 export class RegisterForm extends Block {
   constructor(props: TRegisterFormProps) {
-    super('div', data);
+    super(data);
   }
 
   initChildren() {

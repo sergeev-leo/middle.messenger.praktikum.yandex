@@ -35,12 +35,14 @@ html {
     .chat__profile-link {
       display: flex;
       justify-content: flex-end;
+      align-content: center;
       margin-right: 1rem;
       padding-top: 1rem;
 
       .link {
         color: $greyColor;
         outline: none;
+        padding: 0;
       }
 
       .icon {

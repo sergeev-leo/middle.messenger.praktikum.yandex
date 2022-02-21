@@ -1,15 +1,11 @@
-extends ../../components/html/html.pug
-
-
-block content
-  form.register-form
+form.register-form
     .register-form__card
-      .register-form__header
-        p #{header}
-      .register-form__inputs-section
-        each item in inputs
-            | !{item}
-      .register-form__buttons-section
-        each item in buttons
-          li
-            | !{item}
+        .register-form__header
+            p #{header}
+        .register-form__inputs-section
+          each item in inputs
+              | !{item}
+        .register-form__buttons-section
+          each item in buttons
+              li
+                  | !{item}

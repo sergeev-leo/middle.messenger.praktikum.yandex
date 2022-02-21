@@ -11,7 +11,6 @@ import { Input, TInputProps } from '../../components/input/input';
 const data = {
   profileLink: {
     title: 'Профиль',
-    style: 'error',
     href: '../profile/index.pug',
   },
   searchInputPlaceholder: 'Поиск',
@@ -232,7 +231,7 @@ type TChatPageProps = {
 
 export class ChatPage extends Block {
   constructor(props: TChatPageProps) {
-    super('div', data);
+    super(data);
   }
 
   initChildren() {
