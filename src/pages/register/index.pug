@@ -2,18 +2,14 @@ extends ../../components/html/html.pug
 
 
 block content
-  - const inputsKeysArray = [emailInput, loginInput, firstNameInput, secondNameInput, phoneInput, passwordInput, passwordRepeatInput];
-  - const buttonsKeysArray = [logInButton, registerButton];
-
   form.register-form
     .register-form__card
       .register-form__header
         p #{header}
       .register-form__inputs-section
-        each item in inputsKeysArray
-          li
+        each item in inputs
             span !{item}
       .register-form__buttons-section
-        each item in buttonsKeysArray
+        each item in buttons
           li
             span !{item}

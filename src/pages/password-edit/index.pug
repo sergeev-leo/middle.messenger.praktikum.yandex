@@ -1,15 +1,13 @@
 extends ../../components/html/html.pug
 
 block content
-  - const inputsKeysArray = [oldPassword, newPassword, repeatNewPassword];
-
   .password-edit
     span !{goBackButtonPanel}
     .password-edit__content-section
       .password-edit__user-avatar-section
         span !{avatar}
       ul.password-edit__user-data
-        each item in inputsKeysArray
+        each item in inputs
           li.password-edit__user-data-row
             span !{item}
       .password-edit__btn-section

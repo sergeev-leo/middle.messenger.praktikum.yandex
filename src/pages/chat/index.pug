@@ -1,8 +1,6 @@
 extends ../../components/html/html.pug
 
 block content
-  - const dialogsKeysArray = [dialog_0, dialog_1, dialog_2];
-  - const messagesKeysArray = [message_0, message_1, message_2, message_3, message_4, message_5];
   .chat
     aside
       .chat__search-section
@@ -15,7 +13,7 @@ block content
             i.icon.fa.fa-search
             p.input-label-placeholder #{searchInputPlaceholder}
       .chat__dialogs-section
-        each item in dialogsKeysArray
+        each item in dialogs
           span !{item}
 
     nav.chat__top-panel
@@ -26,7 +24,7 @@ block content
         span !{chatMenu}
 
     .chat__messages-panel
-       each item in messagesKeysArray
+       each item in messages
          span !{item}
        else
          p.messages-panel-info-text #{messagesPanelInfoText}

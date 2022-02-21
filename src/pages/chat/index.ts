@@ -6,7 +6,7 @@ import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { IconButton, TIconButtonProps } from '../../components/icon-button/icon-button';
 import { Dialog, TDialogProps } from '../../components/dialog/dialog';
 import { Message, TMessageProps } from '../../components/message/message';
-import {Input, TInputProps} from "../../components/input/input";
+import { Input, TInputProps } from '../../components/input/input';
 
 const data = {
   profileLink: {
@@ -21,6 +21,7 @@ const data = {
     events: {
       focusin: () => console.log('focus'),
       focusout: () => console.log('blur'),
+      keyup: ({ target }) => console.log(target.value),
     },
   },
   dialogs: [
@@ -78,7 +79,7 @@ const data = {
           iconClassName: 'fa-plus',
         },
         events: {
-          click: ()  => console.log('1'),
+          click: ()  => console.log('добавить пользователя'),
         },
       },
       {
@@ -89,7 +90,7 @@ const data = {
           iconClassName: 'fa-close',
         },
         events: {
-          click: ()  => console.log('2'),
+          click: ()  => console.log('удалить пользователя'),
         },
       },
       {
@@ -100,7 +101,7 @@ const data = {
           iconClassName: 'fa-trash',
         },
         events: {
-          click: ()  => console.log('3'),
+          click: ()  => console.log('удалить чат'),
         },
       },
     ],
@@ -120,7 +121,7 @@ const data = {
           iconClassName: 'fa-picture-o',
         },
         events: {
-          click: ()  => console.log('1'),
+          click: ()  => console.log('фото/видео'),
         },
       },
       {
@@ -131,7 +132,7 @@ const data = {
           iconClassName: 'fa-file-o',
         },
         events: {
-          click: ()  => console.log('2'),
+          click: ()  => console.log('файл'),
         },
       },
       {
@@ -142,7 +143,7 @@ const data = {
           iconClassName: 'fa-map-marker',
         },
         events: {
-          click: ()  => console.log('3'),
+          click: ()  => console.log('локация'),
         },
       },
     ],
@@ -191,6 +192,14 @@ const data = {
   sendIcon: {
     outerIconClassName: 'fa-circle',
     iconClassName: 'fa-arrow-right',
+    events: {
+      click: () => {
+        const messageInput: HTMLInputElement | null = document.querySelector('#message');
+        const messageText = messageInput ? messageInput.value : '';
+
+        console.log(`отправка сообщения: ${messageText}`);
+      },
+    },
   },
   messagesPanelInfoText: 'Выберите чат чтобы отправить сообщение',
   messageInput: {
@@ -199,6 +208,7 @@ const data = {
     events: {
       focusin: () => console.log('focus'),
       focusout: () => console.log('blur'),
+      keyup: ({ target }: InputEvent) => console.log(`ввод сообщения ${target.value}`),
     },
   },
 };
@@ -225,21 +235,18 @@ export class ChatPage extends Block {
     super('div', data);
   }
 
-  render() {
+  initChildren() {
     const {
       profileLink,
       chatMenu,
       attachMenu,
       reviewingDialogUser: {
-        name,
         avatar,
       },
       searchInput,
-      searchInputPlaceholder,
       sendIcon,
       dialogs,
       messages,
-      messagesPanelInfoText,
       messageInput,
     } = this.props as TChatPageProps;
 
@@ -250,17 +257,18 @@ export class ChatPage extends Block {
     this._children.sendIcon = new IconButton(sendIcon);
     this._children.searchInput = new Input(searchInput);
     this._children.messageInput = new Input(messageInput);
+    this._children.dialogs = dialogs.map((item: TDialogProps) => new Dialog(item));
+    this._children.messages = messages.map((item: TMessageProps) => new Message(item));
+  }
 
-    //------------------------------------------------------------------
-    dialogs.forEach((item: TDialogProps, index: number) => {
-      const key = ['dialog', index].join('_');
-      this._children[key] = new Dialog(item);
-    });
-    messages.forEach((item: TMessageProps, index: number) => {
-      const key = ['message', index].join('_');
-      this._children[key] = new Message(item);
-    });
-    //------------------------------------------------------------------
+  render() {
+    const {
+      reviewingDialogUser: {
+        name,
+      },
+      searchInputPlaceholder,
+      messagesPanelInfoText,
+    } = this.props as TChatPageProps;
 
     return this.compile(
       compileTemplate,

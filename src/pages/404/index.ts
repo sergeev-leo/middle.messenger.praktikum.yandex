@@ -14,9 +14,11 @@ const data = {
 };
 
 export class Error404Page extends Block {
-  render() {
+  initChildren() {
     this._children.error = new ErrorPage(data);
+  }
 
+  render() {
     return this.compile(
       compileTemplate,
       {

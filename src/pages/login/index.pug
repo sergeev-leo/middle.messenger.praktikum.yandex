@@ -6,8 +6,8 @@ block content
         .login-form__header
           p #{header}
         .login-form__inputs-section
-          span !{loginInput}
-          span !{passwordInput}
+          each item in inputs
+            span !{item}
         .login-form__buttons-section
-          span !{logInButton}
-          span !{registerButton}
+          each item in buttons
+            span !{item}

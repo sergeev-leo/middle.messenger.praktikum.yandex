@@ -13,23 +13,23 @@ const data = {
   },
   userName: 'User',
 
-  links: {
-    logOut: {
+  links: [
+    {
       title: 'Выйти',
       style: 'error',
       href: '/logout',
     },
-    changePassword: {
+    {
       title: 'Изменить пароль',
       style: 'secondary',
       href: '../password-edit/index.pug',
     },
-    edit: {
+    {
       title: 'Изменить данные',
       style: 'secondary',
       href: '../profile-edit/index.pug',
     },
-  },
+  ],
   userData: [
     {
       id: 'email',
@@ -73,7 +73,7 @@ type TUserDataRow = {
 export type TProfilePageProps = {
   avatar: TAvatarProps,
   userName: string,
-  links: Record<string, TLinkProps>
+  links: TLinkProps[],
   userData: TUserDataRow[],
 }
 
@@ -86,18 +86,12 @@ export class ProfilePage extends Block {
     const {
       avatar,
       userName,
-      links: {
-        logOut,
-        changePassword,
-        edit,
-      },
+      links,
       userData,
     } = this.props as TProfilePageProps;
 
     this._children.avatar = new Avatar(avatar);
-    this._children.logOut = new Link(logOut);
-    this._children.changePassword = new Link(changePassword);
-    this._children.edit = new Link(edit);
+    this._children.links = links.map((item: TLinkProps) => new Link(item));
     this._children.GoBackButtonPanel = new GoBackButtonPanel();
 
     return this.compile(

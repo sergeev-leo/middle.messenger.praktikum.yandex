@@ -9,7 +9,7 @@ export type TGoBackButtonPanelProps = {
 };
 
 export class GoBackButtonPanel extends Block {
-  constructor(props: TGoBackButtonPanelProps) {
+  constructor(props?: TGoBackButtonPanelProps) {
     super('div', props);
   }
 

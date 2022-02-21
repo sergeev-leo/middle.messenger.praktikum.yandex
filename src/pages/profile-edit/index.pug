@@ -2,15 +2,13 @@ extends ../../components/html/html.pug
 
 
 block content
-  - const inputsKeysArray = [email, login, firstName, secondName, displayName, phone];
-
   form.profile-edit
     span !{goBackButtonPanel}
     .profile-edit__content-section
       .profile-edit__user-avatar-section
         span !{avatar}
       ul.profile-edit__user-data
-        each item in inputsKeysArray
+        each item in inputs
           li.profile-edit__user-data-row
             span !{item}
       .profile-edit__btn-section

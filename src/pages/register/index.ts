@@ -6,56 +6,56 @@ import compileTemplate from './index.pug';
 
 const data = {
   header: 'Регистрация',
-  inputs: {
-    email: {
+  inputs: [
+    {
       id: 'email',
       label: 'Почта',
     },
-    login: {
+    {
       id: 'login',
       label: 'Логин',
     },
-    firstName: {
+    {
       id: 'first_name',
       label: 'Имя',
     },
-    secondName: {
+    {
       id: 'second_name',
       label: 'Фамилия',
     },
-    phone: {
+    {
       id: 'phone',
       label: 'Телефон',
     },
-    password: {
+    {
       id: 'password',
       label: 'Пароль',
       type: 'password',
     },
-    passwordRepeat: {
+    {
       id: 'password_repeat',
       label: 'Пароль (ещё раз)',
       type: 'password',
     },
-  },
-  buttons: {
-    register: {
+  ],
+  buttons: [
+    {
       title: 'Зарегистрироваться',
       style: 'primary',
       type: 'submit',
     },
-    logIn: {
+    {
       title: 'Войти',
       style: 'secondary',
     },
-  },
+  ],
 };
 
 export type TRegisterFormProps = {
   title: string,
   header: string,
-  inputs: Record<string, TInputProps>,
-  buttons: Record<string, TButtonProps>,
+  inputs: TInputProps[],
+  buttons: TButtonProps[],
 }
 
 export class RegisterForm extends Block {
@@ -63,34 +63,20 @@ export class RegisterForm extends Block {
     super('div', data);
   }
 
+  initChildren() {
+    const {
+      inputs,
+      buttons,
+    } = this.props as TRegisterFormProps;
+
+    this._children.inputs = inputs.map((item: TInputProps) => new Input(item));
+    this._children.buttons = buttons.map((item: TButtonProps) => new Button(item));
+  }
+
   render() {
     const {
       header,
-      inputs: {
-        email,
-        login,
-        firstName,
-        secondName,
-        phone,
-        password,
-        passwordRepeat,
-      },
-      buttons: {
-        logIn,
-        register,
-      },
     } = this.props as TRegisterFormProps;
-
-    this._children.emailInput = new Input(email);
-    this._children.loginInput = new Input(login);
-    this._children.firstNameInput = new Input(firstName);
-    this._children.secondNameInput = new Input(secondName);
-    this._children.phoneInput = new Input(phone);
-    this._children.passwordInput = new Input(password);
-    this._children.passwordRepeatInput = new Input(passwordRepeat);
-
-    this._children.logInButton = new Button(logIn);
-    this._children.registerButton = new Button(register);
 
     return this.compile(
       compileTemplate,

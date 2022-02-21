@@ -10,20 +10,20 @@ const data = {
     src:'../../../static/user.png',
     title: 'Поменять аватар',
   },
-  inputs: {
-    oldPassword: {
+  inputs: [
+    {
       id: 'oldPassword',
       label: 'Старый пароль',
     },
-    newPassword: {
+    {
       id: 'newPassword',
       label: 'Новый пароль',
     },
-    repeatNewPassword: {
+    {
       id: 'repeatNewPassword',
       label: 'Повторите пароль',
     },
-  },
+  ],
   button: {
     title: 'Сохранить',
     style: 'primary',
@@ -33,7 +33,7 @@ const data = {
 
 export type TPasswordEditPageProps = {
   avatar: TAvatarProps,
-  inputs: Record<string, TInputProps>,
+  inputs: TInputProps[],
   button: TButtonProps,
 }
 
@@ -42,24 +42,20 @@ export class PasswordEditPage extends Block {
     super('div', data);
   }
 
-  render() {
+  initChildren() {
     const {
       avatar,
-      inputs: {
-        oldPassword,
-        newPassword,
-        repeatNewPassword,
-      },
+      inputs,
       button,
     } = this.props as TPasswordEditPageProps;
 
     this._children.avatar = new Avatar(avatar);
     this._children.button = new Button(button);
-    this._children.oldPassword = new Input(oldPassword);
-    this._children.newPassword = new Input(newPassword);
-    this._children.repeatNewPassword = new Input(repeatNewPassword);
+    this._children.inputs = inputs.map((item: TInputProps) => new Input(item));
     this._children.goBackButtonPanel = new GoBackButtonPanel();
+  }
 
+  render() {
     return this.compile(
       compileTemplate,
       {

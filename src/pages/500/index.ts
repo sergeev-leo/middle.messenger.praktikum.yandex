@@ -14,14 +14,14 @@ const data = {
 };
 
 export class Error500Page extends Block {
-  render() {
+  initChildren() {
     this._children.error = new ErrorPage(data);
+  }
 
+  render() {
     return this.compile(
       compileTemplate,
-      {
-        ...this._children,
-      },
+      { ...this._children },
     );
   }
 }

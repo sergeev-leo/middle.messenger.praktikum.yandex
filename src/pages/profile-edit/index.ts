@@ -11,32 +11,32 @@ const data = {
     src:'../../../static/user.png',
     title: 'Поменять аватар',
   },
-  inputs: {
-    email: {
+  inputs: [
+    {
       id: 'email',
       label: 'Почта',
     },
-    login: {
+    {
       id: 'login',
       label: 'Логин',
     },
-    firstName: {
+    {
       id: 'first_name',
       label: 'Имя',
     },
-    secondName:{
+    {
       id: 'second_name',
       label: 'Фамилия',
     },
-    displayName: {
+    {
       id: 'display_name',
       label: 'Имя в чате',
     },
-    phone: {
+    {
       id: 'phone',
       label: 'Телефон',
     },
-  },
+  ],
   button: {
     title: 'Сохранить',
     style: 'primary',
@@ -55,30 +55,20 @@ export class ProfileEditPage extends Block {
     super('div', data);
   }
 
-  render() {
+  initChildren() {
     const {
       avatar,
-      inputs: {
-        email,
-        login,
-        firstName,
-        secondName,
-        displayName,
-        phone,
-      },
+      inputs,
       button,
     } = this.props as TProfileEditPageProps;
 
     this._children.avatar = new Avatar(avatar);
     this._children.button = new Button(button);
-    this._children.email = new Input(email);
-    this._children.login = new Input(login);
-    this._children.firstName = new Input(firstName);
-    this._children.secondName = new Input(secondName);
-    this._children.displayName = new Input(displayName);
-    this._children.phone = new Input(phone);
+    this._children.inputs = inputs.map((item: TInputProps) => new Input(item));
     this._children.GoBackButtonPanel = new GoBackButtonPanel();
+  }
 
+  render() {
     return this.compile(
       compileTemplate,
       {
