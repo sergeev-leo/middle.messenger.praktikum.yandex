@@ -21,7 +21,7 @@ export class Block {
   _meta: TMeta;
   _listeners: TListeners;
   _id: string | null = null;
-  _children: any;
+  _children: TComponentProps;
 
   eventBus: () => TEventBusInstance;
   props: TComponentProps;
@@ -73,6 +73,8 @@ export class Block {
     * */
     this.eventBus = () => eventBus;
 
+    this.initChildren();
+
     /*
     * подключаем обработку событий жизненного цикла для созданного компонента
     * */
@@ -98,6 +100,8 @@ export class Block {
 
         if(value instanceof Block) {
           children[key] = value;
+        } else if(Array.isArray(value) && value.every(item => item instanceof Block)) {
+          children[key] = value;
         } else {
           props[key] = value;
         }
@@ -108,6 +112,8 @@ export class Block {
       props,
     };
   }
+
+  initChildren(): void {}
 
   /*
   * метод вызывает формирование строки из шаблона с подставлением заглушек вместо элементов children
@@ -129,6 +135,11 @@ export class Block {
         (acc: TComponentProps, key: string) => {
           const child = this._children[key];
 
+          if(Array.isArray(child)) {
+            acc[key] = child.map(item => `<div data-id="${item._id}">zaglushka</div>`);
+            return acc;
+          }
+
           acc[key] = `<div data-id="${child._id}">zaglushka</div>`;
           return acc;
         },
@@ -141,7 +152,7 @@ export class Block {
     * Используем именно template, т.к. корневым элементом для template является DocumentFragment, который удобно
     * использовать, когда нужно построить часть DOM-дерева вне страницы.
     * */
-    const fragment = this._createDocumentElement('template');
+    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     fragment.innerHTML = template(propsWithStubs);
 
     /*
@@ -151,6 +162,18 @@ export class Block {
       .keys(this._children)
       .forEach((key: string) => {
         const child = this._children[key];
+
+        if(Array.isArray(child)) {
+          child.forEach(item => {
+            const stubElement = fragment.content.querySelector(`[data-id="${item._id}"]`);
+
+            if(stubElement) {
+              stubElement.replaceWith(item.getContent());
+            }
+          });
+
+          return;
+        }
 
         /*
         * ищем элемент-заглушку с необходимым идентификатором в контейнере и заменяем ее на реальный элемент из child
@@ -265,6 +288,11 @@ export class Block {
       .keys(this._children)
       .forEach(key => {
         const child = this._children[key];
+
+        if(Array.isArray(child)) {
+          child.forEach(item => item.dispatchComponentDidMount());
+          return;
+        }
 
         child.dispatchComponentDidMount();
       });
