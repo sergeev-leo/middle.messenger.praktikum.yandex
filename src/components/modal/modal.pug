@@ -1,0 +1,11 @@
+.modal-overlay.closed
+  .modal
+    button.close-button &times;
+    .modal-guts
+      h2.modal-title #{title}
+      .modal-content
+        | !{content}
+      .modal-action
+        | !{button}
+      .modal-error #{error}
+
