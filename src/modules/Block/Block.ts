@@ -98,7 +98,9 @@ export class Block {
     };
   }
 
-  protected initChildren(): void {}
+  protected initChildren(): void {
+    // метод должен быть переопределен в компоненте-наследнике
+  }
 
   /*
   * метод вызывает формирование строки из шаблона с подставлением заглушек вместо элементов children
