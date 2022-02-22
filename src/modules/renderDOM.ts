@@ -1,4 +1,7 @@
-export const render = (query: string, block: any) => {
+import { TComponent } from './types';
+
+
+export const render = (query: string, block: TComponent) => {
   // eslint-disable-next-line no-undef
   const root = document.querySelector(query);
 

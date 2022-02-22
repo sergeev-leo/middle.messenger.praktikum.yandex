@@ -11,10 +11,6 @@ export type TAvatarProps = {
 };
 
 export class Avatar extends Block {
-  constructor(props: TAvatarProps) {
-    super(props);
-  }
-
   render() {
     return this.compile(compileTemplate, this.props);
   }

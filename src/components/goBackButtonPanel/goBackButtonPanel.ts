@@ -9,10 +9,6 @@ export type TGoBackButtonPanelProps = {
 };
 
 export class GoBackButtonPanel extends Block {
-  constructor(props?: TGoBackButtonPanelProps) {
-    super(props);
-  }
-
   initChildren() {
     this._children.iconButton = new IconButton({
       outerIconClassName: 'fa-circle',

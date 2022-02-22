@@ -78,7 +78,7 @@ export type TProfilePageProps = {
 }
 
 export class ProfilePage extends Block {
-  constructor(props: TProfilePageProps) {
+  constructor() {
     super(data);
   }
 

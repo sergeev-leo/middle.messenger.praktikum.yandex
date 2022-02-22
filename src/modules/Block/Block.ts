@@ -1,5 +1,5 @@
 import { EventBus } from '../EventBus/EventBus';
-import { TComponentProps, TEventBusInstance, TEvents, TListeners } from '../types';
+import { TComponentChildren, TComponentProps, TEventBusInstance, TEvents, TListeners } from '../types';
 import { v4 as makeUUID } from 'uuid';
 
 
@@ -14,7 +14,7 @@ export class Block {
   _element: HTMLElement;
   _listeners: TListeners;
   _id: string | null = null;
-  _children: TComponentProps;
+  _children: TComponentChildren;
 
   eventBus: () => TEventBusInstance;
   props: TComponentProps;
@@ -75,7 +75,7 @@ export class Block {
   * выделяем из переданных пропсов экземпляры класса Block и сохраняем их в this._children, оставшиеся пропсы - в props
   * */
   _getChildren(propsWithChildren: TComponentProps) {
-    const children: TComponentProps = {};
+    const children: TComponentChildren = {};
     const props: TComponentProps = {};
 
     Object
@@ -119,7 +119,7 @@ export class Block {
     const propsWithStubs = Object
       .keys(this._children)
       .reduce(
-        (acc: TComponentProps, key: string) => {
+        (acc: TComponentChildren, key: string) => {
           const child = this._children[key];
 
           if(Array.isArray(child)) {

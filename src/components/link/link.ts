@@ -11,10 +11,6 @@ export type TLinkProps = {
 };
 
 export class Link extends Block {
-  constructor(props: TLinkProps) {
-    super(props);
-  }
-
   render() {
     return this.compile(compileTemplate, this.props);
   }

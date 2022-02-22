@@ -22,16 +22,11 @@
     ],
     "quote-props": [2, "as-needed"],
     "no-case-declarations": 0,
-    "no-console": [1],
     "brace-style": [2, "1tbs", { "allowSingleLine": true }],
     "comma-spacing": [1, {"before": false, "after": true}],
     "space-before-function-paren": ["error", "never"],
     "space-before-blocks": [1, "always"],
     "arrow-spacing": [1, { "before": true, "after": true }],
-    "no-param-reassign": [
-      1,
-      { "props": true, "ignorePropertyModificationsForRegex": ["acc$", "Acc$", "accumulator$", "Accumulator$"] }
-    ],
     "function-paren-newline": [1, "consistent"],
     "prefer-arrow-callback": [1],
     "arrow-parens": [1, "as-needed"],

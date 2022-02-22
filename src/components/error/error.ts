@@ -12,10 +12,6 @@ export type TErrorProps = {
 };
 
 export class ErrorPage extends Block {
-  constructor(props: TErrorProps) {
-    super(props);
-  }
-
   initChildren() {
     const { link } = this.props as TErrorProps;
 

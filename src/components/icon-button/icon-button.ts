@@ -11,10 +11,6 @@ export type TIconButtonProps = {
 };
 
 export class IconButton extends Block {
-  constructor(props: TIconButtonProps) {
-    super(props);
-  }
-
   render() {
     return this.compile(compileTemplate, this.props);
   }

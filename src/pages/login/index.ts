@@ -45,7 +45,7 @@ export type TLoginFormProps = {
 }
 
 export class LoginForm extends Block {
-  constructor(props: TLoginFormProps) {
+  constructor() {
     super(data);
   }
 

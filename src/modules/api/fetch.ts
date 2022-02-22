@@ -14,6 +14,7 @@ type THttpRequestOptions = {
 
 type THttpRequestOptionsWithoutMethod = Omit<THttpRequestOptions, 'method'>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class HTTPTransport {
   get(url: string, options: THttpRequestOptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
     return this.makeHTTPRequest(url, { ...options, method: HTTP_METHOD.GET }, options.timeout);

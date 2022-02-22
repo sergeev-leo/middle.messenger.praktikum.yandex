@@ -14,10 +14,6 @@ export type TMenuProps = {
 };
 
 export class Menu extends Block {
-  constructor(props: TMenuProps) {
-    super(props);
-  }
-
   initChildren() {
     const {
       iconButton,

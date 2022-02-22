@@ -227,7 +227,7 @@ type TChatPageProps = {
 };
 
 export class ChatPage extends Block {
-  constructor(props: TChatPageProps) {
+  constructor() {
     super(data);
   }
 

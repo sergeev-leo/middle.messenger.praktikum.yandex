@@ -12,10 +12,6 @@ export type TMessageProps = {
 };
 
 export class Message extends Block {
-  constructor(props: TMessageProps) {
-    super(props);
-  }
-
   render() {
     return this.compile(compileTemplate, this.props);
   }

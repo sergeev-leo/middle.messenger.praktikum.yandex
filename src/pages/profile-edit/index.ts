@@ -60,7 +60,7 @@ export type TProfileEditPageProps = {
 }
 
 export class ProfileEditPage extends Block {
-  constructor(props: TProfileEditPageProps) {
+  constructor() {
     super(data);
   }
 
