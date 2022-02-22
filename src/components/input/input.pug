@@ -1,4 +1,4 @@
 .input-wrapper(class=`${error ? "has-error" : ''}`)
-    input(id=id name=id type=type || "text" required placeholder=placeholder)
+    input(id=id name=id type=type || "text" placeholder=placeholder pattern=pattern)
     label(for=id) #{label}
     span.error #{error}

@@ -2,6 +2,8 @@ import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { Input, TInputProps } from '../../components/input/input';
 import { Button, TButtonProps } from '../../components/button/button';
+import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+
 
 const data = {
   header: 'Вход',
@@ -10,12 +12,13 @@ const data = {
       id: 'login',
       label: 'Логин',
       type: 'text',
-      error: 'Неверный логин',
+      pattern: VALIDATION_PATTERNS.LOGIN,
     },
     {
       id: 'password',
       label: 'Пароль',
       type: 'password',
+      pattern: VALIDATION_PATTERNS.PASSWORD,
     },
   ],
   buttons: [
@@ -29,6 +32,9 @@ const data = {
       style: 'secondary',
     },
   ],
+  events: {
+    submit: createSubmitFn('.login-form'),
+  },
 };
 
 export type TLoginFormProps = {

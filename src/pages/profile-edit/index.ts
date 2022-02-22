@@ -4,6 +4,7 @@ import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
 import { Button, TButtonProps } from '../../components/button/button';
 import { Input, TInputProps } from '../../components/input/input';
+import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
 
 
 const data = {
@@ -15,18 +16,22 @@ const data = {
     {
       id: 'email',
       label: 'Почта',
+      pattern: VALIDATION_PATTERNS.EMAIL,
     },
     {
       id: 'login',
       label: 'Логин',
+      pattern: VALIDATION_PATTERNS.LOGIN,
     },
     {
       id: 'first_name',
       label: 'Имя',
+      pattern: VALIDATION_PATTERNS.FIRST_NAME,
     },
     {
       id: 'second_name',
       label: 'Фамилия',
+      pattern: VALIDATION_PATTERNS.SECOND_NAME,
     },
     {
       id: 'display_name',
@@ -35,12 +40,16 @@ const data = {
     {
       id: 'phone',
       label: 'Телефон',
+      pattern: VALIDATION_PATTERNS.PHONE,
     },
   ],
   button: {
     title: 'Сохранить',
     style: 'primary',
     type: 'submit',
+  },
+  events: {
+    submit: createSubmitFn('.profile-edit'),
   },
 };
 

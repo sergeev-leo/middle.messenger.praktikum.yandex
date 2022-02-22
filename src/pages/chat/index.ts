@@ -7,6 +7,7 @@ import { IconButton, TIconButtonProps } from '../../components/icon-button/icon-
 import { Dialog, TDialogProps } from '../../components/dialog/dialog';
 import { Message, TMessageProps } from '../../components/message/message';
 import { Input, TInputProps } from '../../components/input/input';
+import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
 
 const data = {
   profileLink: {
@@ -18,9 +19,11 @@ const data = {
     id: 'search',
     type: 'search',
     events: {
-      focusin: () => console.log('focus'),
-      focusout: () => console.log('blur'),
-      keyup: ({ target }) => console.log(target.value),
+      keyup: (e: InputEvent) => {
+        const { value } = e.target as HTMLInputElement;
+
+        return console.log(`поиск ${value}`);
+      },
     },
   },
   dialogs: [
@@ -192,23 +195,17 @@ const data = {
     outerIconClassName: 'fa-circle',
     iconClassName: 'fa-arrow-right',
     events: {
-      click: () => {
-        const messageInput: HTMLInputElement | null = document.querySelector('#message');
-        const messageText = messageInput ? messageInput.value : '';
-
-        console.log(`отправка сообщения: ${messageText}`);
-      },
+      click: createSubmitFn('.chat__bottom-panel'),
     },
   },
   messagesPanelInfoText: 'Выберите чат чтобы отправить сообщение',
   messageInput: {
     id: 'message',
     placeholder: 'Сообщение',
-    events: {
-      focusin: () => console.log('focus'),
-      focusout: () => console.log('blur'),
-      keyup: ({ target }: InputEvent) => console.log(`ввод сообщения ${target.value}`),
-    },
+    pattern: VALIDATION_PATTERNS.REQUIRED,
+  },
+  events: {
+    submit: createSubmitFn('.chat__bottom-panel'),
   },
 };
 
