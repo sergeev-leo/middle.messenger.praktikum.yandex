@@ -81,7 +81,10 @@ const data = {
           iconClassName: 'fa-plus',
         },
         events: {
-          click: ()  => console.log('добавить пользователя'),
+          click: ()  => {
+            const modal = document.querySelector('#add-user-modal');
+            modal?.classList.remove('closed');
+          },
         },
       },
       {
@@ -92,7 +95,10 @@ const data = {
           iconClassName: 'fa-close',
         },
         events: {
-          click: ()  => console.log('удалить пользователя'),
+          click: ()  => {
+            const modal = document.querySelector('#delete-user-modal');
+            modal?.classList.remove('closed');
+          },
         },
       },
       {
@@ -134,7 +140,10 @@ const data = {
           iconClassName: 'fa-file-o',
         },
         events: {
-          click: ()  => console.log('файл'),
+          click: ()  => {
+            const modal = document.querySelector('#file-upload-modal');
+            modal?.classList.remove('closed');
+          },
         },
       },
       {

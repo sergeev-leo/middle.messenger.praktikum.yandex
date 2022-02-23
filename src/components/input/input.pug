@@ -1,4 +1,6 @@
 .input-wrapper(class=`${error ? "has-error" : ''}`)
-    input(id=id name=id type=type || "text" placeholder=placeholder pattern=pattern)
+    input(id=id name=id type=type || "text" required=required || true placeholder=placeholder pattern=pattern)
     label(for=id) #{label}
+    if(type==="file")
+      #file-chosen
     span.error #{error}
