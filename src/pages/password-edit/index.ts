@@ -5,6 +5,7 @@ import { Input, TInputProps } from '../../components/input/input';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
 import compileTemplate from '../password-edit/index.pug';
 import { VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { render } from '../../modules/renderDOM';
 
 const data = {
   avatar: {
@@ -69,3 +70,5 @@ export class PasswordEditPage extends Block {
     );
   }
 }
+
+render('#password-edit', new PasswordEditPage());

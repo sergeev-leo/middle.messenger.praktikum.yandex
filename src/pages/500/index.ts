@@ -1,6 +1,7 @@
 import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { ErrorPage } from '../../components/error/error';
+import { render } from '../../modules/renderDOM';
 
 
 const data = {
@@ -25,3 +26,5 @@ export class Error500Page extends Block {
     );
   }
 }
+
+render('#error2', new Error500Page());

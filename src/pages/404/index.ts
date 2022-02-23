@@ -1,6 +1,7 @@
 import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { ErrorPage } from '../../components/error/error';
+import { render } from '../../modules/renderDOM';
 
 
 const data = {
@@ -27,3 +28,5 @@ export class Error404Page extends Block {
     );
   }
 }
+
+render('#error1', new Error404Page());

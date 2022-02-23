@@ -5,6 +5,7 @@ import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButt
 import { Button, TButtonProps } from '../../components/button/button';
 import { Input, TInputProps } from '../../components/input/input';
 import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { render } from '../../modules/renderDOM';
 
 
 const data = {
@@ -86,3 +87,5 @@ export class ProfileEditPage extends Block {
     );
   }
 }
+
+render('#profile-edit', new ProfileEditPage());

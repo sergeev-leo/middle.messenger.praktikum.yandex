@@ -8,6 +8,8 @@ import { Dialog, TDialogProps } from '../../components/dialog/dialog';
 import { Message, TMessageProps } from '../../components/message/message';
 import { Input, TInputProps } from '../../components/input/input';
 import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { render } from '../../modules/renderDOM';
+import {Modal} from "../../components/modal/modal";
 
 const data = {
   profileLink: {
@@ -286,3 +288,90 @@ export class ChatPage extends Block {
     );
   }
 }
+
+render('#chat', new ChatPage());
+
+/*
+* модальные окна размещаем здесь, т.к. доступ к ним есть только со страницы чата, но по факту, их необходимо будет
+* разметстить в корневом компоненте, чтобы можно было ими пользоваться из других частей приложения
+* */
+render('#chat', new Modal({
+  id: 'add-user-modal',
+  title: 'Добавить пользователя',
+  contentComponent: Input,
+  contentComponentProps: {
+    id: 'add-user-input',
+    label: 'Логин',
+    pattern: VALIDATION_PATTERNS.LOGIN,
+  },
+  button: {
+    title: 'Добавить',
+    type: 'submit',
+    style: 'primary',
+  },
+  events: {
+    submit: (e: InputEvent, onClose: () => void) => {
+      createSubmitFn('.add-user-modal')(e);
+      onClose();
+    },
+  },
+}));
+
+render('#chat', new Modal({
+  id: 'delete-user-modal',
+  title: 'Удалить пользователя',
+  contentComponent: Input,
+  contentComponentProps: {
+    id: 'delete-user-input',
+    label: 'Логин',
+    pattern: VALIDATION_PATTERNS.LOGIN,
+  },
+  button: {
+    title: 'Удалить',
+    type: 'submit',
+    style: 'primary',
+  },
+  events: {
+    submit: (e: InputEvent, onClose: () => void) => {
+      createSubmitFn('.delete-user-modal')(e);
+      onClose();
+    },
+  },
+}));
+
+render('#chat', new Modal({
+  id: 'file-upload-modal',
+  title: 'Удалить пользователя',
+  contentComponent: Input,
+  contentComponentProps: {
+    id: 'file-upload-input',
+    type: 'file',
+    label: 'Выберите файл',
+    events: {
+      change: function(e: InputEvent) {
+        if(!e.target) {
+          return;
+        }
+
+        const fileChosen = document.querySelector('#file-chosen');
+
+        if(!fileChosen) {
+          return;
+        }
+
+        fileChosen.textContent = e.target.files[0].name;
+      },
+    },
+  },
+  button: {
+    title: 'Применить',
+    type: 'submit',
+    style: 'primary',
+  },
+  events: {
+    submit: (e: InputEvent, onClose: () => void) => {
+      createSubmitFn('.file-upload-modal')(e);
+      onClose();
+    },
+  },
+}));

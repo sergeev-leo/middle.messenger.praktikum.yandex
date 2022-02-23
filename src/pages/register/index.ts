@@ -3,6 +3,7 @@ import { Button, TButtonProps } from '../../components/button/button';
 import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { render } from '../../modules/renderDOM';
 
 
 const data = {
@@ -98,3 +99,5 @@ export class RegisterForm extends Block {
     );
   }
 }
+
+render('#register', new RegisterForm());

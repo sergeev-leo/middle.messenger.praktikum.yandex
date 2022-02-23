@@ -3,6 +3,7 @@ import compileTemplate from './index.pug';
 import { Input, TInputProps } from '../../components/input/input';
 import { Button, TButtonProps } from '../../components/button/button';
 import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { render } from '../../modules/renderDOM';
 
 
 const data = {
@@ -75,3 +76,5 @@ export class LoginForm extends Block {
     );
   }
 }
+
+render('#login', new LoginForm());
