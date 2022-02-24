@@ -19,14 +19,6 @@
     font-size: 1.3rem;
   }
 
-  input:focus ~ label,
-  input:invalid ~ label,
-  input:not(:invalid:required) ~ label, {
-    bottom: 2rem;
-
-    transform: translate(0, -1.5rem) scale(0.75);
-  }
-
   label {
     position: absolute;
     bottom: 2.4rem;
@@ -44,6 +36,14 @@
     color: $grey-color;
 
     font-size: 1.3rem;
+  }
+
+  input:focus ~ label,
+  input:invalid ~ label,
+  input:not(:invalid:required) ~ label, {
+    bottom: 2rem;
+
+    transform: translate(0, -1.5rem) scale(0.75);
   }
 
   &.has-error input {

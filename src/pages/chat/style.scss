@@ -19,6 +19,63 @@ html {
   grid-template-rows: 5.5rem calc(100vh - 11rem) 5.5rem;
 }
 
+.chat__bottom-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0;
+
+  border-top: 0.1rem solid $light-grey-color;
+  background-color: $white-color;
+
+  font-size: 1.3rem;
+  grid-column: 2/3;
+  grid-row: 3/4;
+
+  .chat__bottom-panel-attach-menu-icon {
+    margin: 0 1.5rem;
+
+    .dropdown-button .icon {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .chat__bottom-panel-message-field {
+    width: 100%;
+    margin: 0 1.5rem 0 0;
+
+    .input-component-wrapper {
+      width: 100%;
+
+      .input-wrapper {
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+        height: 3.2rem;
+        padding: 0 1rem;
+
+        color: $grey-accent-color;
+        border: none;
+        border-radius: 3rem;
+        background-color: $light-grey-color;
+      }
+    }
+  }
+
+  .chat__bottom-panel-send-icon {
+    margin: 0 1.5rem;
+
+    .icon-button-container {
+      i:last-child {
+        color: $white-color;
+      }
+    }
+  }
+}
+
 .chat aside {
   overflow: auto;
 
@@ -68,6 +125,25 @@ html {
           width: 100%;
         }
 
+        .input-label {
+          position: absolute;
+
+          display: flex;
+          justify-content: center;
+
+          color: $grey-color;
+
+          font-size: 1.2rem;
+
+          .input-label-placeholder {
+            margin: 0;
+          }
+
+          .icon {
+            margin-right: 0.5rem;
+          }
+        }
+
         input {
           position: relative;
 
@@ -83,25 +159,6 @@ html {
           &:focus + .input-label {
             display: none;
           }
-        }
-      }
-
-      .input-label {
-        position: absolute;
-
-        display: flex;
-        justify-content: center;
-
-        color: $grey-color;
-
-        font-size: 1.2rem;
-
-        .input-label-placeholder {
-          margin: 0;
-        }
-
-        .icon {
-          margin-right: 0.5rem;
         }
       }
     }
@@ -189,63 +246,6 @@ html {
 
   .current-user-message {
     align-self: flex-end;
-  }
-}
-
-.chat__bottom-panel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0;
-
-  border-top: 0.1rem solid $light-grey-color;
-  background-color: $white-color;
-
-  font-size: 1.3rem;
-  grid-column: 2/3;
-  grid-row: 3/4;
-
-  .chat__bottom-panel-attach-menu-icon {
-    margin: 0 1.5rem;
-
-    .dropdown-button .icon {
-      transform: rotate(-90deg);
-    }
-  }
-
-  .chat__bottom-panel-message-field {
-    width: 100%;
-    margin: 0 1.5rem 0 0;
-
-    .input-component-wrapper {
-      width: 100%;
-
-      .input-wrapper {
-        width: 100%;
-      }
-
-      input {
-        width: 100%;
-        height: 3.2rem;
-        padding: 0 1rem;
-
-        color: $grey-accent-color;
-        border: none;
-        border-radius: 3rem;
-        background-color: $light-grey-color;
-      }
-    }
-  }
-
-  .chat__bottom-panel-send-icon {
-    margin: 0 1.5rem;
-
-    .icon-button-container {
-      i:last-child {
-        color: $white-color;
-      }
-    }
   }
 }
 

@@ -16,6 +16,14 @@ html {
 
   background-color: $light-grey-color;
 
+  .message-time {
+    margin-left: 0.5rem;
+
+    text-align: right;
+
+    color: $grey-color;
+  }
+
   &.current-user-message {
     border-top-left-radius: 1rem;
     border-bottom-right-radius: 0;
@@ -32,14 +40,6 @@ html {
 
   .message-text {
     font-size: 1.2rem;
-  }
-
-  .message-time {
-    margin-left: 0.5rem;
-
-    text-align: right;
-
-    color: $grey-color;
   }
 
   .metadata {
