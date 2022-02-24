@@ -22,7 +22,7 @@ export const chatData = {
     {
       name: 'Андрей',
       avatar: {
-        src: '../../../static/user.png',
+        src: '/user.png',
       },
       lastMessageTime: '10:49',
       currentUserMessage: false,
@@ -32,7 +32,7 @@ export const chatData = {
     {
       name: 'Киноклуб',
       avatar: {
-        src: '../../../static/user.png',
+        src: '/user.png',
       },
       lastMessageTime: '12:00',
       currentUserMessage: true,
@@ -43,7 +43,7 @@ export const chatData = {
     {
       name: 'Илья',
       avatar: {
-        src: '../../../static/user.png',
+        src: '/user.png',
       },
       lastMessageTime: '15:12',
       currentUserMessage: false,
@@ -53,7 +53,7 @@ export const chatData = {
   ],
   reviewingDialogUser: {
     avatar: {
-      src: '../../../static/user.png',
+      src: '/user.png',
     },
     name: 'Киноклуб',
   },
