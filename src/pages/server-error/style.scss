@@ -1,6 +1,7 @@
-@import "../../utils/mixins.scss";
-@import "../../utils/variables.scss";
-@import "../../components/error/error.scss";
+@import "../../utils/mixins";
+@import "../../utils/variables";
+@import "../../components/error/error";
 
 html {
-  @include baseStyles; }
+  @include base-styles;
+}

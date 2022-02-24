@@ -1,12 +1,13 @@
-@import "/src/utils/mixins.scss";
-@import "/src/utils/variables.scss";
-@import "../../components/avatar/avatar.scss";
-@import "../../components/button/button.scss";
-@import "../../components/input/input.scss";
-@import "../../components/goBackButtonPanel/goBackButtonPanel.scss";
+@import "/src/utils/mixins";
+@import "/src/utils/variables";
+@import "../../components/avatar/avatar";
+@import "../../components/button/button";
+@import "../../components/input/input";
+@import "../../components/goBackButtonPanel/goBackButtonPanel";
 
 html {
-  @include baseStyles; }
+  @include base-styles;
+}
 
 .password-edit__content-section {
   display: flex;

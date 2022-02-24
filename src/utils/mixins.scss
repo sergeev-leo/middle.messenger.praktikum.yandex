@@ -1,4 +1,4 @@
-@mixin styleTypes {
+@mixin style-types {
   &:hover {
     cursor: pointer;
   }
@@ -76,7 +76,7 @@
   }
 }
 
-@mixin baseStyles {
+@mixin base-styles {
   box-sizing: border-box;
 
   font-family: sans-serif;

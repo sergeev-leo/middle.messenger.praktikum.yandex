@@ -1,5 +1,5 @@
-@import "../../utils/variables.scss";
-@import "../../utils/mixins.scss";
+@import "../../utils/variables";
+@import "../../utils/mixins";
 
 .btn-wrapper {
   button {
@@ -18,6 +18,6 @@
     font-size: 1.3rem;
     font-weight: bold;
 
-    @include styleTypes;
+    @include style-types;
   }
 }

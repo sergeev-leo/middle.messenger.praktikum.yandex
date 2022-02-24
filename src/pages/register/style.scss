@@ -1,10 +1,11 @@
-@import "../../utils/mixins.scss";
-@import "../../utils/variables.scss";
-@import "../../components/button/button.scss";
-@import "../../components/input/input.scss";
+@import "../../utils/mixins";
+@import "../../utils/variables";
+@import "../../components/button/button";
+@import "../../components/input/input";
 
 html {
-  @include baseStyles; }
+  @include base-styles;
+}
 
 .register-form {
   display: flex;

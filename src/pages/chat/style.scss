@@ -1,16 +1,17 @@
-@import "/src/utils/mixins.scss";
-@import "/src/utils/variables.scss";
-@import "../../components/avatar/avatar.scss";
-@import "../../components/button/button.scss";
-@import "../../components/input/input.scss";
-@import "../../components/dialog/dialog.scss";
-@import "../../components/message/message.scss";
-@import "../../components/menu/menu.scss";
-@import "../../components/icon-button/icon-button.scss";
-@import "../../components/modal/modal.scss";
+@import "/src/utils/mixins";
+@import "/src/utils/variables";
+@import "../../components/avatar/avatar";
+@import "../../components/button/button";
+@import "../../components/input/input";
+@import "../../components/dialog/dialog";
+@import "../../components/message/message";
+@import "../../components/menu/menu";
+@import "../../components/icon-button/icon-button";
+@import "../../components/modal/modal";
 
 html {
-  @include baseStyles; }
+  @include base-styles;
+}
 
 .chat {
   display: grid;

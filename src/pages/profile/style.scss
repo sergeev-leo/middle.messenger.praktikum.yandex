@@ -1,11 +1,12 @@
-@import "/src/utils/mixins.scss";
-@import "/src/utils/variables.scss";
-@import "../../components/avatar/avatar.scss";
-@import "../../components/link/link.scss";
-@import "../../components/goBackButtonPanel/goBackButtonPanel.scss";
+@import "/src/utils/mixins";
+@import "/src/utils/variables";
+@import "../../components/avatar/avatar";
+@import "../../components/link/link";
+@import "../../components/goBackButtonPanel/goBackButtonPanel";
 
 html {
-  @include baseStyles; }
+  @include base-styles;
+}
 
 .profile__content-section {
   display: flex;
