@@ -1,6 +1,6 @@
 export const profileData = {
   avatar: {
-    src: '../../../static/user.png',
+    src: '/user.png',
     title: 'Поменять аватар',
     withUpload: true,
   },
@@ -15,12 +15,12 @@ export const profileData = {
     {
       title: 'Изменить пароль',
       style: 'secondary',
-      href: '../password-edit/index.pug',
+      href: '../password-edit/index.html',
     },
     {
       title: 'Изменить данные',
       style: 'secondary',
-      href: '../profile-edit/index.pug',
+      href: '../profile-edit/index.html',
     },
   ],
   userData: [

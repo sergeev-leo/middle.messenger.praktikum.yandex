@@ -3,7 +3,7 @@ import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidatio
 export const chatData = {
   profileLink: {
     title: 'Профиль',
-    href: '../profile/index.pug',
+    href: '../profile/index.html',
   },
   searchInputPlaceholder: 'Поиск',
   searchInput: {

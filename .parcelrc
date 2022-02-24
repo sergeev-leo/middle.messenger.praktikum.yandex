@@ -3,5 +3,6 @@
   "transformers": {
     "*.pug": ["parcel-transformer-pug-precompile"],
     "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"],
-  }
+  },
+  "reporters":  ["...", "parcel-reporter-static-files-copy"],
 }

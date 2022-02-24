@@ -4,6 +4,6 @@ export const clientErrorData = {
   link: {
     style: 'primary',
     title: 'Назад к чатам',
-    href: '../pages/chat.pug',
+    href: '../chat/index.html',
   },
 };
