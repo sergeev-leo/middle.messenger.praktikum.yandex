@@ -198,7 +198,15 @@ export const chatData = {
     outerIconClassName: 'fa-circle',
     iconClassName: 'fa-arrow-right',
     events: {
-      click: createSubmitFn('.chat__bottom-panel'),
+      click: (e: InputEvent) => {
+        const messageInput = document.getElementById('message');
+
+        if(!messageInput?.validity.valid) {
+          return;
+        }
+
+        return createSubmitFn('.chat__bottom-panel')(e);
+      },
     },
   },
   messagesPanelInfoText: 'Выберите чат чтобы отправить сообщение',
