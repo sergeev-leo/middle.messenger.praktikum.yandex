@@ -11,6 +11,7 @@ export type TInputProps = {
   pattern?: string,
   required?: boolean,
   placeholder?: string,
+  accept?: string,
   events?: TEvents,
 };
 

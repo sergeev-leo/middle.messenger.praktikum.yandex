@@ -234,17 +234,12 @@ html {
   }
 }
 
-
-/*
-стили временно размещенных здесь модальных окон. В будущем, когда будет роутинг и все будет рендерится в #app эти
-стили будут размещены в корневом файле стилей, т.к. модальные окно загрузки файлов будет общим для всего приложения
-*/
-
-
+#media-upload-input,
 #file-upload-input {
   display: none;
 }
 
+label[for=media-upload-input],
 label[for=file-upload-input] {
   display: block;
   position: absolute;
@@ -259,7 +254,7 @@ label[for=file-upload-input] {
   }
 }
 
-#file-chosen{
+.file-chosen{
   padding-top: 4rem;
   color: $greyColor;
   font-size: 1.2rem;
