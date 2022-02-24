@@ -14,19 +14,19 @@ html {
   border-radius: 1rem;
   border-top-left-radius: 0;
 
-  background-color: $lightGreyColor;
+  background-color: $light-grey-color;
 
   &.current-user-message {
     border-top-left-radius: 1rem;
     border-bottom-right-radius: 0;
-    background-color: $primaryLightColor;
+    background-color: $primary-light-color;
 
     .message-time {
-      color: $primaryColor;
+      color: $primary-color;
     }
 
     .icon {
-      color: $primaryColor;
+      color: $primary-color;
     }
   }
 
@@ -39,7 +39,7 @@ html {
 
     text-align: right;
 
-    color: $greyColor;
+    color: $grey-color;
   }
 
   .metadata {

@@ -13,7 +13,7 @@
     padding: 1rem 0;
 
     border: none;
-    border-bottom: 0.1rem solid $primaryColor;
+    border-bottom: 0.1rem solid $primary-color;
     outline: none;
 
     font-size: 1.3rem;
@@ -41,19 +41,19 @@
 
     transform-origin: left top;
 
-    color: $greyColor;
+    color: $grey-color;
 
     font-size: 1.3rem;
   }
 
   &.has-error input {
-    color: $errorColor;
+    color: $error-color;
   }
 
   .error {
     display: none;
 
-    color: $errorColor;
+    color: $error-color;
 
     font-size: 0.9rem;
   }

@@ -11,10 +11,10 @@ a.link {
   }
 
   &.primary {
-    color: $primaryColor;
+    color: $primary-color;
   }
 
   &.error {
-    color: $errorColor;
+    color: $error-color;
   }
 }

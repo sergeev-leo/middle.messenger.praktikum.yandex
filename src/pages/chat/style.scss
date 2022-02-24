@@ -22,16 +22,16 @@ html {
 .chat aside {
   overflow: auto;
 
-  border-right: 0.1rem solid $lightGreyColor;
+  border-right: 0.1rem solid $light-grey-color;
 
-  background-color: $whiteColor;
+  background-color: $white-color;
   grid-column: 1/2;
   grid-row: 1/4;
 
   .chat__search-section {
     height: 10.3rem;
 
-    border-bottom: 0.1rem solid $lightGreyColor;
+    border-bottom: 0.1rem solid $light-grey-color;
 
     .chat__profile-link {
       display: flex;
@@ -44,7 +44,7 @@ html {
       .link {
         padding: 0;
 
-        color: $greyColor;
+        color: $grey-color;
         outline: none;
       }
 
@@ -75,10 +75,10 @@ html {
           height: 3.2rem;
           padding: 0 1rem;
 
-          color: $greyAccentColor;
+          color: $grey-accent-color;
           border: none;
           border-radius: 0.5rem;
-          background-color: $lightGreyColor;
+          background-color: $light-grey-color;
 
           &:focus + .input-label {
             display: none;
@@ -92,7 +92,7 @@ html {
         display: flex;
         justify-content: center;
 
-        color: $greyColor;
+        color: $grey-color;
 
         font-size: 1.2rem;
 
@@ -121,9 +121,9 @@ html {
 
   padding: 0 2rem;
 
-  border-bottom: 0.1rem solid $lightGreyColor;
+  border-bottom: 0.1rem solid $light-grey-color;
 
-  background-color: $whiteColor;
+  background-color: $white-color;
   grid-column: 2/3;
   grid-row: 1/2;
 
@@ -166,7 +166,7 @@ html {
 
     transform: translate(-50%, -50%);
 
-    color: $greyColor;
+    color: $grey-color;
   }
 
   .date-string-line {
@@ -174,8 +174,8 @@ html {
 
     margin: 2rem;
 
-    color: $greyColor;
-    border-top: 0.1rem solid $lightGreyColor;
+    color: $grey-color;
+    border-top: 0.1rem solid $light-grey-color;
 
     .no-messages-text,
     .date-string-label {
@@ -199,8 +199,8 @@ html {
 
   padding: 0;
 
-  border-top: 0.1rem solid $lightGreyColor;
-  background-color: $whiteColor;
+  border-top: 0.1rem solid $light-grey-color;
+  background-color: $white-color;
 
   font-size: 1.3rem;
   grid-column: 2/3;
@@ -230,10 +230,10 @@ html {
         height: 3.2rem;
         padding: 0 1rem;
 
-        color: $greyAccentColor;
+        color: $grey-accent-color;
         border: none;
         border-radius: 3rem;
-        background-color: $lightGreyColor;
+        background-color: $light-grey-color;
       }
     }
   }
@@ -243,7 +243,7 @@ html {
 
     .icon-button-container {
       i:last-child {
-        color: $whiteColor;
+        color: $white-color;
       }
     }
   }
@@ -262,7 +262,7 @@ label[for="file-upload-input"] {
 
   display: block;
 
-  color: $primaryColor;
+  color: $primary-color;
 
   font-size: 1.8rem;
 
@@ -276,7 +276,7 @@ label[for="file-upload-input"] {
 
   text-align: center;
 
-  color: $greyColor;
+  color: $grey-color;
 
   font-size: 1.2rem;
 }

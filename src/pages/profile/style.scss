@@ -40,12 +40,12 @@ html {
         font-size: 1.3rem;
 
         &.value {
-          color: $greyColor;
+          color: $grey-color;
         }
       }
 
       &:not(:last-child) {
-        border-bottom: 0.1rem solid $greyColor;
+        border-bottom: 0.1rem solid $grey-color;
       }
     }
   }
@@ -61,7 +61,7 @@ html {
       padding-left: 0;
 
       &:not(:last-child) {
-        border-bottom: 0.1rem solid $greyColor;
+        border-bottom: 0.1rem solid $grey-color;
       }
     }
   }

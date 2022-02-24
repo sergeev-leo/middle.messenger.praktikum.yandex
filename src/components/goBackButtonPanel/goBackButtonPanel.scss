@@ -13,14 +13,14 @@
   margin: 0;
   padding: 0;
 
-  border-right: 0.1rem solid $greyColor;
+  border-right: 0.1rem solid $grey-color;
 
-  background-color: $whiteColor;
+  background-color: $white-color;
 
   &:hover {
     cursor: pointer;
 
-    background-color: $whiteAccentColor;
+    background-color: $white-accent-color;
   }
 
   .icon-button-container {

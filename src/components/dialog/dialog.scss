@@ -9,14 +9,14 @@ html {
 
   padding: 1rem;
 
-  border-bottom: 0.1rem solid $lightGreyColor;
+  border-bottom: 0.1rem solid $light-grey-color;
 
   &:hover {
-    background-color: $lightGreyColor;
+    background-color: $light-grey-color;
   }
 
   &.--is-selected {
-    background-color: $primaryLightColor;
+    background-color: $primary-light-color;
   }
 
   .avatar-wrapper,
@@ -42,12 +42,12 @@ html {
     .dialog__current-user-message-label {
       display: inline;
 
-      color: $greyColor;
+      color: $grey-color;
 
       font-size: 1.2rem;
 
       &.dialog__current-user-message-label {
-        color: $blackColor;
+        color: $black-color;
 
         font-weight: bold;
       }
@@ -65,7 +65,7 @@ html {
     .dialog__message-time {
       margin-top: 0;
 
-      color: $greyColor;
+      color: $grey-color;
     }
 
     .dialog__messages_amount {
@@ -77,7 +77,7 @@ html {
       height: 2rem;
 
       border-radius: 50%;
-      background-color: $primaryColor;
+      background-color: $primary-color;
 
       p {
         margin: 0;

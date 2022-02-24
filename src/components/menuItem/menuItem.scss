@@ -9,7 +9,7 @@
 
   text-decoration: none;
 
-  color: $primaryColor;
+  color: $primary-color;
 
   .icon-container {
     display: flex;
@@ -22,16 +22,16 @@
   }
 
   .dropdown-item-text {
-    color: $blackColor;
+    color: $black-color;
   }
 
   &:hover {
     cursor: pointer;
 
-    background-color: $lightGreyColor;
+    background-color: $light-grey-color;
   }
 
   &:active {
-    background-color: darken($lightGreyColor, 5);
+    background-color: darken($light-grey-color, 5);
   }
 }
