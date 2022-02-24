@@ -3,7 +3,7 @@ import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidatio
 
 export const profileEditData = {
   avatar: {
-    src:'../../../static/user.png',
+    src:'/user.png',
     title: 'Поменять аватар',
   },
   inputs: [

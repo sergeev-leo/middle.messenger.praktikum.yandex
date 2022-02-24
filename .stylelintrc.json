@@ -10,7 +10,7 @@
   ],
   "rules": {
     "plugin/declaration-block-no-ignored-properties": true,
-    "scss/no-global-function-names": false,
+    "scss/no-global-function-names": null,
     "selector-class-pattern": null
   },
   "ignoreFiles": [

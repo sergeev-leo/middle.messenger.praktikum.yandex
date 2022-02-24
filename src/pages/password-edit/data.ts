@@ -3,7 +3,7 @@ import { VALIDATION_PATTERNS } from '../../modules/formValidation';
 
 export const passwordEditData = {
   avatar: {
-    src:'../../../static/user.png',
+    src:'/user.png',
     title: 'Поменять аватар',
   },
   inputs: [
