@@ -80,7 +80,7 @@ class HTTPTransport {
     if(!data || Object.keys(data).length === 0) {
       return '';
     }
-    // Можно делать трансформацию GET-параметров в отдельной функции
+
     return Object
       .keys(data)
       .reduce(

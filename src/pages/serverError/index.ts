@@ -2,21 +2,12 @@ import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { ErrorPage } from '../../components/error/error';
 import { render } from '../../modules/renderDOM';
+import { serverErrorData } from './data';
 
 
-const data = {
-  errorCode: '500',
-  errorText: 'Мы уже фиксим',
-  link: {
-    style: 'primary',
-    title: 'Назад к чатам',
-    href: '../pages/chat.pug',
-  },
-};
-
-export class Error500Page extends Block {
+export class ServerError extends Block {
   initChildren() {
-    this._children.error = new ErrorPage(data);
+    this._children.error = new ErrorPage(serverErrorData);
   }
 
   render() {
@@ -27,4 +18,4 @@ export class Error500Page extends Block {
   }
 }
 
-render('#error2', new Error500Page());
+render('#serverError', new ServerError());

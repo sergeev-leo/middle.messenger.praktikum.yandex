@@ -2,41 +2,9 @@ import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { Input, TInputProps } from '../../components/input/input';
 import { Button, TButtonProps } from '../../components/button/button';
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
 import { render } from '../../modules/renderDOM';
+import { loginData } from './data';
 
-
-const data = {
-  header: 'Вход',
-  inputs: [
-    {
-      id: 'login',
-      label: 'Логин',
-      type: 'text',
-      pattern: VALIDATION_PATTERNS.LOGIN,
-    },
-    {
-      id: 'password',
-      label: 'Пароль',
-      type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
-    },
-  ],
-  buttons: [
-    {
-      title: 'Вход',
-      style: 'primary',
-      type: 'submit',
-    },
-    {
-      title: 'Нет аккаунта?',
-      style: 'secondary',
-    },
-  ],
-  events: {
-    submit: createSubmitFn('.login-form'),
-  },
-};
 
 export type TLoginFormProps = {
   title: string,
@@ -47,7 +15,7 @@ export type TLoginFormProps = {
 
 export class LoginForm extends Block {
   constructor() {
-    super(data);
+    super(loginData);
   }
 
   initChildren() {
