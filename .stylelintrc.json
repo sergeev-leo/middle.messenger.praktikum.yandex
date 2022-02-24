@@ -16,6 +16,7 @@
   "ignoreFiles": [
     "dist/*",
     "node_modules/*",
-    "parcel-cache/*"
+    "parcel-cache/*",
+    "static/*.css"
   ]
 }
