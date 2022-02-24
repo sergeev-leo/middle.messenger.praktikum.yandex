@@ -23,3 +23,7 @@
 ## Netlify
 
 [автодеплой из deploy](https://gallant-euclid-0ba5e8.netlify.app/)
+
+## PR
+
+[Ссылка на ПР второго спринта](https://github.com/sergeev-leo/middle.messenger.praktikum.yandex/pull/2)
