@@ -76,6 +76,7 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
+          e.stopPropagation();
           createSubmitFn('.add-user-modal')(e);
           onClose();
         },
@@ -98,6 +99,7 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
+          e.stopPropagation();
           createSubmitFn('.delete-user-modal')(e);
           onClose();
         },
@@ -135,6 +137,7 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
+          e.stopPropagation();
           createSubmitFn('.file-upload-modal')(e);
           onClose();
         },
@@ -173,6 +176,7 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
+          e.stopPropagation();
           createSubmitFn('.file-upload-modal')(e);
           onClose();
         },
