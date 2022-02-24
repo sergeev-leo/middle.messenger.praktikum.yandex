@@ -10,16 +10,19 @@ export const passwordEditData = {
     {
       id: 'oldPassword',
       label: 'Старый пароль',
+      type: 'password',
       pattern: VALIDATION_PATTERNS.PASSWORD,
     },
     {
       id: 'newPassword',
       label: 'Новый пароль',
+      type: 'password',
       pattern: VALIDATION_PATTERNS.PASSWORD,
     },
     {
       id: 'repeatNewPassword',
       label: 'Повторите пароль',
+      type: 'password',
       pattern: VALIDATION_PATTERNS.PASSWORD,
     },
   ],
