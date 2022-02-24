@@ -118,30 +118,30 @@ html {
       margin-top: 2rem;
       padding: 0 1.5rem;
 
+      .input-label {
+        position: absolute;
+
+        display: flex;
+        justify-content: center;
+
+        color: $grey-color;
+
+        font-size: 1.2rem;
+
+        .input-label-placeholder {
+          margin: 0;
+        }
+
+        .icon {
+          margin-right: 0.5rem;
+        }
+      }
+
       .input-component-wrapper {
         width: 100%;
 
         .input-wrapper {
           width: 100%;
-        }
-
-        .input-label {
-          position: absolute;
-
-          display: flex;
-          justify-content: center;
-
-          color: $grey-color;
-
-          font-size: 1.2rem;
-
-          .input-label-placeholder {
-            margin: 0;
-          }
-
-          .icon {
-            margin-right: 0.5rem;
-          }
         }
 
         input {

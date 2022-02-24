@@ -10,7 +10,7 @@ export const profileData = {
     {
       title: 'Выйти',
       style: 'error',
-      href: '/logout',
+      href: '/',
     },
     {
       title: 'Изменить пароль',
