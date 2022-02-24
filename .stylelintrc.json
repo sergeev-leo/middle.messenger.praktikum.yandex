@@ -17,6 +17,6 @@
     "dist/*",
     "node_modules/*",
     "parcel-cache/*",
-    "static/*.css"
+    "static/*"
   ]
 }
