@@ -276,8 +276,9 @@ export class Block {
       });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidMount(oldProps: TComponentProps) {
-    console.log('componentDidMount', oldProps);
+    // метод должен быть переопределен в компоненте-наследнике
   }
 
   /*
@@ -298,8 +299,8 @@ export class Block {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
-    console.log('componentDidUpdate', oldProps, newProps);
     return true;
   }
 
@@ -320,8 +321,6 @@ export class Block {
   * Триггер данного события срабатывает при первоначальной инициализации и в рамках метода жизненного цикла componentDidUpdate
   * */
   _render() {
-    console.log('render', this.props);
-    console.log('render: children', this._children);
 
     /*
     * получаем итоговую разметку компонента
@@ -391,8 +390,6 @@ export class Block {
           const oldProps = { ...target };
 
           target[prop] = value;
-
-          console.log('propsChanged');
 
           this.eventBus().emit(
             Block.EVENTS.FLOW_CDU,

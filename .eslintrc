@@ -40,6 +40,7 @@
     "no-unneeded-ternary": 1,
     "object-curly-spacing": [1, "always"],
     "semi": [1, "always"],
+    "no-console": "warn",
     "comma-dangle": ["error", {
       "arrays": "always-multiline",
       "objects": "always-multiline",

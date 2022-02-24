@@ -13,6 +13,7 @@ export const chatData = {
       keyup: (e: InputEvent) => {
         const { value } = e.target as HTMLInputElement;
 
+        // eslint-disable-next-line no-console
         return console.log(`поиск ${value}`);
       },
     },
@@ -100,6 +101,7 @@ export const chatData = {
           iconClassName: 'fa-trash',
         },
         events: {
+          // eslint-disable-next-line no-console
           click: ()  => console.log('удалить чат'),
         },
       },
@@ -148,6 +150,7 @@ export const chatData = {
           iconClassName: 'fa-map-marker',
         },
         events: {
+          // eslint-disable-next-line no-console
           click: ()  => console.log('локация'),
         },
       },
