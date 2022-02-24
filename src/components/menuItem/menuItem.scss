@@ -1,18 +1,21 @@
-@import '../icon-button/icon-button';
+@import "../icon-button/icon-button";
 
 .dropdown-item {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
 
   padding: 0.5rem;
+
   text-decoration: none;
+
   color: $primaryColor;
 
   .icon-container {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
     width: 3rem;
     height: 3rem;
     margin-right: 0.5rem;
@@ -24,6 +27,7 @@
 
   &:hover {
     cursor: pointer;
+
     background-color: $lightGreyColor;
   }
 

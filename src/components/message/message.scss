@@ -1,26 +1,24 @@
-@import '../../utils/variables.scss';
-@import '../../utils/mixins.scss';
-
+@import "../../utils/variables.scss";
+@import "../../utils/mixins.scss";
 
 html {
-  @include baseStyles
-}
+  @include baseStyles; }
 
 .message-wrapper {
   min-width: 30rem;
   max-width: 60rem;
-  padding: 1rem;
   margin: 1rem;
+  padding: 1rem;
+
+  border-radius: 1rem;
+  border-top-left-radius: 0;
 
   background-color: $lightGreyColor;
 
-  border-radius: 1rem;
-  border-top-left-radius: 0rem;
-
   &.current-user-message {
-    background-color: $primaryLightColor;
     border-top-left-radius: 1rem;
-    border-bottom-right-radius: 0rem;
+    border-bottom-right-radius: 0;
+    background-color: $primaryLightColor;
 
     .message-time {
       color: $primaryColor;
@@ -37,7 +35,9 @@ html {
 
   .message-time {
     margin-left: 0.5rem;
+
     text-align: right;
+
     color: $greyColor;
   }
 

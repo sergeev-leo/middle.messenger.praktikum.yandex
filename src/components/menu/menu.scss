@@ -1,9 +1,9 @@
-@import '../icon-button/icon-button.scss';
-@import '../menuItem/menuItem.scss';
-
+@import "../icon-button/icon-button.scss";
+@import "../menuItem/menuItem.scss";
 
 .menu-wrapper {
   position: relative;
+
   display: inline-block;
 
   &:hover .dropdown-content {
@@ -11,39 +11,42 @@
   }
 
   ul.dropdown-content {
-    display: none;
     position: absolute;
-    padding: 0;
+    z-index: 1;
+
+    display: none;
+
+    min-width: 20rem;
     margin: 0;
+    padding: 0;
+
     border-radius: 0.5rem;
+
+    background-color: $whiteColor;
+    box-shadow: 0 0.5rem 1rem 0.2rem $shadowColor;
 
     li {
       list-style-type: none;
     }
 
     &.top-right {
-      right: 0;
       top: 3rem;
+      right: 0;
     }
 
     &.top-left {
-      right: 0;
       top: 3rem;
+      right: 0;
     }
 
     &.bottom-right {
-      left: 0;
       bottom: 3rem;
+      left: 0;
     }
 
     &.bottom-left {
       right: 0;
       bottom: 3rem;
     }
-
-    background-color: $whiteColor;
-    box-shadow: 0 0.5rem 1rem 0.2rem $shadowColor;
-    min-width: 20rem;
-    z-index: 1;
   }
 }

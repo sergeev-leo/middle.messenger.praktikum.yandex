@@ -1,5 +1,5 @@
 @mixin styleTypes {
-  &:hover { 
+  &:hover {
     cursor: pointer;
   }
 
@@ -7,12 +7,14 @@
     color: $whiteColor;
     background-color: $primaryColor;
 
-    &:hover { 
+    &:hover {
       background-color: lighten($primaryAccentColor, 10);
     }
+
     &:active {
       background-color: $primaryAccentColor;
     }
+
     &:visited {
       color: $whiteColor;
     }
@@ -22,12 +24,14 @@
     color: $primaryColor;
     background-color: $whiteColor;
 
-    &:hover { 
+    &:hover {
       background-color: darken($whiteAccentColor, 10);
     }
+
     &:active {
       background-color: darken($whiteAccentColor, 20);
     }
+
     &:visited {
       color: $primaryColor;
     }
@@ -37,14 +41,16 @@
     color: $errorColor;
     background-color: $whiteColor;
 
-    &:hover { 
+    &:hover {
       color: $whiteColor;
       background-color: lighten($errorAccentColor, 10);
     }
+
     &:active {
       color: $whiteColor;
       background-color: $errorAccentColor;
     }
+
     &:visited {
       color: $errorColor;
     }
@@ -54,14 +60,16 @@
     color: $greyColor;
     background-color: $whiteColor;
 
-    &:hover { 
+    &:hover {
       color: $whiteColor;
       background-color: lighten($greyAccentColor, 10);
     }
+
     &:active {
       color: $whiteColor;
       background-color: $greyAccentColor;
     }
+
     &:visited {
       color: $greyColor;
     }
@@ -69,9 +77,11 @@
 }
 
 @mixin baseStyles {
+  box-sizing: border-box;
+
   font-family: sans-serif;
   font-size: 10px;
-  box-sizing: border-box;
+
   body {
     margin: 0;
   }

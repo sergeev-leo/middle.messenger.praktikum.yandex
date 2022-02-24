@@ -1,21 +1,23 @@
-@import '../../utils/variables.scss';
-@import '../../utils/mixins.scss';
-
+@import "../../utils/variables.scss";
+@import "../../utils/mixins.scss";
 
 .btn-wrapper {
   button {
-    @include styleTypes;
+    display: block;
 
     width: 28rem;
     height: 3.7rem;
-    display: block;
     padding: 1rem;
-    border-radius: 0.8rem;
-    border:none;
+
     text-align: center;
+    text-decoration: none;
+
+    border: none;
+    border-radius: 0.8rem;
 
     font-size: 1.3rem;
     font-weight: bold;
-    text-decoration: none;
+
+    @include styleTypes;
   }
 }

@@ -1,8 +1,9 @@
-@import '../../utils/variables.scss';
-@import '../../utils/mixins.scss';
+@import "../../utils/variables.scss";
+@import "../../utils/mixins.scss";
 
 a.link {
   padding: 1rem 2rem;
+
   text-decoration: none;
 
   &:hover {
@@ -12,6 +13,7 @@ a.link {
   &.primary {
     color: $primaryColor;
   }
+
   &.error {
     color: $errorColor;
   }

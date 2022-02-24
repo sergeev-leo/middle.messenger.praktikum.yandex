@@ -1,11 +1,10 @@
-@import '../../utils/mixins.scss';
-@import '../../utils/variables.scss';
-@import '../../components/button/button.scss';
-@import '../../components/input/input.scss';
+@import "../../utils/mixins.scss";
+@import "../../utils/variables.scss";
+@import "../../components/button/button.scss";
+@import "../../components/input/input.scss";
 
 html {
-  @include baseStyles
-}
+  @include baseStyles; }
 
 .register-form {
   display: flex;
@@ -15,35 +14,38 @@ html {
     width: 34rem;
     height: 61.5rem;
     margin-top: 12rem;
-    border: 0.1rem solid $shadowColor;
     padding: 3rem;
+
+    border: 0.1rem solid $shadowColor;
     border-radius: 1.2rem;
   }
 
   .register-form__header {
     margin: 5rem auto 4rem;
+
     text-align: center;
+
     font-size: 2rem;
   }
 
   .register-form__inputs-section {
+    margin-bottom: 6rem;
 
     .input-wrapper {
       margin: 0 auto;
       margin-bottom: 1.5rem;
     }
-
-    margin-bottom: 6rem;
   }
 
   .register-form__buttons-section {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
   }
 
   li {
-    list-style-type: none;
     padding: 0;
+
+    list-style-type: none;
   }
 }

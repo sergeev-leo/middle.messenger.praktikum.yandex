@@ -1,18 +1,21 @@
-@import '../link/link.scss';
-
+@import "../link/link.scss";
 
 .error-wrapper {
   h1 {
     margin-top: 28rem;
     margin-bottom: 2rem;
+
     text-align: center;
+
     font-size: 8rem;
   }
 
   p {
-    font-size: 2rem;
-    text-align: center;
     margin-bottom: 7rem;
+
+    text-align: center;
+
+    font-size: 2rem;
   }
 
   .link-wrapper {

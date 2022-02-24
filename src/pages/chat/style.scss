@@ -1,18 +1,16 @@
-@import '/src/utils/mixins.scss';
-@import '/src/utils/variables.scss';
-@import '../../components/avatar/avatar.scss';
-@import '../../components/button/button.scss';
-@import '../../components/input/input.scss';
-@import '../../components/dialog/dialog.scss';
-@import '../../components/message/message.scss';
-@import '../../components/menu/menu.scss';
-@import '../../components/icon-button/icon-button.scss';
-@import '../../components/modal/modal.scss';
-
+@import "/src/utils/mixins.scss";
+@import "/src/utils/variables.scss";
+@import "../../components/avatar/avatar.scss";
+@import "../../components/button/button.scss";
+@import "../../components/input/input.scss";
+@import "../../components/dialog/dialog.scss";
+@import "../../components/message/message.scss";
+@import "../../components/menu/menu.scss";
+@import "../../components/icon-button/icon-button.scss";
+@import "../../components/modal/modal.scss";
 
 html {
-  @include baseStyles
-}
+  @include baseStyles; }
 
 .chat {
   display: grid;
@@ -21,29 +19,32 @@ html {
 }
 
 .chat aside {
+  overflow: auto;
+
+  border-right: 0.1rem solid $lightGreyColor;
+
+  background-color: $whiteColor;
   grid-column: 1/2;
   grid-row: 1/4;
 
-  overflow: auto;
-
-  background-color: $whiteColor;
-  border-right: 0.1rem solid $lightGreyColor;
-
   .chat__search-section {
     height: 10.3rem;
+
     border-bottom: 0.1rem solid $lightGreyColor;
 
     .chat__profile-link {
       display: flex;
-      justify-content: flex-end;
       align-content: center;
+      justify-content: flex-end;
+
       margin-right: 1rem;
       padding-top: 1rem;
 
       .link {
+        padding: 0;
+
         color: $greyColor;
         outline: none;
-        padding: 0;
       }
 
       .icon {
@@ -53,8 +54,9 @@ html {
 
     .chat_search-field {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+
       margin-top: 2rem;
       padding: 0 1.5rem;
 
@@ -67,13 +69,15 @@ html {
 
         input {
           position: relative;
+
           width: 100%;
           height: 3.2rem;
+          padding: 0 1rem;
+
+          color: $greyAccentColor;
+          border: none;
           border-radius: 0.5rem;
           background-color: $lightGreyColor;
-          border: none;
-          padding: 0 1rem;
-          color: $greyAccentColor;
 
           &:focus + .input-label {
             display: none;
@@ -82,15 +86,19 @@ html {
       }
 
       .input-label {
-        font-size: 1.2rem;
         position: absolute;
+
         display: flex;
         justify-content: center;
+
         color: $greyColor;
+
+        font-size: 1.2rem;
 
         .input-label-placeholder {
           margin: 0;
         }
+
         .icon {
           margin-right: 0.5rem;
         }
@@ -106,17 +114,17 @@ html {
 }
 
 .chat__top-panel {
-  grid-column: 2/3;
-  grid-row: 1/2;
-
-  background-color: $whiteColor;
-
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   padding: 0 2rem;
+
   border-bottom: 0.1rem solid $lightGreyColor;
+
+  background-color: $whiteColor;
+  grid-column: 2/3;
+  grid-row: 1/2;
 
   .chat__top-panel-user-avatar {
     display: flex;
@@ -130,8 +138,9 @@ html {
     }
 
     .chat__top-panel-user-name {
-      font-size: 1.3rem;
       margin-left: 1rem;
+
+      font-size: 1.3rem;
     }
   }
 
@@ -141,26 +150,29 @@ html {
 }
 
 .chat__messages-panel {
-  grid-column: 2/3;
-  grid-row: 2/3;
+  position: relative;
 
   display: flex;
-  flex-direction: column;
   overflow-y: auto;
-  position: relative;
+  flex-direction: column;
+  grid-column: 2/3;
+  grid-row: 2/3;
 
   .messages-panel-info-text {
     position: absolute;
     top: 50%;
     left: 50%;
+
     transform: translate(-50%, -50%);
 
     color: $greyColor;
   }
 
   .date-string-line {
-    margin: 2rem;
     position: relative;
+
+    margin: 2rem;
+
     color: $greyColor;
     border-top: 0.1rem solid $lightGreyColor;
 
@@ -169,6 +181,7 @@ html {
       position: absolute;
       top: 50%;
       left: 50%;
+
       transform: translate(-50%, -50%);
     }
   }
@@ -179,18 +192,18 @@ html {
 }
 
 .chat__bottom-panel {
-  grid-column: 2/3;
-  grid-row: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   padding: 0;
+
   border-top: 0.1rem solid $lightGreyColor;
   background-color: $whiteColor;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   font-size: 1.3rem;
+  grid-column: 2/3;
+  grid-row: 3/4;
 
   .chat__bottom-panel-attach-menu-icon {
     margin: 0 1.5rem;
@@ -213,12 +226,13 @@ html {
 
       input {
         width: 100%;
-        padding: 0 1rem;
         height: 3.2rem;
+        padding: 0 1rem;
+
+        color: $greyAccentColor;
+        border: none;
         border-radius: 3rem;
         background-color: $lightGreyColor;
-        border: none;
-        color: $greyAccentColor;
       }
     }
   }
@@ -239,14 +253,16 @@ html {
   display: none;
 }
 
-label[for=media-upload-input],
-label[for=file-upload-input] {
-  display: block;
+label[for="media-upload-input"],
+label[for="file-upload-input"] {
   position: absolute;
-  left: 9rem;
   top: 50%;
+  left: 9rem;
+
+  display: block;
 
   color: $primaryColor;
+
   font-size: 1.8rem;
 
   &:hover {
@@ -254,9 +270,12 @@ label[for=file-upload-input] {
   }
 }
 
-.file-chosen{
+.file-chosen {
   padding-top: 4rem;
-  color: $greyColor;
-  font-size: 1.2rem;
+
   text-align: center;
+
+  color: $greyColor;
+
+  font-size: 1.2rem;
 }
