@@ -1,16 +1,16 @@
-@import '/src/utils/mixins.scss';
-@import '/src/utils/variables.scss';
-@import '../../components/avatar/avatar.scss';
-@import '../../components/button/button.scss';
-@import '../../components/input/input.scss';
-@import '../../components/dialog/dialog.scss';
-@import '../../components/message/message.scss';
-@import '../../components/menu/menu.scss';
-@import '../../components/icon-button/icon-button.scss';
-
+@import "/src/utils/mixins";
+@import "/src/utils/variables";
+@import "../../components/avatar/avatar";
+@import "../../components/button/button";
+@import "../../components/input/input";
+@import "../../components/dialog/dialog";
+@import "../../components/message/message";
+@import "../../components/menu/menu";
+@import "../../components/icon-button/icon-button";
+@import "../../components/modal/modal";
 
 html {
-  @include baseStyles
+  @include base-styles;
 }
 
 .chat {
@@ -19,27 +19,89 @@ html {
   grid-template-rows: 5.5rem calc(100vh - 11rem) 5.5rem;
 }
 
+.chat__bottom-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0;
+
+  border-top: 0.1rem solid $light-grey-color;
+  background-color: $white-color;
+
+  font-size: 1.3rem;
+  grid-column: 2/3;
+  grid-row: 3/4;
+
+  .chat__bottom-panel-attach-menu-icon {
+    margin: 0 1.5rem;
+
+    .dropdown-button .icon {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .chat__bottom-panel-message-field {
+    width: 100%;
+    margin: 0 1.5rem 0 0;
+
+    .input-component-wrapper {
+      width: 100%;
+
+      .input-wrapper {
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+        height: 3.2rem;
+        padding: 0 1rem;
+
+        color: $grey-accent-color;
+        border: none;
+        border-radius: 3rem;
+        background-color: $light-grey-color;
+      }
+    }
+  }
+
+  .chat__bottom-panel-send-icon {
+    margin: 0 1.5rem;
+
+    .icon-button-container {
+      i:last-child {
+        color: $white-color;
+      }
+    }
+  }
+}
+
 .chat aside {
+  overflow: auto;
+
+  border-right: 0.1rem solid $light-grey-color;
+
+  background-color: $white-color;
   grid-column: 1/2;
   grid-row: 1/4;
 
-  overflow: auto;
-
-  background-color: $whiteColor;
-  border-right: 0.1rem solid $lightGreyColor;
-
   .chat__search-section {
     height: 10.3rem;
-    border-bottom: 0.1rem solid $lightGreyColor;
+
+    border-bottom: 0.1rem solid $light-grey-color;
 
     .chat__profile-link {
       display: flex;
+      align-content: center;
       justify-content: flex-end;
+
       margin-right: 1rem;
       padding-top: 1rem;
 
       .link {
-        color: $greyColor;
+        padding: 0;
+
+        color: $grey-color;
         outline: none;
       }
 
@@ -50,37 +112,53 @@ html {
 
     .chat_search-field {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+
       margin-top: 2rem;
       padding: 0 1.5rem;
-      input {
-        position: relative;
-        width: 100%;
-        height: 3.2rem;
-        border-radius: 0.5rem;
-        background-color: $lightGreyColor;
-        border: none;
-        padding: 0 1rem;
-        color: $greyAccentColor;
-
-        &:focus + .input-label {
-          display: none;
-        }
-      }
 
       .input-label {
-        font-size: 1.2rem;
         position: absolute;
+
         display: flex;
         justify-content: center;
-        color: $greyColor;
+
+        color: $grey-color;
+
+        font-size: 1.2rem;
 
         .input-label-placeholder {
           margin: 0;
         }
+
         .icon {
           margin-right: 0.5rem;
+        }
+      }
+
+      .input-component-wrapper {
+        width: 100%;
+
+        .input-wrapper {
+          width: 100%;
+        }
+
+        input {
+          position: relative;
+
+          width: 100%;
+          height: 3.2rem;
+          padding: 0 1rem;
+
+          color: $grey-accent-color;
+          border: none;
+          border-radius: 0.5rem;
+          background-color: $light-grey-color;
+
+          &:focus + .input-label {
+            display: none;
+          }
         }
       }
     }
@@ -94,17 +172,17 @@ html {
 }
 
 .chat__top-panel {
-  grid-column: 2/3;
-  grid-row: 1/2;
-
-  background-color: $whiteColor;
-
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   padding: 0 2rem;
-  border-bottom: 0.1rem solid $lightGreyColor;
+
+  border-bottom: 0.1rem solid $light-grey-color;
+
+  background-color: $white-color;
+  grid-column: 2/3;
+  grid-row: 1/2;
 
   .chat__top-panel-user-avatar {
     display: flex;
@@ -118,8 +196,9 @@ html {
     }
 
     .chat__top-panel-user-name {
-      font-size: 1.3rem;
       margin-left: 1rem;
+
+      font-size: 1.3rem;
     }
   }
 
@@ -129,23 +208,38 @@ html {
 }
 
 .chat__messages-panel {
+  position: relative;
+
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
   grid-column: 2/3;
   grid-row: 2/3;
 
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+  .messages-panel-info-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: $grey-color;
+  }
 
   .date-string-line {
-    margin: 2rem;
     position: relative;
-    color: $greyColor;
-    border-top: 0.1rem solid $lightGreyColor;
 
+    margin: 2rem;
+
+    color: $grey-color;
+    border-top: 0.1rem solid $light-grey-color;
+
+    .no-messages-text,
     .date-string-label {
       position: absolute;
       top: 50%;
       left: 50%;
+
       transform: translate(-50%, -50%);
     }
   }
@@ -155,49 +249,34 @@ html {
   }
 }
 
-.chat__bottom-panel {
-  grid-column: 2/3;
-  grid-row: 3/4;
+#media-upload-input,
+#file-upload-input {
+  display: none;
+}
 
-  padding: 0rem;
-  border-top: 0.1rem solid $lightGreyColor;
-  background-color: $whiteColor;
+label[for="media-upload-input"],
+label[for="file-upload-input"] {
+  position: absolute;
+  top: 50%;
+  left: 9rem;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: block;
 
-  font-size: 1.3rem;
+  color: $primary-color;
 
-  .chat__bottom-panel-attach-menu-icon {
-    margin: 0 1.5rem;
+  font-size: 1.8rem;
 
-    .dropdown-button .icon {
-      transform: rotate(-90deg);
-    }
+  &:hover {
+    cursor: pointer;
   }
+}
 
-  .chat__bottom-panel-message-field {
-    width: 100%;
-    margin: 0 1.5rem 0 0;
-    input {
-      width: 100%;
-      padding: 0 1rem;
-      height: 3.2rem;
-      border-radius: 3rem;
-      background-color: $lightGreyColor;
-      border: none;
-      color: $greyAccentColor;
-    }
-  }
+.file-chosen {
+  padding-top: 4rem;
 
-  .chat__bottom-panel-send-icon {
-    margin: 0 1.5rem;
+  text-align: center;
 
-    .icon-button-container {
-      i:last-child {
-        color: $whiteColor;
-      }
-    }
-  }
+  color: $grey-color;
+
+  font-size: 1.2rem;
 }

@@ -1,22 +1,22 @@
-@import '../avatar/avatar.scss';
-
+@import "../avatar/avatar";
 
 html {
-  @include baseStyles
+  @include base-styles;
 }
 
 .dialog {
   display: flex;
 
-  border-bottom: 0.1rem solid $lightGreyColor;
   padding: 1rem;
 
+  border-bottom: 0.1rem solid $light-grey-color;
+
   &:hover {
-    background-color: $lightGreyColor;
+    background-color: $light-grey-color;
   }
 
   &.--is-selected {
-    background-color: $primaryLightColor;
+    background-color: $primary-light-color;
   }
 
   .avatar-wrapper,
@@ -28,51 +28,60 @@ html {
 
   .dialog__message-section {
     flex-grow: 3;
+
     margin-left: 1rem;
 
     .dialog__message-author-name {
       margin-top: 0;
-      font-weight: bold;
+
       font-size: 1.3rem;
+      font-weight: bold;
     }
 
     .dialog__message-preview,
     .dialog__current-user-message-label {
+      display: inline;
+
+      color: $grey-color;
+
       font-size: 1.2rem;
 
       &.dialog__current-user-message-label {
-        font-weight: bold;
-        color: $blackColor;
-      }
+        color: $black-color;
 
-      color: $greyColor;
-      display: inline;
+        font-weight: bold;
+      }
     }
   }
 
   .dialog__meta-data-section {
-    padding-left: 2rem;
     display: flex;
+    align-items: flex-end;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-end;
+
+    padding-left: 2rem;
 
     .dialog__message-time {
       margin-top: 0;
-      color: $greyColor;
+
+      color: $grey-color;
     }
 
     .dialog__messages_amount {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+
       width: 2rem;
       height: 2rem;
-      background-color: $primaryColor;
+
       border-radius: 50%;
+      background-color: $primary-color;
 
       p {
         margin: 0;
+
         color: white;
       }
     }

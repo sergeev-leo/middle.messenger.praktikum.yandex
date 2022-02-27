@@ -1,5 +1,9 @@
+@import "../../utils/variables";
+@import "../../utils/mixins";
+
 a.link {
   padding: 1rem 2rem;
+
   text-decoration: none;
 
   &:hover {
@@ -7,9 +11,10 @@ a.link {
   }
 
   &.primary {
-    color: $primaryColor;
+    color: $primary-color;
   }
+
   &.error {
-    color: $errorColor;
+    color: $error-color;
   }
 }

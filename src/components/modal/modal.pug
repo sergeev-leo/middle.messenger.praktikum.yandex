@@ -1,0 +1,11 @@
+.modal-overlay.closed(id=id)
+  .modal
+    .close-button !{closeButton}
+    form.modal-guts(class=id)
+      h2.modal-title #{title}
+      .modal-content
+        | !{contentComponent}
+      .modal-action
+        | !{button}
+      .modal-error
+

@@ -1,12 +1,19 @@
+@import "../../utils/variables";
+@import "../../utils/mixins";
+
 .avatar-wrapper {
-  width: 13rem;
   position: relative;
 
-  img,.backdrop {
+  width: 13rem;
+
+  img,
+  .backdrop {
     display: block;
+
     width: 13rem;
     height: 13rem;
     margin: 0;
+
     border-radius: 50%;
   }
 
@@ -25,22 +32,25 @@
     }
 
     &:hover .backdrop {
-      opacity: 1;
       cursor: pointer;
+
+      opacity: 1;
     }
 
     .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
       display: none;
 
-      position: absolute;
-      left: 50%;
-      top: 50%;
       transform: translate(-50%, -50%);
+      text-align: center;
 
-      color: $whiteColor;
+      color: $white-color;
+
       font-size: 1.3rem;
       font-weight: bold;
-      text-align: center;
     }
 
     &:hover .title {
@@ -48,4 +58,3 @@
     }
   }
 }
-

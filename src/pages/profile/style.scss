@@ -1,24 +1,26 @@
-@import '/src/utils/mixins.scss';
-@import '/src/utils/variables.scss';
-@import '../../components/avatar/avatar.scss';
-@import '../../components/link/link.scss';
-@import '../../components/goBackButtonPanel/goBackButtonPanel.scss';
+@import "/src/utils/mixins";
+@import "/src/utils/variables";
+@import "../../components/avatar/avatar";
+@import "../../components/link/link";
+@import "../../components/goBackButtonPanel/goBackButtonPanel";
 
 html {
-  @include baseStyles
+  @include base-styles;
 }
 
 .profile__content-section {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 
   .profile__user-avatar-section {
     margin: 6rem 0 4rem;
+
     text-align: center;
 
     .profile__user-name {
       margin-top: 2rem;
+
       font-size: 1.6rem;
     }
   }
@@ -31,34 +33,36 @@ html {
     .profile__user-data-row {
       display: flex;
       justify-content: space-between;
+
       list-style-type: none;
 
       p {
         font-size: 1.3rem;
+
         &.value {
-          color: $greyColor;
+          color: $grey-color;
         }
       }
 
       &:not(:last-child) {
-        border-bottom: 0.1rem solid $greyColor;
+        border-bottom: 0.1rem solid $grey-color;
       }
     }
   }
 
-  .proifle__links-section {
+  .profile__links-section {
+    width: 51rem;
+
     font-size: 1.3rem;
 
-    width: 51rem;
     .link {
-      padding-left: 0;
       display: block;
 
+      padding-left: 0;
+
       &:not(:last-child) {
-        border-bottom: 0.1rem solid $greyColor;
+        border-bottom: 0.1rem solid $grey-color;
       }
     }
-
-    
   }
 }

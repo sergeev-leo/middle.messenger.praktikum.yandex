@@ -1,77 +1,87 @@
-@mixin styleTypes {
-  &:hover { 
+@mixin style-types {
+  &:hover {
     cursor: pointer;
   }
 
   &.primary {
-    color: $whiteColor;
-    background-color: $primaryColor;
+    color: $white-color;
+    background-color: $primary-color;
 
-    &:hover { 
-      background-color: lighten($primaryAccentColor, 10);
+    &:hover {
+      background-color: lighten($primary-accent-color, 10);
     }
+
     &:active {
-      background-color: $primaryAccentColor;
+      background-color: $primary-accent-color;
     }
+
     &:visited {
-      color: $whiteColor;
+      color: $white-color;
     }
   }
 
   &.secondary {
-    color: $primaryColor;
-    background-color: $whiteColor;
+    color: $primary-color;
+    background-color: $white-color;
 
-    &:hover { 
-      background-color: darken($whiteAccentColor, 10);
+    &:hover {
+      background-color: darken($white-accent-color, 10);
     }
+
     &:active {
-      background-color: darken($whiteAccentColor, 20);
+      background-color: darken($white-accent-color, 20);
     }
+
     &:visited {
-      color: $primaryColor;
+      color: $primary-color;
     }
   }
 
   &.error {
-    color: $errorColor;
-    background-color: $whiteColor;
+    color: $error-color;
+    background-color: $white-color;
 
-    &:hover { 
-      color: $whiteColor;
-      background-color: lighten($errorAccentColor, 10);
+    &:hover {
+      color: $white-color;
+      background-color: lighten($error-accent-color, 10);
     }
+
     &:active {
-      color: $whiteColor;
-      background-color: $errorAccentColor;
+      color: $white-color;
+      background-color: $error-accent-color;
     }
+
     &:visited {
-      color: $errorColor;
+      color: $error-color;
     }
   }
 
   &.neutral {
-    color: $greyColor;
-    background-color: $whiteColor;
+    color: $grey-color;
+    background-color: $white-color;
 
-    &:hover { 
-      color: $whiteColor;
-      background-color: lighten($greyAccentColor, 10);
+    &:hover {
+      color: $white-color;
+      background-color: lighten($grey-accent-color, 10);
     }
+
     &:active {
-      color: $whiteColor;
-      background-color: $greyAccentColor;
+      color: $white-color;
+      background-color: $grey-accent-color;
     }
+
     &:visited {
-      color: $greyColor;
+      color: $grey-color;
     }
   }
 }
 
-@mixin baseStyles {
+@mixin base-styles {
+  box-sizing: border-box;
+
   font-family: sans-serif;
   font-size: 10px;
-  box-sizing: border-box;
+
   body {
     margin: 0;
   }

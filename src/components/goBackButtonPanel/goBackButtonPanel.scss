@@ -1,31 +1,33 @@
-@import '../icon-button/icon-button.scss';
-
+@import "../icon-button/icon-button";
 
 .go-back-button-panel {
-  display: flex;
   position: fixed;
+
+  display: flex;
+
+  overflow: auto;
+  align-items: center;
 
   width: 5rem;
   height: 100%;
   margin: 0;
   padding: 0;
 
-  overflow: auto;
-  align-items: center;
+  border-right: 0.1rem solid $grey-color;
 
-  background-color: $whiteColor;
-  border-right: 0.1rem solid $greyColor;
+  background-color: $white-color;
 
   &:hover {
-    background-color: $whiteAccentColor;
     cursor: pointer;
+
+    background-color: $white-accent-color;
   }
 
   .icon-button-container {
     margin-left: 1rem;
 
     .inner {
-      color:white;
+      color: white;
     }
   }
 }

@@ -1,47 +1,63 @@
 .input-wrapper {
-  display: block;
-  width: 28rem;
   position: relative;
+
+  display: block;
+
+  width: 28rem;
   margin-bottom: 0.25rem;
 
   input {
     display: block;
+
     width: 100%;
-    outline: none;
-    border: none;
-    border-bottom: 0.1rem solid $primaryColor;
     padding: 1rem 0;
 
-    font-size: 1.3rem;
-  }
+    border: none;
+    border-bottom: 0.1rem solid $primary-color;
 
-  input:focus~label,
-  input:valid~label {
-    bottom: 2rem;
-    transform: translate(0, -1.5rem) scale(0.75);
+    font-size: 1.3rem;
   }
 
   label {
-    display: block;
     position: absolute;
-    left: 0;
-    padding: 0;
     bottom: 2.4rem;
+    left: 0;
 
-    color: $greyColor;
-    font-size: 1.3rem;
+    display: block;
+
+    padding: 0;
+
+    transition: ease-in-out 0.2s;
+    transform: translate(0, 1.1rem) scale(1);
 
     transform-origin: left top;
-    transform: translate(0, 1.1rem) scale(1);
-    transition: ease-in-out .2s;
+
+    color: $grey-color;
+
+    font-size: 1.3rem;
+  }
+
+  input:focus ~ label,
+  input:invalid ~ label,
+  input:not(:invalid:required) ~ label, {
+    bottom: 2rem;
+
+    transform: translate(0, -1.5rem) scale(0.75);
   }
 
   &.has-error input {
-    color: $errorColor;
+    color: $error-color;
   }
 
   .error {
+    display: none;
+
+    color: $error-color;
+
     font-size: 0.9rem;
-    color: $errorColor;
+  }
+
+  &.has-error .error {
+    display: block;
   }
 }

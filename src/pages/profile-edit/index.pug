@@ -1,61 +1,11 @@
-extends ../../components/html/html.pug
-
-block includes
-  include ../../components/link/link.pug
-  include ../../components/avatar/avatar.pug
-  include ../../components/input/input.pug
-  include ../../components/button/button.pug
-  include ../../components/goBackButtonPanel/goBackButtonPanel.pug
-
-block data
-  -
-    const data = {
-      avatar: {
-        src:"../../../static/user.png", 
-        title: 'Поменять аватар',
-      },
-      inputs: [
-        {
-          id: 'email', 
-          label: 'Почта', 
-        },
-        {
-          id: 'login', 
-          label: 'Логин', 
-        },
-        {
-          id: 'first_name', 
-          label: 'Имя', 
-        },
-        {
-          id: 'second_name', 
-          label: 'Фамилия', 
-        },
-        {
-          id: 'display_name', 
-          label: 'Имя в чате', 
-        },
-        {
-          id: 'phone', 
-          label: 'Телефон', 
-        },
-      ],
-      button: {
-        title: 'Сохранить', 
-        style: 'primary',
-        type: 'submit',
-      },
-    };
-
-block content 
-  form.profile-edit
-    +goBackButtonPanel
-    .profile-edit__content-section 
-      .profile-edit__user-avatar-section
-        +avatar(data.avatar)
-      ul.profile-edit__user-data 
-        each item in data.inputs
-          li.profile-edit__user-data-row(class=item.id)
-            +input(item)
-      .profile-edit__btn-section 
-        +button(data.button)
+form.profile-edit
+  | !{goBackButtonPanel}
+  .profile-edit__content-section
+    .profile-edit__user-avatar-section
+      | !{avatar}
+    ul.profile-edit__user-data
+      each item in inputs
+        li.profile-edit__user-data-row
+          | !{item}
+    .profile-edit__btn-section
+      | !{button}
