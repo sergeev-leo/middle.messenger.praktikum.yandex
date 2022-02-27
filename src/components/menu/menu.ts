@@ -25,15 +25,11 @@ export class Menu extends Block {
   }
 
   render() {
-    const {
-      position,
-    } = this.props as TMenuProps;
-
     return this.compile(
       compileTemplate,
       {
         ...this._children,
-        position,
+        position: this.props.position,
       },
     );
   }

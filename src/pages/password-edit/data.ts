@@ -1,4 +1,4 @@
-import {createSubmitFn, VALIDATION_PATTERNS} from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
 
 
 export const passwordEditData = {
