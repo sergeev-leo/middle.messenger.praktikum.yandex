@@ -8,9 +8,10 @@ import { Dialog, TDialogProps } from '../../components/dialog/dialog';
 import { Message, TMessageProps } from '../../components/message/message';
 import { Input, TInputProps } from '../../components/input/input';
 import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
-import { render } from '../../modules/renderDOM';
 import { Modal } from '../../components/modal/modal';
 import { chatData } from './data';
+import {Router} from "../../modules/Router/Router";
+import {ROUTES} from "../../modules/Router/constants";
 
 
 type TChatPageProps = {
@@ -57,7 +58,13 @@ export class ChatPage extends Block {
     this._children.sendIcon = new IconButton(sendIcon);
     this._children.searchInput = new Input(searchInput);
     this._children.messageInput = new Input(messageInput);
-    this._children.dialogs = dialogs.map((item: TDialogProps) => new Dialog(item));
+    this._children.dialogs = dialogs
+      .map((item: TDialogProps) => new Dialog({
+        ...item,
+        events: {
+          click: () => Router.go([ROUTES.CHAT, item.id].join('/')),
+        },
+      }));
     this._children.messages = messages.map((item: TMessageProps) => new Message(item));
 
     this._children.addUserModal = new Modal({
@@ -200,5 +207,3 @@ export class ChatPage extends Block {
     );
   }
 }
-
-render('#chat', new ChatPage());

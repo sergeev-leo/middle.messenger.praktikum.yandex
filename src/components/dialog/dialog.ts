@@ -5,6 +5,7 @@ import { TEvents } from '../../modules/types';
 
 
 export type TDialogProps = {
+  id: number,
   avatar: TAvatarProps,
   isSelected: boolean,
   currentUserMessage: boolean,

@@ -1,9 +1,10 @@
 import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { ROUTES } from '../../modules/Router/constants';
 
 export const chatData = {
   profileLink: {
     title: 'Профиль',
-    href: '../profile/index.html',
+    href: ROUTES.PROFILE,
   },
   searchInputPlaceholder: 'Поиск',
   searchInput: {
@@ -20,6 +21,7 @@ export const chatData = {
   },
   dialogs: [
     {
+      id: 1,
       name: 'Андрей',
       avatar: {
         src: '/user.png',
@@ -30,6 +32,7 @@ export const chatData = {
       messagePreview: 'Изображение',
     },
     {
+      id: 2,
       name: 'Киноклуб',
       avatar: {
         src: '/user.png',
@@ -41,6 +44,7 @@ export const chatData = {
       messagePreview: 'стикер',
     },
     {
+      id: 3,
       name: 'Илья',
       avatar: {
         src: '/user.png',

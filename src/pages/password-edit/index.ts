@@ -4,7 +4,6 @@ import { Button, TButtonProps } from '../../components/button/button';
 import { Input, TInputProps } from '../../components/input/input';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
 import compileTemplate from '../password-edit/index.pug';
-import { render } from '../../modules/renderDOM';
 import { passwordEditData } from './data';
 
 
@@ -41,5 +40,3 @@ export class PasswordEditPage extends Block {
     );
   }
 }
-
-render('#password-edit', new PasswordEditPage());

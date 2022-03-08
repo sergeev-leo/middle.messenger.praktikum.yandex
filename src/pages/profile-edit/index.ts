@@ -4,7 +4,6 @@ import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
 import { Button, TButtonProps } from '../../components/button/button';
 import { Input, TInputProps } from '../../components/input/input';
-import { render } from '../../modules/renderDOM';
 import { profileEditData } from './data';
 
 
@@ -41,5 +40,3 @@ export class ProfileEditPage extends Block {
     );
   }
 }
-
-render('#profile-edit', new ProfileEditPage());

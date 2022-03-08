@@ -3,7 +3,6 @@ import compileTemplate from './index.pug';
 import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { Link, TLinkProps } from '../../components/link/link';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
-import { render } from '../../modules/renderDOM';
 import { profileData } from './data';
 
 
@@ -47,5 +46,3 @@ export class ProfilePage extends Block {
     );
   }
 }
-
-render('#profile', new ProfilePage());

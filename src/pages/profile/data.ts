@@ -1,3 +1,5 @@
+import { ROUTES } from '../../modules/Router/constants';
+
 export const profileData = {
   avatar: {
     src: '/user.png',
@@ -10,17 +12,17 @@ export const profileData = {
     {
       title: 'Выйти',
       style: 'error',
-      href: '/',
+      href: ROUTES.LOGIN,
     },
     {
       title: 'Изменить пароль',
       style: 'secondary',
-      href: '../password-edit/index.html',
+      href: ROUTES.PASSWORD_EDIT,
     },
     {
       title: 'Изменить данные',
       style: 'secondary',
-      href: '../profile-edit/index.html',
+      href: ROUTES.PROFILE_EDIT,
     },
   ],
   userData: [
