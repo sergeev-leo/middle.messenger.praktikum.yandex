@@ -28,7 +28,7 @@ export class PasswordEditPage extends Block {
     this._children.avatar = new Avatar(avatar);
     this._children.button = new Button(button);
     this._children.inputs = inputs.map((item: TInputProps) => new Input(item));
-    this._children.goBackButtonPanel = new GoBackButtonPanel();
+    this._children.GoBackButtonPanel = new GoBackButtonPanel();
   }
 
   render() {
