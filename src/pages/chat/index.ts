@@ -84,7 +84,10 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
-          createSubmitFn('.add-user-modal')(e);
+          createSubmitFn(
+            '.add-user-modal',
+            () => console.log('addUserCb'),
+          )(e);
           onClose();
         },
       },
@@ -107,7 +110,10 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
-          createSubmitFn('.delete-user-modal')(e);
+          createSubmitFn(
+            '.delete-user-modal',
+            () => console.log('deleteUserCb'),
+          )(e);
           onClose();
         },
       },
@@ -144,7 +150,10 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
-          createSubmitFn('.file-upload-modal')(e);
+          createSubmitFn(
+            '.file-upload-modal',
+            () => console.log('fileUploadCb'),
+          )(e);
           onClose();
         },
       },
@@ -182,7 +191,10 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
-          createSubmitFn('.file-upload-modal')(e);
+          createSubmitFn(
+            '.file-upload-modal',
+            () => console.log('fileUploadCb'),
+          )(e);
           onClose();
         },
       },

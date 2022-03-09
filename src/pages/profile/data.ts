@@ -3,8 +3,6 @@ import { ROUTES } from '../../modules/Router/constants';
 export const profileData = {
   avatar: {
     src: '/user.png',
-    title: 'Поменять аватар',
-    withUpload: true,
   },
   userName: 'User',
 

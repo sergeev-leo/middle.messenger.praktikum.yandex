@@ -212,7 +212,10 @@ export const chatData = {
           return;
         }
 
-        return createSubmitFn('.chat__bottom-panel')(e);
+        return createSubmitFn(
+          '.chat__bottom-panel',
+          () => console.log('sendCb'),
+        )(e);
       },
     },
   },
@@ -223,6 +226,9 @@ export const chatData = {
     pattern: VALIDATION.REQUIRED.pattern,
   },
   events: {
-    submit: createSubmitFn('.chat__bottom-panel'),
+    submit: createSubmitFn(
+      '.chat__bottom-panel',
+      () => console.log('sendCb'),
+    ),
   },
 };

@@ -5,6 +5,13 @@ export const profileEditData = {
   avatar: {
     src:'/user.png',
     title: 'Поменять аватар',
+    withUpload: true,
+    events: {
+      click: ()  => {
+        const modal = document.querySelector('#file-upload-modal');
+        modal?.classList.remove('closed');
+      },
+    },
   },
   inputs: [
     {

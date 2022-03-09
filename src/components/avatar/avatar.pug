@@ -1,7 +1,2 @@
-.avatar-wrapper
+.avatar-wrapper(class =`${withUpload === true ? 'clickable' : ''}`)
   img(src=src)
-  if(withUpload === true)
-    .backdrop-container
-      label(for="avatar").backdrop
-        .title #{title}
-        input(id="avatar" name="avatar" type="file")
