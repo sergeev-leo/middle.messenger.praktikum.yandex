@@ -9,9 +9,6 @@
 @import "../../components/icon-button/icon-button";
 @import "../../components/modal/modal";
 
-html {
-  @include base-styles;
-}
 
 .chat {
   display: grid;

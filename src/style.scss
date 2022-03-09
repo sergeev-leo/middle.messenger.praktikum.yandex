@@ -6,3 +6,8 @@
 @import 'pages/password-edit/style.scss';
 @import 'pages/client-error/style.scss';
 @import 'pages/server-error/style.scss';
+
+
+html {
+  @include base-styles;
+}

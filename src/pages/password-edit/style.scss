@@ -5,9 +5,6 @@
 @import "../../components/input/input";
 @import "../../components/goBackButtonPanel/goBackButtonPanel";
 
-html {
-  @include base-styles;
-}
 
 .password-edit__content-section {
   display: flex;

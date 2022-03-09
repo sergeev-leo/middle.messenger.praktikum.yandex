@@ -4,9 +4,6 @@
 @import "../../components/link/link";
 @import "../../components/goBackButtonPanel/goBackButtonPanel";
 
-html {
-  @include base-styles;
-}
 
 .profile__content-section {
   display: flex;

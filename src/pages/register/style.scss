@@ -3,9 +3,6 @@
 @import "../../components/button/button";
 @import "../../components/input/input";
 
-html {
-  @include base-styles;
-}
 
 .register-form {
   display: flex;
