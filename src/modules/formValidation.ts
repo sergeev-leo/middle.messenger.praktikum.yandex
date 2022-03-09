@@ -1,3 +1,5 @@
+import { TFormDataObject } from './types';
+
 export const VALIDATION_PATTERNS = {
   REQUIRED: '(\\S){1,}',
   EMAIL: '[a-z\\d\\-]+@[a-z]+\\.[a-z]+',
@@ -8,7 +10,8 @@ export const VALIDATION_PATTERNS = {
   PASSWORD: '(?=.*[A-ZА-Я])(?=.*[0-9]).{8,40}',
 };
 
-export const createSubmitFn = (formElementSelector: string) =>
+
+export const createSubmitFn = (formElementSelector: string, submitCb: (f: TFormDataObject) => void) =>
   (e: Event) => {
     e.preventDefault();
     const form: HTMLFormElement | null = document.querySelector(formElementSelector);
@@ -19,11 +22,12 @@ export const createSubmitFn = (formElementSelector: string) =>
 
     const formData = new FormData(form);
 
-    const formDataObject: Record<string, FormDataEntryValue> = {};
+    const formDataObject: TFormDataObject = {};
     for(const [name, value] of formData) {
       formDataObject[name] = value;
     }
 
     // eslint-disable-next-line no-console
     console.log(formDataObject);
+    submitCb(formDataObject);
   };

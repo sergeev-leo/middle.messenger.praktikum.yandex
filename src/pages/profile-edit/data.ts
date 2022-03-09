@@ -43,6 +43,11 @@ export const profileEditData = {
     type: 'submit',
   },
   events: {
-    submit: createSubmitFn('.profile-edit'),
+    submit: createSubmitFn(
+      '.profile-edit',
+      formData => {
+        console.log(formData);
+      },
+    ),
   },
 };

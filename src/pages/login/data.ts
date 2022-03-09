@@ -1,4 +1,6 @@
 import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { Router } from '../../modules/Router/Router';
+import { ROUTES } from '../../modules/Router/constants';
 
 
 export const loginData = {
@@ -26,9 +28,15 @@ export const loginData = {
     {
       title: 'Нет аккаунта?',
       style: 'secondary',
+      events: {
+        click: () => Router.go(ROUTES.REGISTER),
+      },
     },
   ],
   events: {
-    submit: createSubmitFn('.login-form'),
+    submit: createSubmitFn(
+      '.login-form',
+      () => Router.go(ROUTES.CHAT),
+    ),
   },
 };

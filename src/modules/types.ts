@@ -14,3 +14,5 @@ export type TEventBusInstance = {
   off: (s: string, cb: TCallback) => void,
   emit: (e: string, ...args: unknown[]) => void,
 };
+
+export type TFormDataObject = Record<string, FormDataEntryValue>;

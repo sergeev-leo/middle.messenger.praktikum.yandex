@@ -32,6 +32,11 @@ export const passwordEditData = {
     type: 'submit',
   },
   events: {
-    submit: createSubmitFn('.password-edit'),
+    submit: createSubmitFn(
+      '.password-edit',
+      formData => {
+        console.log(formData);
+      },
+    ),
   },
 };

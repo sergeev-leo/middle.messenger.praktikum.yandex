@@ -1,4 +1,6 @@
 import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { Router } from '../../modules/Router/Router';
+import { ROUTES } from '../../modules/Router/constants';
 
 
 export const registerData = {
@@ -51,9 +53,15 @@ export const registerData = {
     {
       title: 'Войти',
       style: 'secondary',
+      events: {
+        click: () => Router.go(ROUTES.CHAT),
+      },
     },
   ],
   events: {
-    submit: createSubmitFn('.register-form'),
+    submit: createSubmitFn(
+      '.register-form',
+      () => Router.go(ROUTES.LOGIN),
+    ),
   },
 };
