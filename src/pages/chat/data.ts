@@ -1,4 +1,4 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { ROUTES } from '../../modules/Router/constants';
 
 export const chatData = {
@@ -220,7 +220,7 @@ export const chatData = {
   messageInput: {
     id: 'message',
     placeholder: 'Сообщение',
-    pattern: VALIDATION_PATTERNS.REQUIRED,
+    pattern: VALIDATION.REQUIRED.pattern,
   },
   events: {
     submit: createSubmitFn('.chat__bottom-panel'),

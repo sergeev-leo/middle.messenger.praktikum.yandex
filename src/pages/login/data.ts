@@ -1,4 +1,4 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Router } from '../../modules/Router/Router';
 import { ROUTES } from '../../modules/Router/constants';
 
@@ -10,13 +10,15 @@ export const loginData = {
       id: 'login',
       label: 'Логин',
       type: 'text',
-      pattern: VALIDATION_PATTERNS.LOGIN,
+      pattern: VALIDATION.LOGIN.pattern,
+      error: VALIDATION.LOGIN.message,
     },
     {
       id: 'password',
       label: 'Пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
   ],
   buttons: [

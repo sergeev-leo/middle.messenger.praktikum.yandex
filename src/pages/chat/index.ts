@@ -7,11 +7,11 @@ import { IconButton, TIconButtonProps } from '../../components/icon-button/icon-
 import { Dialog, TDialogProps } from '../../components/dialog/dialog';
 import { Message, TMessageProps } from '../../components/message/message';
 import { Input, TInputProps } from '../../components/input/input';
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Modal } from '../../components/modal/modal';
 import { chatData } from './data';
-import {Router} from "../../modules/Router/Router";
-import {ROUTES} from "../../modules/Router/constants";
+import { Router } from '../../modules/Router/Router';
+import { ROUTES } from '../../modules/Router/constants';
 
 
 type TChatPageProps = {
@@ -74,7 +74,8 @@ export class ChatPage extends Block {
       contentComponentProps: {
         id: 'add-user-input',
         label: 'Логин',
-        pattern: VALIDATION_PATTERNS.LOGIN,
+        pattern: VALIDATION.LOGIN.pattern,
+        error: VALIDATION.LOGIN.message,
       },
       button: {
         title: 'Добавить',
@@ -96,7 +97,8 @@ export class ChatPage extends Block {
       contentComponentProps: {
         id: 'delete-user-input',
         label: 'Логин',
-        pattern: VALIDATION_PATTERNS.LOGIN,
+        pattern: VALIDATION.LOGIN.pattern,
+        error: VALIDATION.LOGIN.message,
       },
       button: {
         title: 'Удалить',

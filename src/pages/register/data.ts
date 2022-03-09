@@ -1,4 +1,4 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Router } from '../../modules/Router/Router';
 import { ROUTES } from '../../modules/Router/constants';
 
@@ -9,39 +9,46 @@ export const registerData = {
     {
       id: 'email',
       label: 'Почта',
-      pattern: VALIDATION_PATTERNS.EMAIL,
+      pattern: VALIDATION.EMAIL.pattern,
+      error: VALIDATION.EMAIL.message,
     },
     {
       id: 'login',
       label: 'Логин',
-      pattern: VALIDATION_PATTERNS.LOGIN,
+      pattern: VALIDATION.LOGIN.pattern,
+      error: VALIDATION.LOGIN.message,
     },
     {
       id: 'first_name',
       label: 'Имя',
-      pattern: VALIDATION_PATTERNS.FIRST_NAME,
+      pattern: VALIDATION.FIRST_NAME.pattern,
+      error: VALIDATION.FIRST_NAME.message,
     },
     {
       id: 'second_name',
       label: 'Фамилия',
-      pattern: VALIDATION_PATTERNS.SECOND_NAME,
+      pattern: VALIDATION.SECOND_NAME.pattern,
+      error: VALIDATION.SECOND_NAME.message,
     },
     {
       id: 'phone',
       label: 'Телефон',
-      pattern: VALIDATION_PATTERNS.PHONE,
+      pattern: VALIDATION.PHONE.pattern,
+      error: VALIDATION.PHONE.message,
     },
     {
       id: 'password',
       label: 'Пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
     {
       id: 'password_repeat',
       label: 'Пароль (ещё раз)',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
   ],
   buttons: [

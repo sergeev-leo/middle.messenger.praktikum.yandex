@@ -1,4 +1,4 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 
 
 export const profileEditData = {
@@ -10,22 +10,26 @@ export const profileEditData = {
     {
       id: 'email',
       label: 'Почта',
-      pattern: VALIDATION_PATTERNS.EMAIL,
+      pattern: VALIDATION.EMAIL.pattern,
+      error: VALIDATION.EMAIL.message,
     },
     {
       id: 'login',
       label: 'Логин',
-      pattern: VALIDATION_PATTERNS.LOGIN,
+      pattern: VALIDATION.LOGIN.pattern,
+      error: VALIDATION.LOGIN.message,
     },
     {
       id: 'first_name',
       label: 'Имя',
-      pattern: VALIDATION_PATTERNS.FIRST_NAME,
+      pattern: VALIDATION.FIRST_NAME.pattern,
+      error: VALIDATION.FIRST_NAME.message,
     },
     {
       id: 'second_name',
       label: 'Фамилия',
-      pattern: VALIDATION_PATTERNS.SECOND_NAME,
+      pattern: VALIDATION.SECOND_NAME.pattern,
+      error: VALIDATION.SECOND_NAME.message,
     },
     {
       id: 'display_name',
@@ -34,7 +38,8 @@ export const profileEditData = {
     {
       id: 'phone',
       label: 'Телефон',
-      pattern: VALIDATION_PATTERNS.PHONE,
+      pattern: VALIDATION.PHONE.pattern,
+      error: VALIDATION.PHONE.message,
     },
   ],
   button: {

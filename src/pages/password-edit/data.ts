@@ -1,4 +1,4 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 
 
 export const passwordEditData = {
@@ -11,19 +11,22 @@ export const passwordEditData = {
       id: 'oldPassword',
       label: 'Старый пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
     {
       id: 'newPassword',
       label: 'Новый пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
     {
       id: 'repeatNewPassword',
       label: 'Повторите пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
   ],
   button: {
