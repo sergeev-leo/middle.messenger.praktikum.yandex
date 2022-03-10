@@ -417,6 +417,6 @@ export class Block {
   *
   * */
   hide() {
-    this.getContent().style.display = 'none';
+    this.getContent().remove();
   }
 }

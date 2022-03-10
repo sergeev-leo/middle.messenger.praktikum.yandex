@@ -1,11 +1,11 @@
 export enum ROUTES {
   CHAT_WITH_USER = '/:id',
-  CHAT = '/chat',
-  LOGIN = '/login',
-  REGISTER = '/register',
+  CHAT = '/messenger',
+  LOGIN = '/',
+  REGISTER = '/sign-up',
   SERVER_ERROR = '/500',
   CLIENT_ERROR = '/404',
-  PROFILE = '/profile',
-  PROFILE_EDIT = '/profile/edit',
-  PASSWORD_EDIT = '/profile/password-edit',
+  PROFILE = '/settings',
+  PROFILE_EDIT = '/settings/edit',
+  PASSWORD_EDIT = '/settings/password-edit',
 }
