@@ -11,13 +11,13 @@ export enum StoreEvents {
 const INITIAL_STORE_VALUE = {
   user: {
     id: 1,
-    login: 'asdf',
-    phone: '123134524',
-    email: 'sdfsd@gmail.com',
-    firstName: "sdfsdf",
-    secondName: 'sdf435245',
-    displayName: 'sf34236t',
-    avatar: 'sdf436',
+    login: 'login',
+    phone: '123456789',
+    email: '123@gmail.com',
+    firstName: 'a',
+    secondName: 'b',
+    displayName: 'c',
+    avatar: '/user.png',
   },
 };
 

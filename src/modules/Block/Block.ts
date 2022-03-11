@@ -332,6 +332,7 @@ export class Block {
     * */
     const newElement = block.firstElementChild as HTMLElement;
 
+    console.log('old: ', this._element, 'new: ', newElement)
     /*
     * если это первый рендер то создаем элемент и добавляем обработчики событий
     * */
@@ -390,7 +391,6 @@ export class Block {
           const oldProps = { ...target };
 
           target[prop] = value;
-
           this.eventBus().emit(
             Block.EVENTS.FLOW_CDU,
             oldProps,

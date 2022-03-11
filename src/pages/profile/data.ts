@@ -1,10 +1,18 @@
 import { ROUTES } from '../../modules/Router/constants';
 
-export const profileData = {
+export const getProfileData = ({
+  login,
+  email,
+  phone,
+  firstName,
+  secondName,
+  displayName,
+  avatar,
+}) => ({
   avatar: {
-    src: '/user.png',
+    src: avatar,
   },
-  userName: 'User',
+  userName: login,
 
   links: [
     {
@@ -27,32 +35,32 @@ export const profileData = {
     {
       id: 'email',
       label: 'Почта',
-      value: 'pochta@yandex.ru',
+      value: email,
     },
     {
       id: 'login',
       label: 'Логин',
-      value: 'ivanivanov',
+      value: login,
     },
     {
       id: 'first_name',
       label: 'Имя',
-      value: 'Иван',
+      value: firstName,
     },
     {
       id: 'second_name',
       label: 'Фамилия',
-      value: 'Иванов',
+      value: secondName,
     },
     {
       id: 'display_name',
       label: 'Имя в чате',
-      value: 'Иван',
+      value: displayName,
     },
     {
       id: 'phone',
       label: 'Телефон',
-      value: '+7(909)9673030',
+      value: phone,
     },
   ],
-};
+});
