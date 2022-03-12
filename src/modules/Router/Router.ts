@@ -38,8 +38,6 @@ class RouterClass {
 
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
-    console.log(this.history);
-    console.log(window.location)
     if (!route) {
       return;
     }

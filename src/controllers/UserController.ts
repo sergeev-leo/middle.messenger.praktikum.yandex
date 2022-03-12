@@ -4,7 +4,7 @@ import { Router } from '../modules/Router/Router';
 import { ROUTES } from '../modules/Router/constants';
 
 class UserControllerClass {
-  public async userData() {
+  public async getUserData() {
     try {
       const userData = await AuthAPI.user();
 

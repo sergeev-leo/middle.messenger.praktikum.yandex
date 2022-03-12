@@ -1,6 +1,5 @@
 import { render } from '../renderDOM';
 import { TComponent } from '../types';
-import { isEqual } from '../../utils/isEqual';
 
 
 export interface TRoute  {
