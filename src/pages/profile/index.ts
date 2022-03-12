@@ -6,7 +6,6 @@ import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButt
 import { getProfileData, TProfilePageProps } from './data';
 import { connect } from '../../modules/store/connect';
 import { TStore } from '../../modules/types';
-import { Button } from '../../components/button/button';
 
 
 class ProfilePageClass extends Block {
@@ -14,12 +13,10 @@ class ProfilePageClass extends Block {
     const {
       avatar,
       userName,
-      button,
       links,
       userData,
     } = getProfileData(this.props) as TProfilePageProps;
 
-    this._children.button = new Button(button);
     this._children.avatar = new Avatar(avatar);
     this._children.links = links.map((item: TLinkProps) => new Link(item));
     this._children.GoBackButtonPanel = new GoBackButtonPanel();

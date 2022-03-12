@@ -52,25 +52,6 @@
 
     font-size: 1.3rem;
 
-    .btn-wrapper {
-      padding: 1rem 0;
-      border-bottom: 0.1rem solid $grey-color;
-    }
-
-    .btn-wrapper button {
-      padding: 0;
-      margin: 0;
-      display: inline;
-      width: auto;
-      height: auto;
-
-      &:hover {
-        color: $error-color;
-        text-decoration: underline;
-        background-color: transparent;
-      }
-    }
-
     .link {
       display: block;
 
