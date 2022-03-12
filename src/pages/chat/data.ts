@@ -6,7 +6,6 @@ import { Router } from '../../modules/Router/Router';
 export const chatData = {
   profileLink: {
     title: 'Профиль',
-    type: 'button',
     events: {
       click: () => Router.go(ROUTES.PROFILE),
     },

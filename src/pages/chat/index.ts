@@ -11,11 +11,11 @@ import { Modal } from '../../components/modal/modal';
 import { chatData } from './data';
 import { Router } from '../../modules/Router/Router';
 import { ROUTES } from '../../modules/Router/constants';
-import { Button, TButtonProps } from '../../components/button/button';
+import { Link, TLinkProps } from '../../components/link/link';
 
 
 type TChatPageProps = {
-  profileLink : TButtonProps,
+  profileLink : TLinkProps,
   chatMenu: TMenuProps,
   attachMenu: TMenuProps,
   reviewingDialogUser: {
@@ -51,7 +51,7 @@ export class ChatPage extends Block {
       messageInput,
     } = this.props as TChatPageProps;
 
-    this._children.profileLink = new Button(profileLink);
+    this._children.profileLink = new Link(profileLink);
     this._children.chatMenu = new Menu(chatMenu);
     this._children.attachMenu = new Menu(attachMenu);
     this._children.reviewingDialogUserAvatar = new Avatar(avatar);

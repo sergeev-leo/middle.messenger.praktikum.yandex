@@ -3,6 +3,7 @@ import { TAvatarProps } from '../../components/avatar/avatar';
 import { TLinkProps } from '../../components/link/link';
 import { UserController } from '../../controllers/UserController';
 import { TButtonProps } from '../../components/button/button';
+import { Router } from '../../modules/Router/Router';
 
 
 type TUserDataRow = {
@@ -44,12 +45,16 @@ export const getProfileData = ({
     {
       title: 'Изменить пароль',
       style: 'secondary',
-      href: ROUTES.PASSWORD_EDIT,
+      events: {
+        click: () => Router.go(ROUTES.PASSWORD_EDIT),
+      },
     },
     {
       title: 'Изменить данные',
       style: 'secondary',
-      href: ROUTES.PROFILE_EDIT,
+      events: {
+        click: () => Router.go(ROUTES.PROFILE_EDIT),
+      },
     },
   ],
   userData: [

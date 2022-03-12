@@ -95,26 +95,8 @@
       margin-right: 1rem;
       padding-top: 1rem;
 
-      .btn-wrapper {
-        border-bottom: 0.1rem solid $grey-color;
-      }
-
-      .btn-wrapper button {
-        font-size: 1rem;
-        color: $grey-color;
-        padding: 0;
-        margin: 0;
-        display: inline;
-        width: auto;
-        height: auto;
-        background-color: transparent;
-
-        &:hover {
-          background-color: transparent;
-        }
-      }
-
       .link {
+        color: $grey-color;
         padding: 0;
 
         outline: none;

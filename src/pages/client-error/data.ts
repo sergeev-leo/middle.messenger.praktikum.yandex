@@ -1,4 +1,5 @@
 import { ROUTES } from '../../modules/Router/constants';
+import { Router } from '../../modules/Router/Router';
 
 export const clientErrorData = {
   errorCode: '404',
@@ -6,6 +7,8 @@ export const clientErrorData = {
   link: {
     style: 'primary',
     title: 'Назад к чатам',
-    href: ROUTES.CHAT,
+    events: {
+      click: () => Router.go(ROUTES.CHAT),
+    },
   },
 };
