@@ -7,6 +7,7 @@ import { ClientError } from './pages/client-error';
 import { ServerError } from './pages/server-error';
 import { ROUTES } from './modules/Router/constants';
 import { Router } from './modules/Router/Router';
+import { PasswordEditPage } from './pages/password-edit';
 
 
 Router
@@ -16,7 +17,7 @@ Router
   .use(ROUTES.REGISTER, RegisterForm)
   .use(ROUTES.PROFILE, ProfilePage)
   .use(ROUTES.PROFILE_EDIT, ProfileEditPage)
-  .use(ROUTES.PASSWORD_EDIT, ProfileEditPage)
+  .use(ROUTES.PASSWORD_EDIT, PasswordEditPage)
   .use(ROUTES.CLIENT_ERROR, ClientError)
   .use(ROUTES.SERVER_ERROR, ServerError)
   .start();
