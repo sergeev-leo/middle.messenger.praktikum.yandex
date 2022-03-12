@@ -1,52 +1,25 @@
 import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
-import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
+import { Avatar } from '../../components/avatar/avatar';
 import { Link, TLinkProps } from '../../components/link/link';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
-import { getProfileData } from './data';
+import { getProfileData, TProfilePageProps } from './data';
 import { connect } from '../../modules/store/connect';
 import { TStore } from '../../modules/types';
-import { store } from "../../modules/store/store";
+import { Button } from '../../components/button/button';
 
-
-type TUserDataRow = {
-  id: string,
-  label: string,
-  value: string,
-};
-
-export type TProfilePageProps = {
-  avatar: TAvatarProps,
-  userName: string,
-  links: TLinkProps[],
-  userData: TUserDataRow[],
-}
 
 class ProfilePageClass extends Block {
-  constructor(props) {
-    super(props);
-
-    setTimeout(
-      () => {
-        //store.set('user.login', 'bbbbbbb'); // - эта строка не работает как ожидается
-
-        // такое обновление отрабатывает корректно
-        this.setProps({
-          login: 'aaaaaaaa',
-        });
-      },
-      3000,
-    );
-  }
-
   render() {
     const {
       avatar,
       userName,
+      button,
       links,
       userData,
     } = getProfileData(this.props) as TProfilePageProps;
 
+    this._children.button = new Button(button);
     this._children.avatar = new Avatar(avatar);
     this._children.links = links.map((item: TLinkProps) => new Link(item));
     this._children.GoBackButtonPanel = new GoBackButtonPanel();
@@ -72,8 +45,6 @@ const mapStateToProps = (state: TStore) => {
     phone: userData?.phone,
     firstName: userData?.firstName,
     secondName: userData?.secondName,
-    displayName: userData?.displayName,
-    avatar: userData?.avatar,
   };
 };
 

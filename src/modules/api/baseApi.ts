@@ -1,4 +1,4 @@
-export class BaseAPI {
+export class BaseApi {
   create() { throw new Error('Not implemented'); }
 
   request() { throw new Error('Not implemented'); }

@@ -20,14 +20,12 @@ export type TFormDataObject = Record<string, FormDataEntryValue>;
 
 
 export type TStore = {
-  user?: {
+  user: {
     id: number | string,
     login: string,
     email: string,
     phone: string,
     firstName: string,
     secondName: string,
-    displayName: string,
-    avatar: string,
-  },
+  } | null,
 };

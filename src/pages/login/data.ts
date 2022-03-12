@@ -1,6 +1,8 @@
 import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Router } from '../../modules/Router/Router';
 import { ROUTES } from '../../modules/Router/constants';
+import {UserController} from "../../controllers/UserController";
+import {TSignInData} from "../../modules/api/authAPI";
 
 
 export const loginData = {
@@ -38,7 +40,9 @@ export const loginData = {
   events: {
     submit: createSubmitFn(
       '.login-form',
-      () => Router.go(ROUTES.CHAT),
+      formData => UserController
+        .signIn(formData as TSignInData)
+        .then(() => Router.go(ROUTES.CHAT)),
     ),
   },
 };

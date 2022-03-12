@@ -9,30 +9,28 @@ export enum StoreEvents {
 
 
 const INITIAL_STORE_VALUE = {
-  user: {
-    id: 1,
-    login: 'login',
-    phone: '123456789',
-    email: '123@gmail.com',
-    firstName: 'a',
-    secondName: 'b',
-    displayName: 'c',
-    avatar: '/user.png',
-  },
+  user: null,
 };
 
 class Store extends EventBus {
-  private state: TStore = INITIAL_STORE_VALUE;
+  private state: TStore;
+
+  constructor(initialValue: TStore) {
+    super();
+    this.state = initialValue;
+  }
 
   public getState() {
+    console.log('getState', this.state)
     return this.state;
   }
 
   public set(path: string, value: unknown) {
     set(this.state, path, value);
+    console.log('setState', this.state);
 
     this.emit(StoreEvents.Updated);
   }
 }
 
-export const store = new Store();
+export const store = new Store(INITIAL_STORE_VALUE);

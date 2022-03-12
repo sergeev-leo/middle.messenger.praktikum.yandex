@@ -1,4 +1,23 @@
 import { ROUTES } from '../../modules/Router/constants';
+import { TAvatarProps } from '../../components/avatar/avatar';
+import { TLinkProps } from '../../components/link/link';
+import { UserController } from '../../controllers/UserController';
+import { TButtonProps } from '../../components/button/button';
+
+
+type TUserDataRow = {
+  id: string,
+  label: string,
+  value: string,
+};
+
+export type TProfilePageProps = {
+  avatar: TAvatarProps,
+  userName: string,
+  button: TButtonProps,
+  links: TLinkProps[],
+  userData: TUserDataRow[],
+}
 
 export const getProfileData = ({
   login,
@@ -8,18 +27,20 @@ export const getProfileData = ({
   secondName,
   displayName,
   avatar,
-}) => ({
+}): TProfilePageProps => ({
   avatar: {
     src: avatar,
   },
   userName: login,
-
-  links: [
-    {
-      title: 'Выйти',
-      style: 'error',
-      href: ROUTES.LOGIN,
+  button: {
+    title: 'Выйти',
+    type: 'button',
+    style: 'error',
+    events: {
+      click: UserController.logOut,
     },
+  },
+  links: [
     {
       title: 'Изменить пароль',
       style: 'secondary',
