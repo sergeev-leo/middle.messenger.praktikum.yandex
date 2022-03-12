@@ -1,6 +1,7 @@
 import { EventBus } from '../EventBus/EventBus';
 import { TComponentChildren, TComponentProps, TEventBusInstance, TEvents, TListeners } from '../types';
 import { v4 as makeUUID } from 'uuid';
+import { isEqual } from '../../utils/isEqual';
 
 
 export class Block {
@@ -301,7 +302,7 @@ export class Block {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
-    return true;
+    return !isEqual(oldProps, newProps);
   }
 
   /*
@@ -332,7 +333,6 @@ export class Block {
     * */
     const newElement = block.firstElementChild as HTMLElement;
 
-    console.log('old: ', this._element, 'new: ', newElement)
     /*
     * если это первый рендер то создаем элемент и добавляем обработчики событий
     * */
