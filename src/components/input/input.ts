@@ -13,6 +13,7 @@ export type TInputProps = {
   placeholder?: string,
   accept?: string,
   events?: TEvents,
+  value?: string,
 };
 
 export class Input extends Block {

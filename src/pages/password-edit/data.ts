@@ -1,9 +1,13 @@
 import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
+import { ProfileController } from '../../controllers/ProfileController';
+import { TChangePasswordData } from '../../modules/api/profileAPI';
+import { Router } from '../../modules/Router/Router';
+import { ROUTES } from '../../modules/Router/constants';
 
 
-export const passwordEditData = {
+export const getPasswordEditData = ({ avatar }: { avatar: string }) => ({
   avatar: {
-    src:'/user.png',
+    src: avatar,
     title: 'Поменять аватар',
   },
   inputs: [
@@ -37,9 +41,10 @@ export const passwordEditData = {
   events: {
     submit: createSubmitFn(
       '.password-edit',
-      formData => {
-        console.log(formData);
+      async formData => {
+        await ProfileController.changePassword(formData as TChangePasswordData);
+        Router.go(ROUTES.PROFILE);
       },
     ),
   },
-};
+});

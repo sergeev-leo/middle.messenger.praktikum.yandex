@@ -8,17 +8,17 @@ export const AUTH_API_ENDPOINTS = {
 };
 
 export const USER_API_ENDPOINTS = {
-  CHANGE_PROFILE: '/user/profile',
-  CHANGE_AVATAR: '/user/profile/avatar',
-  CHANGE_PASSWORD: '/user/password',
-  SEARCH_USER: '/user/search',
-  GET_USER_BY_ID: '/user',
+  CHANGE_PROFILE: 'user/profile',
+  CHANGE_AVATAR: 'user/profile/avatar',
+  CHANGE_PASSWORD: 'user/password',
+  SEARCH_USER: 'user/search',
+  GET_USER_BY_ID: 'user',
 };
 
 export const CHAT_API_ENDPOINTS = {
-  CHATS: '/chats',
-  CHATS_USERS: '/chats/users',
-  REQUEST_TOKEN: '/chats/token',
+  CHATS: 'chats',
+  CHATS_USERS: '/hats/users',
+  REQUEST_TOKEN: 'chats/token',
 };
 
 export const DEFAULT_POST_REQUEST_HEADERS = {

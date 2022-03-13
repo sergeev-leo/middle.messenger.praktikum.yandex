@@ -19,13 +19,3 @@ export type TEventBusInstance = {
 export type TFormDataObject = Record<string, FormDataEntryValue>;
 
 
-export type TStore = {
-  user: {
-    id: number | string,
-    login: string,
-    email: string,
-    phone: string,
-    firstName: string,
-    secondName: string,
-  } | null,
-};

@@ -10,11 +10,12 @@ enum HTTP_METHOD {
 
 type THttpRequestOptions = {
   method: HTTP_METHOD,
-  data?: Record<string, unknown>,
+  data?: Record<string, unknown> | FormData,
   headers?: Record<string, string>,
   timeout?: number,
   withCredentials?: boolean,
   mode?: string,
+  isFile?: boolean,
 };
 
 type THttpRequestOptionsWithoutMethod = Omit<THttpRequestOptions, 'method'>;
@@ -57,6 +58,7 @@ export class HTTPTransport {
       data,
       headers,
       withCredentials = true,
+      isFile = false,
     } = options;
 
     return new Promise((resolve, reject) => {
@@ -101,7 +103,7 @@ export class HTTPTransport {
       if (method === HTTP_METHOD.GET || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(isFile ? data : JSON.stringify(data));
       }
     });
   }
@@ -130,29 +132,29 @@ export class HTTPTransport {
   private static handleCommonErrors(xhr: XMLHttpRequest) {
     switch(xhr.status) {
     case 400: {
-      console.log(xhr.response.reason);
-      return Promise.resolve(xhr);
+      console.log('400: ', xhr.response.reason);
+      return Promise.reject({ reason: xhr.response.reason });
     }
     case 401: {
       console.log('Неизвестный пользователь');
       Router.go(ROUTES.LOGIN);
-      return Promise.resolve(xhr);
+      return Promise.reject({ reason: 'Неизвестный пользователь' });
     }
     case 403: {
       console.log('Недостаточно прав для выполнения действия');
-      return Promise.resolve(xhr);
+      return Promise.reject({ reason: 'Недостаточно прав для выполнения действия' });
     }
     case 404: {
       Router.go(ROUTES.CLIENT_ERROR);
-      return Promise.reject(xhr);
+      return Promise.reject({ reason: 'Запрашиваемый адрес не существует' });
     }
     case 500: {
       Router.go(ROUTES.SERVER_ERROR);
-      return Promise.reject(xhr);
+      return Promise.reject({ reason: 'Ошибка сервера' });
     }
     default: {
       console.log('При выполнении запроса возникла неизвестная ошибка');
-      return Promise.reject(xhr);
+      return Promise.reject({ reason: 'При выполнении запроса возникла неизвестная ошибка' });
     }
     }
   }

@@ -3,14 +3,24 @@ import { store } from '../modules/store/store';
 import { Router } from '../modules/Router/Router';
 import { ROUTES } from '../modules/Router/constants';
 
-class UserControllerClass {
+export class UserControllerClass {
+  public static setError(error: { reason: string } | null) {
+    if(error === null) {
+      return store.set('user.error', null);
+    }
+
+    store.set('user.error', error.reason);
+  }
+
   public async getUserData() {
     try {
       const userData = await AuthAPI.user();
 
-      store.set('user', userData);
+      store.set('user.data', userData);
+      UserControllerClass.setError(null);
     } catch (error) {
-      console.log(error);
+      UserControllerClass.setError(error);
+      return Promise.reject();
     }
   }
 
@@ -18,10 +28,13 @@ class UserControllerClass {
     try {
       await AuthAPI.logOut();
 
-      store.set('user', null);
+      store.set( 'user.data', null);
+      UserControllerClass.setError(null);
+
       Router.go(ROUTES.LOGIN);
     } catch (error) {
-      console.log(error);
+      UserControllerClass.setError(error);
+      return Promise.reject();
     }
   }
 
@@ -32,9 +45,11 @@ class UserControllerClass {
         id,
       } = response;
 
-      store.set('user', { ...formData, id });
+      store.set('user.data', { ...formData, id });
+      UserControllerClass.setError(null);
     } catch (error) {
-      console.log(error);
+      UserControllerClass.setError(error);
+      return Promise.reject();
     }
   }
 
@@ -42,30 +57,51 @@ class UserControllerClass {
     try {
       await AuthAPI.signIn(formData);
 
+      await UserControllerClass.fetchAndSetSignedUserData();
+    } catch(error) {
+      if(error.reason === 'User already in system') {
+        await UserControllerClass.fetchAndSetSignedUserData();
+        return Promise.resolve();
+      }
+
+      UserControllerClass.setError(error);
+      return Promise.reject();
+    }
+  }
+
+  static async fetchAndSetSignedUserData() {
+    try {
       const signedUserResponse = await AuthAPI.user();
 
       const {
         id,
         first_name,
         second_name,
+        display_name,
         login,
         email,
         phone,
+        avatar,
       } = signedUserResponse;
 
       store.set(
-        'user',
+        'user.data',
         {
           id,
           firstName: first_name,
           secondName: second_name,
+          displayName: display_name,
           login,
           email,
           phone,
+          avatar,
         },
       );
-    } catch(error) {
-      console.log(error);
+      UserControllerClass.setError(null);
+
+    } catch (error) {
+      UserControllerClass.setError(error);
+      return Promise.reject();
     }
   }
 }

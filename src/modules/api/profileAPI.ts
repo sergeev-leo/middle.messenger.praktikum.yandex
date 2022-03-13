@@ -20,11 +20,7 @@ export type TChangePasswordData = {
   newPassword: string,
 };
 
-export type TSearchUserData = {
-  login: string,
-};
-
-class UserAPIClass extends BaseApi {
+class ProfileAPIClass extends BaseApi {
 
   changeProfile(data: TChangeProfileData) {
     return userHTTPTransportInstance.put(
@@ -50,23 +46,23 @@ class UserAPIClass extends BaseApi {
       .then(xhr => xhr.response);
   }
 
-  changeAvatar(data: TFormDataObject) {
+  changeAvatar(data: FormData) {
     return userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_AVATAR,
       {
         data,
-        headers: DEFAULT_POST_REQUEST_HEADERS,
+        isFile: true,
         withCredentials: true,
       },
     )
       .then(xhr => xhr.response);
   }
 
-  searchUser(data: TSearchUserData) {
+  getUsersByLogin(login: string) {
     return userHTTPTransportInstance.post(
       USER_API_ENDPOINTS.SEARCH_USER,
       {
-        data,
+        data: { login },
         withCredentials: true,
       },
     );
@@ -83,4 +79,4 @@ class UserAPIClass extends BaseApi {
   }
 }
 
-export const UserAPI = new UserAPIClass();
+export const ProfileAPI = new ProfileAPIClass();

@@ -1,6 +1,5 @@
-import { set } from '../../utils/set';
-import { TStore } from '../types';
-import { EventBus } from '../EventBus/EventBus';
+import {set} from '../../utils/set';
+import {EventBus} from '../EventBus/EventBus';
 
 
 export enum StoreEvents {
@@ -9,7 +8,26 @@ export enum StoreEvents {
 
 
 const INITIAL_STORE_VALUE = {
-  user: null,
+  user: {
+    data: null,
+    error: null,
+  },
+};
+
+export type TStore = {
+  user: {
+    data: {
+      id: number | string,
+      login: string,
+      email: string,
+      phone: string,
+      firstName: string,
+      secondName: string,
+      displayName?: string,
+      avatar?: string,
+    } | null,
+    error: string | null,
+  },
 };
 
 class Store extends EventBus {

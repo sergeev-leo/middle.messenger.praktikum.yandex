@@ -4,23 +4,22 @@ import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
 import { Button, TButtonProps } from '../../components/button/button';
 import { Input, TInputProps } from '../../components/input/input';
-import { profileEditData } from './data';
+import { getProfileEditData } from './data';
 import { Modal } from '../../components/modal/modal';
-import { createSubmitFn } from '../../modules/formValidation';
+import { TStore } from '../../modules/store/store';
+import { connect } from '../../modules/store/connect';
+import { ProfileController } from '../../controllers/ProfileController';
 
 
 export type TProfileEditPageProps = {
   avatar: TAvatarProps,
   inputs: TInputProps[],
   button: TButtonProps,
+  avatarToUpload: File | null,
 }
 
-export class ProfileEditPage extends Block {
-  constructor() {
-    super(profileEditData);
-  }
-
-  initChildren() {
+class ProfileEditPageClass extends Block {
+  render() {
     const {
       avatar,
       inputs,
@@ -62,18 +61,16 @@ export class ProfileEditPage extends Block {
         style: 'primary',
       },
       events: {
-        submit: (e: InputEvent, onClose: () => void) => {
-          createSubmitFn(
-            '.file-upload-modal',
-            () => console.log('avatarChangeCb'),
-          )(e);
+        submit: async(e: InputEvent, onClose: () => void) => {
+          e.preventDefault();
+          const formData = new FormData();
+          formData.append('avatar', e.target[0].files[0]);
+          await ProfileController.changeAvatar(formData);
           onClose();
         },
       },
     });
-  }
 
-  render() {
     return this.compile(
       compileTemplate,
       {
@@ -82,3 +79,17 @@ export class ProfileEditPage extends Block {
     );
   }
 }
+
+const mapStateToProps = (state: TStore) => {
+  const {
+    data: userData,
+    error,
+  } = state.user;
+
+  return {
+    ...getProfileEditData(userData),
+    error,
+  };
+};
+
+export const ProfileEditPage = connect(ProfileEditPageClass, mapStateToProps);
