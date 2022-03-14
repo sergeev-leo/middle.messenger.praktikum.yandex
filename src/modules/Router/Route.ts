@@ -7,6 +7,7 @@ export interface TRoute  {
   leave: () => void;
   match: (p:string) => boolean;
   render: () => void;
+  _pathname: string;
 }
 
 type TRouteProps = {
@@ -34,6 +35,7 @@ export class Route implements TRoute {
   }
 
   leave() {
+    console.log('leave', this._block)
     if (this._block) {
       this._block.hide();
     }
@@ -45,6 +47,7 @@ export class Route implements TRoute {
 
   render() {
     this._block = new this._blockClass();
+    console.log('render', this._block)
     render(this._props.rootQuery, this._block);
     return;
   }

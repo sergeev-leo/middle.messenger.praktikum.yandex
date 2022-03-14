@@ -31,7 +31,7 @@ class RouterClass {
       const historyObjFromEvent = event.currentTarget as Window;
 
       this._onRoute(historyObjFromEvent.location?.pathname);
-    }).bind(this);
+    });
 
     this._onRoute(window.location.pathname);
   }
@@ -42,12 +42,16 @@ class RouterClass {
       return;
     }
 
-    if (this._currentRoute && this._currentRoute !== route) {
+    if (this._currentRoute) {
+      if(this._currentRoute._pathname === route._pathname) {
+        return;
+      }
+
       this._currentRoute.leave();
     }
 
-    this._currentRoute = route;
     route.render();
+    this._currentRoute = route;
   }
 
   go(pathname: string, params?: Record<string, unknown>, title = '') {
