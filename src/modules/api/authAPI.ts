@@ -56,7 +56,7 @@ class AuthAPIClass extends BaseApi {
     );
   }
 
-  user() {
+  getUserData() {
     return authHTTPTransportInstance.get(
       AUTH_API_ENDPOINTS.USER_DATA,
       {

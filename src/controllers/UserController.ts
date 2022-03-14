@@ -14,7 +14,7 @@ export class UserControllerClass {
 
   public async getUserData() {
     try {
-      const userData = await AuthAPI.user();
+      const userData = await AuthAPI.getUserData();
 
       store.set('user.data', userData);
       UserControllerClass.setError(null);
@@ -57,10 +57,10 @@ export class UserControllerClass {
     try {
       await AuthAPI.signIn(formData);
 
-      await UserControllerClass.fetchAndSetSignedUserData();
+      await this.fetchAndSetSignedUserData();
     } catch(error) {
       if(error.reason === 'User already in system') {
-        await UserControllerClass.fetchAndSetSignedUserData();
+        await this.fetchAndSetSignedUserData();
         return Promise.resolve();
       }
 
@@ -69,9 +69,9 @@ export class UserControllerClass {
     }
   }
 
-  static async fetchAndSetSignedUserData() {
+  public async fetchAndSetSignedUserData() {
     try {
-      const signedUserResponse = await AuthAPI.user();
+      const signedUserResponse = await AuthAPI.getUserData();
 
       const {
         id,
