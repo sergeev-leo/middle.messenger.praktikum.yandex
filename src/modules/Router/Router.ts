@@ -1,5 +1,6 @@
 import { TComponent } from '../types';
 import { Route, TRoute } from './Route';
+import { ROUTES } from './constants';
 
 
 class RouterClass {
@@ -40,6 +41,14 @@ class RouterClass {
     const route = this.getRoute(pathname);
     if (!route) {
       return;
+    }
+
+    if(
+      localStorage.getItem('isUserLoggedIn') !== 'true' &&
+      route._pathname !== ROUTES.LOGIN &&
+      route._pathname !== ROUTES.REGISTER
+    ) {
+      return this.go(ROUTES.LOGIN);
     }
 
     if (this._currentRoute) {

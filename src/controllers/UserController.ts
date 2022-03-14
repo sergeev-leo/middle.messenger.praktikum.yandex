@@ -97,6 +97,7 @@ export class UserControllerClass {
           avatar,
         },
       );
+      localStorage.setItem('isUserLoggedIn', 'true');
       UserControllerClass.setError(null);
 
     } catch (error) {
