@@ -10,6 +10,7 @@ export class Block {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
+    FLOW_CWU: 'flow:component-will-unmount',
   };
 
   _element: HTMLElement;
@@ -188,6 +189,7 @@ export class Block {
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
   }
 
   /*
@@ -305,6 +307,28 @@ export class Block {
     return !isEqual(oldProps, newProps);
   }
 
+  _componentWillUnmount() {
+    Object
+      .keys(this._children)
+      .forEach((key: string) => {
+        const child = this._children[key];
+
+        if (Array.isArray(child)) {
+          child.forEach(item => item.hide());
+          return;
+        }
+
+        child.hide();
+      });
+
+    this.componentWillUnmount();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  protected componentWillUnmount() {
+    // метод должен быть переопределен в компоненте-наследнике
+  }
+
   /*
   * данный метод нужен для доступа извне, например когда компонент-родитель вызывает setProps для компонента потомка и
   * передает ему обновленные данные
@@ -410,6 +434,7 @@ export class Block {
   *
   * */
   hide() {
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU);
     this.getContent().remove();
   }
 }
