@@ -23,45 +23,9 @@ export const chatData = {
       },
     },
   },
-  dialogs: [
-    {
-      id: 1,
-      name: 'Андрей',
-      avatar: {
-        src: '/user.png',
-      },
-      lastMessageTime: '10:49',
-      currentUserMessage: false,
-      amountOfUnreadMessages: 2,
-      messagePreview: 'Изображение',
-    },
-    {
-      id: 2,
-      name: 'Киноклуб',
-      avatar: {
-        src: '/user.png',
-      },
-      lastMessageTime: '12:00',
-      currentUserMessage: true,
-      isSelected: true,
-      amountOfUnreadMessages: 0,
-      messagePreview: 'стикер',
-    },
-    {
-      id: 3,
-      name: 'Илья',
-      avatar: {
-        src: '/user.png',
-      },
-      lastMessageTime: '15:12',
-      currentUserMessage: false,
-      amountOfUnreadMessages: 4,
-      messagePreview: 'Друзья, у меня для вас особенный выпуск новостей!...',
-    },
-  ],
   reviewingDialogUser: {
     avatar: {
-      src: '/user.png',
+      src: null,
     },
     name: 'Киноклуб',
   },
@@ -73,6 +37,20 @@ export const chatData = {
       iconClassName: 'fa-ellipsis-v',
     },
     data: [
+      {
+        id: 'chat-menu-0',
+        text: 'Создать чат',
+        iconButton: {
+          outerIconClassName:'fa-circle-thin',
+          iconClassName: 'fa-plus',
+        },
+        events: {
+          click: () => {
+            const modal = document.querySelector('#create-chat-modal');
+            modal?.classList.remove('closed');
+          },
+        },
+      },
       {
         id: 'chat-menu-1',
         text: 'Добавить пользователя',

@@ -6,12 +6,12 @@ import { TEvents } from '../../modules/types';
 
 export type TDialogProps = {
   id: number,
-  avatar: TAvatarProps,
+  avatar?: TAvatarProps,
   isSelected: boolean,
   currentUserMessage: boolean,
   name: string,
-  messagePreview: string,
-  lastMessageTime: string,
+  messagePreview?: string,
+  lastMessageTime?: string,
   amountOfUnreadMessages: string | number,
   events?: TEvents,
 };

@@ -1,6 +1,6 @@
-import { TComponentProps, TIndexed} from '../types';
+import { TComponentProps, TIndexed } from '../types';
 import { Block } from '../Block/Block';
-import {store, StoreEvents, TStore} from './store';
+import { store, StoreEvents, TStore } from './store';
 
 
 export const connect = (Component: typeof Block, mapStateToProps: (state: TStore) => TIndexed) =>

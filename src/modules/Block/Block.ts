@@ -280,7 +280,7 @@ export class Block {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected componentDidMount(oldProps: TComponentProps) {
+  protected componentDidMount(props: TComponentProps) {
     // метод должен быть переопределен в компоненте-наследнике
   }
 

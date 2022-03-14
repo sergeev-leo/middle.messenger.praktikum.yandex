@@ -17,7 +17,7 @@ export const USER_API_ENDPOINTS = {
 
 export const CHAT_API_ENDPOINTS = {
   CHATS: 'chats',
-  CHATS_USERS: '/hats/users',
+  CHATS_USERS: 'chats/users',
   REQUEST_TOKEN: 'chats/token',
 };
 

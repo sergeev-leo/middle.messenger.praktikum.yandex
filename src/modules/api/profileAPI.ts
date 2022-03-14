@@ -65,7 +65,8 @@ class ProfileAPIClass extends BaseApi {
         data: { login },
         withCredentials: true,
       },
-    );
+    )
+      .then(xhr => xhr.response);
   }
 
   getUserById(userId: number) {

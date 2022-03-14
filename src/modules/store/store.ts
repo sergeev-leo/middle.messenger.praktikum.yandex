@@ -1,5 +1,6 @@
-import {set} from '../../utils/set';
-import {EventBus} from '../EventBus/EventBus';
+import { set } from '../../utils/set';
+import { EventBus } from '../EventBus/EventBus';
+import { TChatResponseData } from '../api/chatAPI';
 
 
 export enum StoreEvents {
@@ -10,6 +11,10 @@ export enum StoreEvents {
 const INITIAL_STORE_VALUE = {
   user: {
     data: null,
+    error: null,
+  },
+  chat: {
+    dialogs: [],
     error: null,
   },
 };
@@ -28,6 +33,9 @@ export type TStore = {
     } | null,
     error: string | null,
   },
+  chat: {
+    dialogs: TChatResponseData[] | [],
+  },
 };
 
 class Store extends EventBus {
@@ -39,7 +47,7 @@ class Store extends EventBus {
   }
 
   public getState() {
-    console.log('getState', this.state)
+    console.log('getState', this.state);
     return this.state;
   }
 

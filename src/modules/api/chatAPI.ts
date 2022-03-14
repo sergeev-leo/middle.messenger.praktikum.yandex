@@ -8,9 +8,28 @@ const chatHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST);
 
 
 export type TGetChatsData = {
-  offset: number,
-  limit: number,
+  offset?: number,
+  limit?: number,
+  title?: string,
+};
+
+export type TChatResponseData = {
+  id: number,
   title: string,
+  avatar: string | null,
+  unread_count: number,
+  last_message: {
+    user: {
+      first_name: string,
+      second_name: string,
+      avatar: string | null,
+      email: string,
+      login: string,
+      phone: string,
+    },
+    time: string,
+    content: string
+  } | null,
 };
 
 export type TCreateChatData = {
@@ -28,7 +47,7 @@ export type TAddOrDeleteUsersToChatData = {
 
 class ChatAPIClass extends BaseApi {
 
-  getChats(data: TGetChatsData) {
+  getChats(data: TGetChatsData = {}): Promise<TChatResponseData[] | []> {
     return chatHTTPTransportInstance.get(
       CHAT_API_ENDPOINTS.CHATS,
       {
@@ -79,6 +98,19 @@ class ChatAPIClass extends BaseApi {
       CHAT_API_ENDPOINTS.CHATS_USERS,
       {
         data,
+        withCredentials: true,
+      },
+    )
+      .then(xhr => xhr.response);
+  }
+
+  getChatUsers(chatId: number) {
+    return chatHTTPTransportInstance.get(
+      CHAT_API_ENDPOINTS.CHATS_USERS,
+      {
+        data: {
+          id: chatId,
+        },
         withCredentials: true,
       },
     )

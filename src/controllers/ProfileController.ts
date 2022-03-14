@@ -89,12 +89,13 @@ class ProfileControllerClass {
         'search.usersByLogin.error',
         null,
       );
-    } catch({ reason }) {
+      return usersData;
+    } catch(error) {
       store.set(
         'search.usersByLogin.error',
-        reason,
+        error,
       );
-      return Promise.reject();
+      return Promise.reject(error);
     }
   }
 }
