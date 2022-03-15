@@ -4,10 +4,12 @@ import { SOCKET_API_MESSAGES_TYPES, SocketAPI } from '../modules/api/socketAPI';
 
 
 export class ChatControllerClass {
-  connections = [];
+  connections = {};
 
   public closeConnections() {
-    this.connections.forEach((connection: SocketAPI) => connection.close());
+    Object
+      .values(this.connections)
+      .forEach((connection: SocketAPI) => connection.close());
   }
 
   public static setError(error: { reason: string } | null) {
@@ -102,7 +104,7 @@ export class ChatControllerClass {
       const { token } = await ChatAPI.getToken(chatId);
 
       const socketAPI = new SocketAPI();
-      this.connections.push(socketAPI);
+      this.connections[chatId] = socketAPI;
 
       await socketAPI.connect({
         userId,

@@ -1,4 +1,3 @@
-import { VALIDATION } from '../../modules/formValidation';
 import { ROUTES } from '../../modules/Router/constants';
 import { Router } from '../../modules/Router/Router';
 
@@ -150,6 +149,5 @@ export const chatData = {
   messageInput: {
     id: 'message',
     placeholder: 'Сообщение',
-    pattern: VALIDATION.REQUIRED.pattern,
   },
 };

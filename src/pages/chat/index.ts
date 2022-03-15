@@ -13,6 +13,7 @@ import { Link, TLinkProps } from '../../components/link/link';
 import { TStore } from '../../modules/store/store';
 import { connect } from '../../modules/store/connect';
 import { ChatController } from '../../controllers/ChatController';
+import { TCallback } from '../../modules/types';
 
 
 type TChatPageProps = {
@@ -32,6 +33,10 @@ type TChatPageProps = {
   messageInput: TInputProps,
   selectedChatId: number,
   currentUserId: number,
+  addUser: TCallback,
+  deleteUser: TCallback,
+  createChat: TCallback,
+  sendMessage: TCallback,
 };
 
 class ChatPageClass extends Block {
@@ -66,13 +71,18 @@ class ChatPageClass extends Block {
       },
       searchInput,
       sendIcon,
-      dialogs = [],
-      messages = [],
       messageInput,
-      selectedChatId,
       searchInputPlaceholder,
       messagesPanelInfoText,
+
+      dialogs = [],
+      messages = [],
+      addUser,
+      deleteUser,
+      createChat,
+      sendMessage,
     } = this.props as TChatPageProps;
+
 
     this._children.profileLink = new Link(profileLink);
     this._children.chatMenu = new Menu(chatMenu);
@@ -81,18 +91,7 @@ class ChatPageClass extends Block {
     this._children.sendIcon = new IconButton({
       ...sendIcon,
       events: {
-        click: (e: InputEvent) => {
-          const messageInput = document.getElementById('message');
-
-          if(!messageInput?.validity.valid) {
-            return;
-          }
-
-          return createSubmitFn(
-            '.chat__bottom-panel',
-            ({ message }) => this.socketAPIByChatId[selectedChatId].sendMessage(message as string),
-          )(e);
-        },
+        click: sendMessage,
       },
     });
     this._children.searchInput = new Input(searchInput);
@@ -117,15 +116,7 @@ class ChatPageClass extends Block {
         style: 'primary',
       },
       events: {
-        submit: (e: InputEvent, onClose: () => void) => {
-          createSubmitFn(
-            '.create-chat-modal',
-            formData => ChatController.createChat({
-              title: formData['create-chat-input'] as string,
-            }),
-          )(e);
-          onClose();
-        },
+        submit: createChat,
       },
     });
 
@@ -145,16 +136,7 @@ class ChatPageClass extends Block {
         style: 'primary',
       },
       events: {
-        submit: (e: InputEvent, onClose: () => void) => {
-          createSubmitFn(
-            '.add-user-modal',
-            formData => ChatController.addUserToChat(
-              selectedChatId,
-              formData['add-user-input'] as string,
-            ),
-          )(e);
-          onClose();
-        },
+        submit: addUser,
       },
     });
 
@@ -174,16 +156,7 @@ class ChatPageClass extends Block {
         style: 'primary',
       },
       events: {
-        submit: (e: InputEvent, onClose: () => void) => {
-          createSubmitFn(
-            '.delete-user-modal',
-            formData => ChatController.deleteUserFromChat(
-              selectedChatId,
-              formData['delete-user-input'] as string,
-            ),
-          )(e);
-          onClose();
-        },
+        submit: deleteUser,
       },
     });
 
@@ -276,10 +249,7 @@ class ChatPageClass extends Block {
         reviewingDialogUserName: name,
         ...this._children,
         events: {
-          submit: createSubmitFn(
-            '.chat__bottom-panel',
-            () => console.log('sendCb'),
-          ),
+          submit: sendMessage,
         },
       },
     );
@@ -303,8 +273,10 @@ const mapStateToProps = (state: TStore) => {
 
   return {
     ...chatData,
+
     selectedChatId,
     currentUserId,
+
     dialogs: dialogs.map(
       dialog => ({
         id: dialog.id,
@@ -322,6 +294,7 @@ const mapStateToProps = (state: TStore) => {
         },
       }),
     ),
+
     messages: messages[selectedChatId] && messages[selectedChatId].map(
       message => {
         const {
@@ -340,6 +313,52 @@ const mapStateToProps = (state: TStore) => {
         };
       },
     ),
+
+    addUser: (e: InputEvent, onClose: () => void) => {
+      createSubmitFn(
+        '.add-user-modal',
+        formData => ChatController.addUserToChat(
+          selectedChatId,
+          formData['add-user-input'] as string,
+        ),
+      )(e);
+      onClose();
+    },
+    deleteUser: (e: InputEvent, onClose: () => void) => {
+      createSubmitFn(
+        '.delete-user-modal',
+        formData => ChatController.deleteUserFromChat(
+          selectedChatId,
+          formData['delete-user-input'] as string,
+        ),
+      )(e);
+      onClose();
+    },
+    createChat: (e: InputEvent, onClose: () => void) => {
+      createSubmitFn(
+        '.create-chat-modal',
+        formData => ChatController.createChat({
+          title: formData['create-chat-input'] as string,
+        }),
+      )(e);
+      onClose();
+    },
+    sendMessage: (e: InputEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const messageInput = document.getElementById('message');
+
+      if(!messageInput?.validity.valid) {
+        return;
+      }
+
+      createSubmitFn(
+        '.chat__bottom-panel',
+        ({ message }) => {
+          ChatController.connections[selectedChatId].sendMessage(message as string);
+        },
+      )(e);
+    },
   };
 };
 

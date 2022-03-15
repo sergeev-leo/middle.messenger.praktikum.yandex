@@ -51,4 +51,6 @@ export const createSubmitFn = (formElementSelector: string, submitCb: (f: TFormD
     // eslint-disable-next-line no-console
     console.log(formDataObject);
     submitCb(formDataObject);
+
+    form.reset();
   };
