@@ -273,7 +273,7 @@ const mapStateToProps = (state: TStore) => {
 
   return {
     ...chatData,
-    selectedChatId: window.location.search.slice(4),
+    selectedChatId: Number(window.location.search.slice(4)),
     dialogs: dialogs.map(
       dialog => ({
         id: dialog.id,

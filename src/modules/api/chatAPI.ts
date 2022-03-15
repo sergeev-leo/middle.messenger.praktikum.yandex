@@ -88,6 +88,7 @@ class ChatAPIClass extends BaseApi {
       CHAT_API_ENDPOINTS.CHATS_USERS,
       {
         data,
+        headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
     );
@@ -98,6 +99,7 @@ class ChatAPIClass extends BaseApi {
       CHAT_API_ENDPOINTS.CHATS_USERS,
       {
         data,
+        headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
     )
@@ -106,11 +108,8 @@ class ChatAPIClass extends BaseApi {
 
   getChatUsers(chatId: number) {
     return chatHTTPTransportInstance.get(
-      CHAT_API_ENDPOINTS.CHATS_USERS,
+      [CHAT_API_ENDPOINTS.CHATS, chatId, 'users'].join('/'),
       {
-        data: {
-          id: chatId,
-        },
         withCredentials: true,
       },
     )
