@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', async() => {
 
   Router
     .use(ROUTES.LOGIN, LoginForm)
-    .use(ROUTES.CHAT_WITH_USER, ChatPage)
     .use(ROUTES.CHAT, ChatPage)
     .use(ROUTES.REGISTER, RegisterForm)
     .use(ROUTES.PROFILE, ProfilePage)
