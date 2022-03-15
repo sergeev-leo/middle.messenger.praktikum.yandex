@@ -353,9 +353,7 @@ const mapStateToProps = (state: TStore) => {
       createSubmitFn(
         '.chat__bottom-panel',
         ({ message }) => {
-          console.log(selectedChatId);
-
-          if(selectedChatId in ChatController.connections) {
+          if(!selectedChatId in ChatController.connections) {
             return;
           }
 

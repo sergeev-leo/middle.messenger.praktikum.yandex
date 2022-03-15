@@ -1,7 +1,6 @@
 import { BaseApi } from './baseApi';
 import { HTTPTransport } from './fetch';
 import { USER_API_ENDPOINTS, DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST } from './constants';
-import { TFormDataObject } from '../types';
 
 
 const userHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST);
@@ -63,6 +62,7 @@ class ProfileAPIClass extends BaseApi {
       USER_API_ENDPOINTS.SEARCH_USER,
       {
         data: { login },
+        headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
     )

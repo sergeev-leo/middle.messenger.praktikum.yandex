@@ -21,7 +21,7 @@ const INITIAL_STORE_VALUE = {
     error: null,
   },
   chat: {
-    selectedChatId: 0,
+    selectedChatId: 2034,
     dialogs: [],
     messages: {},
     error: null,

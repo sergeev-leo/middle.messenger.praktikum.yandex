@@ -1,6 +1,7 @@
 import { store } from '../modules/store/store';
 import { ChatAPI, TCreateChatData, TGetChatsData } from '../modules/api/chatAPI';
 import { SOCKET_API_MESSAGES_TYPES, SocketAPI } from '../modules/api/socketAPI';
+import { ProfileAPI } from '../modules/api/profileAPI';
 
 
 export class ChatControllerClass {
@@ -29,7 +30,7 @@ export class ChatControllerClass {
       return dialogsData || [];
     } catch (error) {
       ChatControllerClass.setError(error);
-      return Promise.resolve();
+      return Promise.resolve([]);
     }
   }
 
@@ -46,15 +47,16 @@ export class ChatControllerClass {
 
   public async addUserToChat(chatId: number, login: string) {
     try {
-      const currentChatUsers = await this.getChatUsers(chatId);
+      const usersData = await ProfileAPI.getUsersByLogin(login);
 
-      const {
-        id,
-      } = currentChatUsers.find(user => user.login === login);
+      const user = usersData.find(user => user.login === login);
+      if(!user) {
+        return;
+      }
 
       await ChatAPI.addUsersToChat({
         chatId,
-        users: [id],
+        users: [user.id],
       });
 
       ChatControllerClass.setError(null);
@@ -66,15 +68,16 @@ export class ChatControllerClass {
 
   public async deleteUserFromChat(chatId: number, login: string) {
     try {
-      const currentChatUsers = await this.getChatUsers(chatId);
+      const usersData = await ProfileAPI.getUsersByLogin(login);
 
-      const {
-        id,
-      } = currentChatUsers.find(user => user.login === login);
+      const user = usersData.find(user => user.login === login);
+      if(!user) {
+        return;
+      }
 
       await ChatAPI.deleteUsersFromChat({
         chatId,
-        users: [id],
+        users: [user.id],
       });
 
       ChatControllerClass.setError(null);
