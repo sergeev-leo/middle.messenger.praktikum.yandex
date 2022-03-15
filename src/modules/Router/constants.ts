@@ -1,5 +1,5 @@
 export enum ROUTES {
-  CHAT_WITH_USER = '/:id',
+  CHAT_WITH_USER = '/messenger/:id',
   CHAT = '/messenger',
   LOGIN = '/',
   REGISTER = '/sign-up',

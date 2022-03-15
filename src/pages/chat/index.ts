@@ -75,7 +75,7 @@ class ChatPageClass extends Block {
       .map((item: TDialogProps) => new Dialog({
         ...item,
         events: {
-          click: () => Router.go([ROUTES.CHAT, item.id].join('/')),
+          click: () => Router.go([ROUTES.CHAT, `id=${item.id}`].join('?')),
         },
       }));
     this._children.messages = messages.map((item: TMessageProps) => new Message(item));
@@ -273,8 +273,7 @@ const mapStateToProps = (state: TStore) => {
 
   return {
     ...chatData,
-    // TODO
-    selectedChatId: 2023,
+    selectedChatId: window.location.search.slice(4),
     dialogs: dialogs.map(
       dialog => ({
         id: dialog.id,

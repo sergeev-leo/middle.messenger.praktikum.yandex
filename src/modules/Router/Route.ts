@@ -3,7 +3,6 @@ import { TComponent } from '../types';
 
 
 export interface TRoute  {
-  navigate: (p:string) => void;
   leave: () => void;
   match: (p:string) => boolean;
   render: () => void;
@@ -27,13 +26,6 @@ export class Route implements TRoute {
     this._props = props;
   }
 
-  navigate(pathname: string) {
-    if (this.match(pathname)) {
-      this._pathname = pathname;
-      this.render();
-    }
-  }
-
   leave() {
     console.log('leave', this._block)
     if (this._block) {
@@ -42,7 +34,7 @@ export class Route implements TRoute {
   }
 
   match(pathname: string) {
-    return String(pathname) === String(this._pathname);
+    return String(pathname.split('?')[0]) === String(this._pathname);
   }
 
   render() {
