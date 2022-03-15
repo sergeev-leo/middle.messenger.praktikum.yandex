@@ -96,11 +96,26 @@ class ChatPageClass extends Block {
     this._children.sendIcon = new IconButton({
       ...sendIcon,
       events: {
-        click: sendMessage,
+        click: () => {
+          const messageInput = document.getElementById('message');
+          if(!messageInput) {
+            return;
+          }
+          sendMessage(messageInput.value);
+        },
       },
     });
     this._children.searchInput = new Input(searchInput);
-    this._children.messageInput = new Input(messageInput);
+    this._children.messageInput = new Input({
+      ...messageInput,
+      events: {
+        keydown: (e: InputEvent) => {
+          if(e.keyCode === 13) {
+            return sendMessage(e.target?.value);
+          }
+        },
+      },
+    });
     this._children.dialogs = dialogs
       .map((item: TDialogProps) => new Dialog(item));
     this._children.messages = messages.map((item: TMessageProps) => new Message(item));
@@ -345,25 +360,12 @@ const mapStateToProps = (state: TStore) => {
       onClose();
     },
     deleteChat: () => ChatController.deleteChat(selectedChatId),
-    sendMessage: (e: InputEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-      const messageInput = document.getElementById('message');
-
-      if(!messageInput?.validity.valid) {
+    sendMessage: (message: string) => {
+      if(!ChatController.connections[selectedChatId]) {
         return;
       }
 
-      createSubmitFn(
-        '.chat__bottom-panel',
-        ({ message }) => {
-          if(!ChatController.connections[selectedChatId]) {
-            return;
-          }
-
-          ChatController.connections[selectedChatId].sendMessage(message as string);
-        },
-      )(e);
+      ChatController.connections[selectedChatId].sendMessage(message as string);
     },
   };
 };
