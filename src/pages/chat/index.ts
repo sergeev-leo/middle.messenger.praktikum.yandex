@@ -10,7 +10,7 @@ import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Modal } from '../../components/modal/modal';
 import { chatData } from './data';
 import { Link, TLinkProps } from '../../components/link/link';
-import { TStore } from '../../modules/store/store';
+import { TChatMessage, TStore, TUserStore } from '../../modules/store/store';
 import { connect } from '../../modules/store/connect';
 import { ChatController } from '../../controllers/ChatController';
 import { TCallback } from '../../modules/types';
@@ -264,12 +264,10 @@ const mapStateToProps = (state: TStore) => {
     selectedChatId,
   } = state.chat;
 
-  const {
-    data: {
-      login: currentUserLogin,
-      id: currentUserId,
-    } = {},
-  } = state.user;
+  const { data } = state.user as TUserStore;
+
+  const currentUserLogin = data?.login;
+  const currentUserId = data?.id;
 
   return {
     ...chatData,
@@ -302,7 +300,7 @@ const mapStateToProps = (state: TStore) => {
           is_read,
           time,
           user_id,
-        } = message;
+        } = message as TChatMessage;
 
         return {
           type: 0,
@@ -355,6 +353,12 @@ const mapStateToProps = (state: TStore) => {
       createSubmitFn(
         '.chat__bottom-panel',
         ({ message }) => {
+          console.log(selectedChatId);
+
+          if(selectedChatId in ChatController.connections) {
+            return;
+          }
+
           ChatController.connections[selectedChatId].sendMessage(message as string);
         },
       )(e);

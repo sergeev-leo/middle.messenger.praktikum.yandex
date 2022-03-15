@@ -7,8 +7,12 @@ export enum StoreEvents {
   Updated = 'updated',
 }
 
-type TChatMessage = {
+export type TChatMessage = {
   id: number | string,
+  content: string,
+  is_read: boolean,
+  time: string,
+  user_id: number | string,
 };
 
 const INITIAL_STORE_VALUE = {
@@ -17,32 +21,37 @@ const INITIAL_STORE_VALUE = {
     error: null,
   },
   chat: {
+    selectedChatId: 0,
     dialogs: [],
     messages: {},
     error: null,
   },
 };
 
+export type TUserStore = {
+  data: {
+    id: number | string,
+    login: string,
+    email: string,
+    phone: string,
+    firstName: string,
+    secondName: string,
+    displayName?: string,
+    avatar?: string,
+  } | null,
+  error: string | null,
+};
+
+export type TChatStore = {
+  selectedChatId: number,
+  dialogs: TChatResponseData[] | [],
+  messages: Record<number | string, TChatMessage[]>,
+  error: null,
+};
+
 export type TStore = {
-  user: {
-    data: {
-      id: number | string,
-      login: string,
-      email: string,
-      phone: string,
-      firstName: string,
-      secondName: string,
-      displayName?: string,
-      avatar?: string,
-    } | null,
-    error: string | null,
-  },
-  chat: {
-    selectedChatId: 0,
-    dialogs: TChatResponseData[] | [],
-    messages: Record<number | string, TChatMessage[]>,
-    error: null,
-  },
+  user: TUserStore,
+  chat: TChatStore,
 };
 
 class Store extends EventBus {

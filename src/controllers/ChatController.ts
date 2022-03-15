@@ -4,7 +4,7 @@ import { SOCKET_API_MESSAGES_TYPES, SocketAPI } from '../modules/api/socketAPI';
 
 
 export class ChatControllerClass {
-  connections = {};
+  connections: Record<string, SocketAPI> = {};
 
   public closeConnections() {
     Object
