@@ -8,7 +8,7 @@ import { Message, TMessageProps } from '../../components/message/message';
 import { Input, TInputProps } from '../../components/input/input';
 import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Modal } from '../../components/modal/modal';
-import { chatData } from './data';
+import { getChatData } from './data';
 import { Link, TLinkProps } from '../../components/link/link';
 import { TChatMessage, TStore, TUserStore } from '../../modules/store/store';
 import { connect } from '../../modules/store/connect';
@@ -27,7 +27,7 @@ type TChatPageProps = {
   searchInput: TInputProps,
   searchInputPlaceholder: string,
   sendIcon: TIconButtonProps,
-  dialogs: TDialogProps[] | [],
+  dialogs: TDialogProps[],
   messages: TMessageProps[],
   messagesPanelInfoText: string,
   messageInput: TInputProps,
@@ -35,6 +35,7 @@ type TChatPageProps = {
   currentUserId: number,
   addUser: TCallback,
   deleteUser: TCallback,
+  deleteChat: TCallback,
   createChat: TCallback,
   sendMessage: TCallback,
 };
@@ -44,15 +45,17 @@ class ChatPageClass extends Block {
   async componentDidMount() {
     const chatsData = await ChatController.getChats({});
 
+    if(!Array.isArray(chatsData)) {
+      return;
+    }
+
     const {
       currentUserId,
-    } = this.props;
+    } = this.props as TChatPageProps;
 
-    if(Array.isArray(chatsData)) {
-      chatsData.forEach(async chat => {
-        await ChatController.getChatUsers(chat.id);
-        await ChatController.connectToChat(chat.id, currentUserId);
-      });
+    for (const { id } of chatsData) {
+      await ChatController.getChatUsers(id);
+      await ChatController.connectToChat(id, currentUserId);
     }
   }
 
@@ -74,7 +77,9 @@ class ChatPageClass extends Block {
       messageInput,
       searchInputPlaceholder,
       messagesPanelInfoText,
+    } = getChatData(this.props as TChatPageProps);
 
+    const {
       dialogs = [],
       messages = [],
       addUser,
@@ -270,8 +275,6 @@ const mapStateToProps = (state: TStore) => {
   const currentUserId = data?.id;
 
   return {
-    ...chatData,
-
     selectedChatId,
     currentUserId,
 
@@ -341,6 +344,7 @@ const mapStateToProps = (state: TStore) => {
       )(e);
       onClose();
     },
+    deleteChat: () => ChatController.deleteChat(selectedChatId),
     sendMessage: (e: InputEvent) => {
       e.stopPropagation();
       e.preventDefault();
@@ -353,7 +357,7 @@ const mapStateToProps = (state: TStore) => {
       createSubmitFn(
         '.chat__bottom-panel',
         ({ message }) => {
-          if(!selectedChatId in ChatController.connections) {
+          if(!ChatController.connections[selectedChatId]) {
             return;
           }
 

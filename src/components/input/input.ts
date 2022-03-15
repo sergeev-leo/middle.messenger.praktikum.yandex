@@ -6,7 +6,7 @@ import { TEvents } from '../../modules/types';
 export type TInputProps = {
   id: string,
   type?: string,
-  label: string,
+  label?: string,
   error?: string,
   pattern?: string,
   required?: boolean,

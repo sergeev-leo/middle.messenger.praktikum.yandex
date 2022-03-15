@@ -1,5 +1,5 @@
 import { store } from '../modules/store/store';
-import { ChatAPI, TCreateChatData, TGetChatsData } from '../modules/api/chatAPI';
+import {ChatAPI, TCreateChatData, TDeleteChatData, TGetChatsData} from '../modules/api/chatAPI';
 import { SOCKET_API_MESSAGES_TYPES, SocketAPI } from '../modules/api/socketAPI';
 import { ProfileAPI } from '../modules/api/profileAPI';
 
@@ -80,6 +80,17 @@ export class ChatControllerClass {
         users: [user.id],
       });
 
+      ChatControllerClass.setError(null);
+    } catch (error) {
+      ChatControllerClass.setError(error);
+      return Promise.resolve();
+    }
+  }
+
+  public async deleteChat(chatId: number) {
+    try {
+      await ChatAPI.deleteChat({ chatId });
+      await this.getChats();
       ChatControllerClass.setError(null);
     } catch (error) {
       ChatControllerClass.setError(error);

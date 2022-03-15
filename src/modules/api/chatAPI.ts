@@ -37,7 +37,7 @@ export type TCreateChatData = {
 };
 
 export type TDeleteChatData = {
-  id: number,
+  chatId: number,
 };
 
 export type TAddOrDeleteUsersToChatData = {

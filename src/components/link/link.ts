@@ -4,7 +4,7 @@ import { TEvents } from '../../modules/types';
 
 
 export type TLinkProps = {
-  style: string,
+  style?: string,
   title: string,
   events?: TEvents,
 };

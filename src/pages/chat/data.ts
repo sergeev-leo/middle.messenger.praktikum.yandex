@@ -2,7 +2,7 @@ import { ROUTES } from '../../modules/Router/constants';
 import { Router } from '../../modules/Router/Router';
 
 
-export const chatData = {
+export const getChatData = ({ deleteChat }) => ({
   profileLink: {
     title: 'Профиль',
     events: {
@@ -86,8 +86,7 @@ export const chatData = {
           iconClassName: 'fa-trash',
         },
         events: {
-          // eslint-disable-next-line no-console
-          click: ()  => console.log('удалить чат'),
+          click: deleteChat,
         },
       },
     ],
@@ -150,4 +149,4 @@ export const chatData = {
     id: 'message',
     placeholder: 'Сообщение',
   },
-};
+});
