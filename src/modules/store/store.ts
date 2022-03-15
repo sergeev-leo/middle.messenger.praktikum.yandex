@@ -7,6 +7,9 @@ export enum StoreEvents {
   Updated = 'updated',
 }
 
+type TChatMessage = {
+  id: number | string,
+};
 
 const INITIAL_STORE_VALUE = {
   user: {
@@ -15,6 +18,7 @@ const INITIAL_STORE_VALUE = {
   },
   chat: {
     dialogs: [],
+    messages: {},
     error: null,
   },
 };
@@ -34,7 +38,10 @@ export type TStore = {
     error: string | null,
   },
   chat: {
+    selectedChatId: 0,
     dialogs: TChatResponseData[] | [],
+    messages: Record<number | string, TChatMessage[]>,
+    error: null,
   },
 };
 
@@ -43,7 +50,7 @@ class Store extends EventBus {
 
   constructor(initialValue: TStore) {
     super();
-    this.state = initialValue;
+    this.state = { ...initialValue };
   }
 
   public getState() {

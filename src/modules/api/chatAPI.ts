@@ -116,7 +116,7 @@ class ChatAPIClass extends BaseApi {
       .then(xhr => xhr.response);
   }
 
-  requestTokenForChat(chatId: number) {
+  getToken(chatId: number) {
     return chatHTTPTransportInstance.post(
       [CHAT_API_ENDPOINTS.REQUEST_TOKEN, chatId].join('/'),
       {

@@ -1,4 +1,5 @@
 export const YANDEX_API_HOST = 'https://ya-praktikum.tech/api/v2';
+export const YANDEX_WS_API_HOST = 'wss://ya-praktikum.tech/ws/chats';
 
 export const AUTH_API_ENDPOINTS = {
   SIGN_UP: 'auth/signup',
