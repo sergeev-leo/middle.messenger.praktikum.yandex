@@ -1,12 +1,11 @@
-@import 'pages/chat/style.scss';
-@import 'pages/login/style.scss';
-@import 'pages/register/style.scss';
-@import 'pages/profile/style.scss';
-@import 'pages/profile-edit/style.scss';
-@import 'pages/password-edit/style.scss';
-@import 'pages/client-error/style.scss';
-@import 'pages/server-error/style.scss';
-
+@import "pages/chat/style";
+@import "pages/login/style";
+@import "pages/register/style";
+@import "pages/profile/style";
+@import "pages/profile-edit/style";
+@import "pages/password-edit/style";
+@import "pages/client-error/style";
+@import "pages/server-error/style";
 
 html {
   @include base-styles;

@@ -9,7 +9,6 @@
 @import "../../components/icon-button/icon-button";
 @import "../../components/modal/modal";
 
-
 .chat {
   display: grid;
   grid-template-columns: 25% 75%;
@@ -96,8 +95,9 @@
       padding-top: 1rem;
 
       .link {
-        color: $grey-color;
         padding: 0;
+
+        color: $grey-color;
 
         outline: none;
       }
@@ -209,8 +209,10 @@
   grid-row: 2/3;
 
   overflow-y: auto;
+
   .wrapper {
     position: relative;
+
     display: flex;
     flex-direction: column;
 
