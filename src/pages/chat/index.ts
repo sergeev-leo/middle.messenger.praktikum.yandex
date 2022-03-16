@@ -1,37 +1,21 @@
 import compileTemplate from './index.pug';
 import { Block } from '../../modules/Block/Block';
-import { Menu, TMenuProps } from '../../components/menu/menu';
-import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
-import { IconButton, TIconButtonProps } from '../../components/icon-button/icon-button';
-import { TDialogProps } from '../../components/dialog/dialog';
-import { TMessageProps } from '../../components/message/message';
-import { Input, TInputProps } from '../../components/input/input';
+import { Menu } from '../../components/menu/menu';
+import { IconButton } from '../../components/icon-button/icon-button';
+import { Input } from '../../components/input/input';
 import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Modal } from '../../components/modal/modal';
 import { getChatData } from './data';
-import { Link, TLinkProps } from '../../components/link/link';
+import { Link } from '../../components/link/link';
 import { TStore, TUserStore } from '../../modules/store/store';
 import { connect } from '../../modules/store/connect';
 import { ChatController } from '../../controllers/ChatController';
 import { DialogsSection } from '../../components/dialogsSection/dialogsSection';
 import { MessagesSection } from '../../components/messagesSection/messagesSection';
+import { SelectedDialogMeta } from '../../components/selectedDialogMeta/selectedDialogMeta';
 
 
 type TChatPageProps = {
-  profileLink : TLinkProps,
-  chatMenu: TMenuProps,
-  attachMenu: TMenuProps,
-  reviewingDialogUser: {
-    name: string,
-    avatar: TAvatarProps,
-  },
-  searchInput: TInputProps,
-  searchInputPlaceholder: string,
-  sendIcon: TIconButtonProps,
-  dialogs: TDialogProps[],
-  messages: TMessageProps[],
-  messagesPanelInfoText: string,
-  messageInput: TInputProps,
   selectedChatId: number,
   currentUserId: number,
 };
@@ -115,10 +99,6 @@ class ChatPageClass extends Block {
       profileLink,
       chatMenu,
       attachMenu,
-      reviewingDialogUser: {
-        avatar,
-        name,
-      },
       searchInput,
       sendIcon,
       messageInput,
@@ -129,7 +109,7 @@ class ChatPageClass extends Block {
     this._children.profileLink = new Link(profileLink);
     this._children.chatMenu = new Menu(chatMenu);
     this._children.attachMenu = new Menu(attachMenu);
-    this._children.reviewingDialogUserAvatar = new Avatar(avatar);
+    this._children.selectedDialogMeta = new SelectedDialogMeta({});
     this._children.sendIcon = new IconButton({
       ...sendIcon,
       events: {
@@ -297,7 +277,6 @@ class ChatPageClass extends Block {
       compileTemplate,
       {
         searchInputPlaceholder,
-        reviewingDialogUserName: name,
         ...this._children,
       },
     );

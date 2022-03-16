@@ -23,12 +23,6 @@ export const getChatData = (deleteChat: TCallback) => ({
       },
     },
   },
-  reviewingDialogUser: {
-    avatar: {
-      src: null,
-    },
-    name: 'Киноклуб',
-  },
   chatMenu: {
     position: 'top-left',
     iconButton: {

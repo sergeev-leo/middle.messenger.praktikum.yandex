@@ -1,3 +1,5 @@
 .avatar-wrapper(class =`${withUpload === true ? 'clickable' : ''}`)
   if(src !== null)
     img(src=`https://ya-praktikum.tech/api/v2/resources/${src}`)
+  else
+    img(src='blank_image.png')

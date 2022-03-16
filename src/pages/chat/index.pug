@@ -14,9 +14,8 @@
         | !{dialogsSection}
 
     nav.chat__top-panel
-      .chat__top-panel-user-avatar
-        | !{reviewingDialogUserAvatar}
-        h1.chat__top-panel-user-name #{reviewingDialogUserName}
+      .chat__selected-dialog-meta
+        | !{selectedDialogMeta}
       .chat__top-panel-menu-icon
         | !{chatMenu}
 
