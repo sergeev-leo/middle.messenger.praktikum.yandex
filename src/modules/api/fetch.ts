@@ -1,7 +1,7 @@
 import { Router } from '../Router/Router';
 import { ROUTES } from '../Router/constants';
 
-enum HTTP_METHOD {
+export enum HTTP_METHOD {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -48,7 +48,7 @@ export class HTTPTransport {
       .catch(xhr => HTTPTransport.handleCommonErrors(xhr));
   }
 
-  private makeHTTPRequest(
+  public makeHTTPRequest(
     url: string,
     options: THttpRequestOptions = { method: HTTP_METHOD.GET },
     timeout = 60000,
@@ -64,7 +64,7 @@ export class HTTPTransport {
     return new Promise((resolve, reject) => {
       const urlWithHost = [this.host, url].join('/');
       const urlToRequest = method === HTTP_METHOD.GET ?
-        [urlWithHost, this.queryStringify(data)].join('') :
+        [urlWithHost, this.queryStringify(data as Record<string, unknown>)].join('') :
         urlWithHost;
 
       const xhr = new XMLHttpRequest();
@@ -103,12 +103,12 @@ export class HTTPTransport {
       if (method === HTTP_METHOD.GET || !data) {
         xhr.send();
       } else {
-        xhr.send(isFile ? data : JSON.stringify(data));
+        xhr.send(isFile ? data as XMLHttpRequestBodyInit : JSON.stringify(data as Record<string, unknown>));
       }
     });
   }
 
-  private queryStringify(data?: Record<string, unknown>): string {
+  public queryStringify(data?: Record<string, unknown>): string {
     if(!data || Object.keys(data).length === 0) {
       return '';
     }
