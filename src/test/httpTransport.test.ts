@@ -3,6 +3,7 @@ import { newServer } from 'mock-xmlhttprequest';
 
 const fetch = new HTTPTransport('http://test.ru');
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 describe('модуль httpTransport', () => {
 
   it('корректно выполняет преобразование параметров к строке', () => {

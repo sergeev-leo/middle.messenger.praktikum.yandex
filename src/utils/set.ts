@@ -13,6 +13,6 @@ export const set = (object: TIndexed | unknown, path: string | null, value: unkn
 
   const result = path.split('.').reduceRight<TIndexed>((acc, key) => ({
     [key]: acc,
-  }), value as any);
+  }), value as unknown);
   return merge(object as TIndexed, result);
 };

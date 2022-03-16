@@ -1,8 +1,12 @@
 import { RouterClass } from '../modules/Router/Router';
 
 class TestRouteComponent {
-  render() {}
-  hide() {}
+  render() {
+    //comment to prevent ts warning
+  }
+  hide() {
+    //comment to prevent ts warning
+  }
 }
 
 const Router = new RouterClass('#app');

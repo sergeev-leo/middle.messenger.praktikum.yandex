@@ -28,7 +28,7 @@ export const isEqual = (a: Indexed, b: Indexed): boolean => {
   }
 
   return true;
-}
+};
 
 const isObj = (value: unknown) => {
   if(!value) {

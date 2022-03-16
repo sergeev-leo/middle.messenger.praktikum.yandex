@@ -20,7 +20,7 @@ export const SOCKET_API_MESSAGES_TYPES = {
 
 export class SocketAPI {
   socket: WebSocket;
-  interval: any;
+  interval: ReturnType<typeof setInterval>;
   listeners = [];
 
   connect(props: TSocketAPIProps) {

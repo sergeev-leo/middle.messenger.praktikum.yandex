@@ -4,7 +4,7 @@ import { ROUTES } from './constants';
 
 
 export class RouterClass {
-  static __instance?: any;
+  static __instance?: RouterClass;
   routes: TRoute[];
   history: History;
   _currentRoute: TRoute | null;
