@@ -13,7 +13,7 @@ export type TGetChatsData = {
   title?: string,
 };
 
-export type TChatResponseData = {
+export type TChatDialog = {
   id: number,
   title: string,
   avatar: string | null,
@@ -47,7 +47,7 @@ export type TAddOrDeleteUsersToChatData = {
 
 class ChatAPIClass extends BaseApi {
 
-  getChats(data: TGetChatsData = {}): Promise<TChatResponseData[]> {
+  getChats(data: TGetChatsData = {}): Promise<TChatDialog[]> {
     return chatHTTPTransportInstance.get(
       CHAT_API_ENDPOINTS.CHATS,
       {

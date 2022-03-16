@@ -3,16 +3,18 @@ import { Block } from '../../modules/Block/Block';
 import { Menu, TMenuProps } from '../../components/menu/menu';
 import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { IconButton, TIconButtonProps } from '../../components/icon-button/icon-button';
-import { Dialog, TDialogProps } from '../../components/dialog/dialog';
-import { Message, TMessageProps } from '../../components/message/message';
+import { TDialogProps } from '../../components/dialog/dialog';
+import { TMessageProps } from '../../components/message/message';
 import { Input, TInputProps } from '../../components/input/input';
 import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Modal } from '../../components/modal/modal';
 import { getChatData } from './data';
 import { Link, TLinkProps } from '../../components/link/link';
-import { TChatMessage, TStore, TUserStore } from '../../modules/store/store';
+import { TStore, TUserStore } from '../../modules/store/store';
 import { connect } from '../../modules/store/connect';
 import { ChatController } from '../../controllers/ChatController';
+import { DialogsSection } from '../../components/dialogsSection/dialogsSection';
+import { MessagesSection } from '../../components/messagesSection/messagesSection';
 
 
 type TChatPageProps = {
@@ -61,7 +63,7 @@ class ChatPageClass extends Block {
     createSubmitFn(
     '.add-user-modal',
     formData => ChatController.addUserToChat(
-      this.props.selectedChatId,
+      this.props.selectedChatId as number,
       formData['add-user-input'] as string,
     ),
     )(e);
@@ -71,7 +73,7 @@ class ChatPageClass extends Block {
     createSubmitFn(
     '.delete-user-modal',
     formData => ChatController.deleteUserFromChat(
-      this.props.selectedChatId,
+      this.props.selectedChatId as number,
       formData['delete-user-input'] as string,
     ),
     )(e);
@@ -88,7 +90,7 @@ class ChatPageClass extends Block {
     onClose();
   };
 
-  deleteChat = () => ChatController.deleteChat(this.props.selectedChatId);
+  deleteChat = () => ChatController.deleteChat(this.props.selectedChatId as number);
 
   sendMessage = () => {
     const messageInput = document.getElementById('message');
@@ -100,23 +102,15 @@ class ChatPageClass extends Block {
       selectedChatId,
     } = this.props;
 
-    if(!ChatController.connections[selectedChatId]) {
+    if(!ChatController.connections[selectedChatId as number]) {
       return;
     }
 
-    ChatController.connections[selectedChatId].sendMessage(messageInput.value as string);
+    ChatController.connections[selectedChatId as number].sendMessage(messageInput.value as string);
     messageInput.value = '';
   };
 
   render() {
-    const {
-      dialogs = [],
-      messages = [],
-      selectedChatId,
-    } = this.props as TChatPageProps;
-
-    console.log('a', selectedChatId);
-
     const {
       profileLink,
       chatMenu,
@@ -129,8 +123,7 @@ class ChatPageClass extends Block {
       sendIcon,
       messageInput,
       searchInputPlaceholder,
-      messagesPanelInfoText,
-    } = getChatData(this.props as TChatPageProps);
+    } = getChatData(this.deleteChat);
 
 
     this._children.profileLink = new Link(profileLink);
@@ -154,9 +147,10 @@ class ChatPageClass extends Block {
         },
       },
     });
-    this._children.dialogs = dialogs
-      .map((item: TDialogProps) => new Dialog(item));
-    this._children.messages = messages.map((item: TMessageProps) => new Message(item));
+
+    console.log('chat');
+    this._children.dialogsSection = new DialogsSection({});
+    this._children.messagesSection = new MessagesSection({});
 
     this._children.createChatModal = new Modal({
       id: 'create-chat-modal',
@@ -303,7 +297,6 @@ class ChatPageClass extends Block {
       compileTemplate,
       {
         searchInputPlaceholder,
-        messagesPanelInfoText,
         reviewingDialogUserName: name,
         ...this._children,
       },
@@ -314,56 +307,15 @@ class ChatPageClass extends Block {
 
 const mapStateToProps = (state: TStore) => {
   const {
-    dialogs,
-    messages,
     selectedChatId,
   } = state.chat;
 
   const { data } = state.user as TUserStore;
-
-  const currentUserLogin = data?.login;
   const currentUserId = data?.id;
 
   return {
     selectedChatId,
     currentUserId,
-
-    dialogs: dialogs.map(
-      dialog => ({
-        id: dialog.id,
-        name: dialog.title,
-        avatar: {
-          src: dialog.avatar,
-        },
-        isSelected: dialog.id === selectedChatId,
-        lastMessageTime: dialog.last_message?.time,
-        currentUserMessage: dialog.last_message?.user.login === currentUserLogin,
-        amountOfUnreadMessages: dialog.unread_count,
-        messagePreview: dialog.last_message?.content,
-        events: {
-          click: () => ChatController.selectChat(dialog.id),
-        },
-      }),
-    ),
-
-    messages: messages[selectedChatId] && messages[selectedChatId].map(
-      message => {
-        const {
-          content,
-          is_read,
-          time,
-          user_id,
-        } = message as TChatMessage;
-
-        return {
-          type: 0,
-          time,
-          status: is_read ? 'read' : 'delivered',
-          text: content,
-          currentUserMessage: user_id === currentUserId,
-        };
-      },
-    ),
   };
 };
 

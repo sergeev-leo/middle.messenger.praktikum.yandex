@@ -205,44 +205,46 @@
 }
 
 .chat__messages-panel {
-  position: relative;
-
-  display: flex;
-  overflow-y: auto;
-  flex-direction: column;
   grid-column: 2/3;
   grid-row: 2/3;
 
-  .messages-panel-info-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    color: $grey-color;
-  }
-
-  .date-string-line {
+  overflow-y: auto;
+  .wrapper {
     position: relative;
+    display: flex;
+    flex-direction: column;
 
-    margin: 2rem;
-
-    color: $grey-color;
-    border-top: 0.1rem solid $light-grey-color;
-
-    .no-messages-text,
-    .date-string-label {
+    .messages-panel-info-text {
       position: absolute;
       top: 50%;
       left: 50%;
 
       transform: translate(-50%, -50%);
-    }
-  }
 
-  .current-user-message {
-    align-self: flex-end;
+      color: $grey-color;
+    }
+
+    .date-string-line {
+      position: relative;
+
+      margin: 2rem;
+
+      color: $grey-color;
+      border-top: 0.1rem solid $light-grey-color;
+
+      .no-messages-text,
+      .date-string-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .current-user-message {
+      align-self: flex-end;
+    }
   }
 }
 

@@ -11,8 +11,7 @@
             i.icon.fa.fa-search
             p.input-label-placeholder #{searchInputPlaceholder}
       .chat__dialogs-section
-        each item in dialogs
-          | !{item}
+        | !{dialogsSection}
 
     nav.chat__top-panel
       .chat__top-panel-user-avatar
@@ -22,10 +21,7 @@
         | !{chatMenu}
 
     .chat__messages-panel
-      each item in messages
-        | !{item}
-      else
-        p.messages-panel-info-text #{messagesPanelInfoText}
+      | !{messagesSection}
 
 
     .chat__bottom-panel

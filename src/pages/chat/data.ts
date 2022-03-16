@@ -1,8 +1,9 @@
 import { ROUTES } from '../../modules/Router/constants';
 import { Router } from '../../modules/Router/Router';
+import { TCallback } from '../../modules/types';
 
 
-export const getChatData = ({ deleteChat }) => ({
+export const getChatData = (deleteChat: TCallback) => ({
   profileLink: {
     title: 'Профиль',
     events: {
@@ -144,7 +145,6 @@ export const getChatData = ({ deleteChat }) => ({
     outerIconClassName: 'fa-circle',
     iconClassName: 'fa-arrow-right',
   },
-  messagesPanelInfoText: 'Выберите чат чтобы отправить сообщение',
   messageInput: {
     id: 'message',
     placeholder: 'Сообщение',

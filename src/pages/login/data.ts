@@ -1,8 +1,8 @@
 import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Router } from '../../modules/Router/Router';
 import { ROUTES } from '../../modules/Router/constants';
-import {UserController} from "../../controllers/UserController";
-import {TSignInData} from "../../modules/api/authAPI";
+import { UserController } from '../../controllers/UserController';
+import { TSignInData } from '../../modules/api/authAPI';
 
 
 export const loginData = {

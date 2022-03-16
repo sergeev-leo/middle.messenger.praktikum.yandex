@@ -46,9 +46,7 @@ export class SocketAPI {
 
         this.socket.addEventListener(
           'message',
-          message => {
-            return this.listeners.forEach(listener => listener(JSON.parse(message.data)));
-          },
+          message => this.listeners.forEach(listener => listener(JSON.parse(message.data))),
         );
 
         this.socket.addEventListener(

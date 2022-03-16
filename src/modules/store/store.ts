@@ -1,6 +1,6 @@
 import { set } from '../../utils/set';
 import { EventBus } from '../EventBus/EventBus';
-import { TChatResponseData } from '../api/chatAPI';
+import { TChatDialog } from '../api/chatAPI';
 
 
 export enum StoreEvents {
@@ -44,7 +44,7 @@ export type TUserStore = {
 
 export type TChatStore = {
   selectedChatId: number,
-  dialogs: TChatResponseData[] | [],
+  dialogs: TChatDialog[] | [],
   messages: Record<number | string, TChatMessage[]>,
   error: null,
 };
@@ -63,13 +63,11 @@ class Store extends EventBus {
   }
 
   public getState() {
-    console.log('getState', this.state);
     return this.state;
   }
 
   public set(path: string, value: unknown) {
     set(this.state, path, value);
-    console.log('setState', this.state);
 
     this.emit(StoreEvents.Updated);
   }
