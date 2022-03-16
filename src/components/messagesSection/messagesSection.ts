@@ -11,6 +11,16 @@ export type TMessagesSectionProps = {
 };
 
 class MessagesSectionClass extends Block {
+  componentDidUpdate() {
+    const element: HTMLElement | null = document.querySelector('.chat__messages-panel');
+
+    if(element) {
+      element.scroll({
+        top: element.scrollHeight,
+      });
+    }
+    return true;
+  }
 
   render() {
     console.log('messages');
