@@ -3,7 +3,7 @@ import { Route, TRoute } from './Route';
 import { ROUTES } from './constants';
 
 
-class RouterClass {
+export class RouterClass {
   static __instance?: any;
   routes: TRoute[];
   history: History;
