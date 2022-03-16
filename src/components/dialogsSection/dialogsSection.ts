@@ -22,7 +22,8 @@ class DialogsSectionClass extends Block {
       dialogs = [],
     } = this.props as TDialogsSectionProps;
 
-    console.log('dialogs');
+    console.log('dialogsSection render');
+
     this._children.dialogs = dialogs.map(
       dialog => new Dialog({
         id: dialog.id,

@@ -128,7 +128,8 @@ class ChatPageClass extends Block {
       },
     });
 
-    console.log('chat');
+    console.log('chat render');
+
     this._children.dialogsSection = new DialogsSection({});
     this._children.messagesSection = new MessagesSection({});
 
