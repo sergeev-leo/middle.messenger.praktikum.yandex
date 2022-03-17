@@ -432,7 +432,7 @@ export class Block {
   }
 
   /*
-  *
+  * метод размонтирует компонент из разметки
   * */
   hide() {
     this.eventBus().emit(Block.EVENTS.FLOW_CWU);
