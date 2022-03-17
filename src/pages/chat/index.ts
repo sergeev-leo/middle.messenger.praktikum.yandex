@@ -43,7 +43,7 @@ class ChatPageClass extends Block {
     ChatController.closeConnections();
   }
 
-  addUser = (e: InputEvent, onClose: () => void) => {
+  addUser(e: InputEvent, onClose: () => void) {
     createSubmitFn(
     '.add-user-modal',
     formData => ChatController.addUserToChat(
@@ -52,8 +52,9 @@ class ChatPageClass extends Block {
     ),
     )(e);
     onClose();
-  };
-  deleteUser = (e: InputEvent, onClose: () => void) => {
+  }
+
+  deleteUser(e: InputEvent, onClose: () => void) {
     createSubmitFn(
     '.delete-user-modal',
     formData => ChatController.deleteUserFromChat(
@@ -62,9 +63,9 @@ class ChatPageClass extends Block {
     ),
     )(e);
     onClose();
-  };
+  }
 
-  createChat = (e: InputEvent, onClose: () => void) => {
+  createChat(e: InputEvent, onClose: () => void) {
     createSubmitFn(
       '.create-chat-modal',
       formData => ChatController.createChat({
@@ -72,11 +73,13 @@ class ChatPageClass extends Block {
       }),
     )(e);
     onClose();
-  };
+  }
 
-  deleteChat = () => ChatController.deleteChat(this.props.selectedChatId as number);
+  deleteChat() {
+    ChatController.deleteChat(this.props.selectedChatId as number);
+  }
 
-  sendMessage = () => {
+  sendMessage() {
     const messageInput = document.getElementById('message');
     if(!messageInput) {
       return;
