@@ -26,6 +26,7 @@ class DialogsSectionClass extends Block {
 
     this._children.dialogs = dialogs
       .filter(({ title }) => title.includes(dialogFilter))
+      .sort((a, b) => Date.parse(b.last_message?.time) - Date.parse(a.last_message?.time))
       .map(
         dialog => new Dialog({
           id: dialog.id,
