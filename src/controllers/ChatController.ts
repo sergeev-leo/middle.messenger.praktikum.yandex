@@ -1,5 +1,5 @@
 import { store } from '../modules/store/store';
-import {ChatAPI, TChatDialog, TCreateChatData, TGetChatsData} from '../modules/api/chatAPI';
+import { ChatAPI, TCreateChatData, TGetChatsData } from '../modules/api/chatAPI';
 import { SOCKET_API_MESSAGES_TYPES, SocketAPI } from '../modules/api/socketAPI';
 import { ProfileAPI } from '../modules/api/profileAPI';
 
