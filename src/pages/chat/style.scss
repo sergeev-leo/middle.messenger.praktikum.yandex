@@ -256,11 +256,13 @@
   }
 }
 
+#avatar-upload-input,
 #media-upload-input,
 #file-upload-input {
   display: none;
 }
 
+label[for="avatar-upload-input"],
 label[for="media-upload-input"],
 label[for="file-upload-input"] {
   position: absolute;

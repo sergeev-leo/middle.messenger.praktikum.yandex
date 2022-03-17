@@ -126,6 +126,18 @@ class ChatAPIClass extends BaseApi {
     )
       .then(xhr => xhr.response);
   }
+
+  changeAvatar(data: FormData) {
+    return chatHTTPTransportInstance.put(
+      [CHAT_API_ENDPOINTS.CHATS, 'avatar'].join('/'),
+      {
+        withCredentials: true,
+        isFile: true,
+        data,
+      },
+    )
+      .then(xhr => xhr.response);
+  }
 }
 
 export const ChatAPI = new ChatAPIClass();
