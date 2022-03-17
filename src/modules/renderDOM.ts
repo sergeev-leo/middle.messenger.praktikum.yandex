@@ -8,7 +8,7 @@ export const render = (query: string, block: TComponent) => {
   if(!root) {
     return null;
   }
-  root.innerHTML = '';
+
   root.appendChild(block.getContent());
 
   block.dispatchComponentDidMount();

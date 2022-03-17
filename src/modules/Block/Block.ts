@@ -376,6 +376,7 @@ export class Block {
     * очищаем все вложенные узлы компонента и вставляем итоговую разметку
     * */
     this._element.replaceWith(newElement);
+    this._element = newElement;
 
     /*
     * добавляем новые обработчики событий
