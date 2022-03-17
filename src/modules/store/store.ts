@@ -43,7 +43,7 @@ export type TUserStore = {
 };
 
 export type TChatStore = {
-  selectedChatId: number,
+  selectedChatId: number | null,
   dialogs: TChatDialog[] | [],
   messages: Record<number | string, TChatMessage[]>,
   error: null,
