@@ -12,6 +12,7 @@ export type TMessage = {
   content?: string,
 }
 
+/* eslint-disable no-console */
 export const SOCKET_API_MESSAGES_TYPES = {
   GET_OLD: 'get old',
   MESSAGE: 'message',
@@ -21,7 +22,7 @@ export const SOCKET_API_MESSAGES_TYPES = {
 export class SocketAPI {
   socket: WebSocket;
   interval: ReturnType<typeof setInterval>;
-  listeners = [];
+  listeners: TCallback[] = [];
 
   connect(props: TSocketAPIProps) {
     const {
@@ -40,13 +41,13 @@ export class SocketAPI {
           'open',
           () => {
             console.log('Соединение установлено');
-            resolve();
+            resolve(null);
           },
         );
 
         this.socket.addEventListener(
           'message',
-          message => this.listeners.forEach(listener => listener(JSON.parse(message.data))),
+          message => this.listeners.forEach((listener: TCallback) => listener(JSON.parse(message.data))),
         );
 
         this.socket.addEventListener(

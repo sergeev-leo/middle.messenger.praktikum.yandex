@@ -20,6 +20,7 @@ type TChatPageProps = {
   currentUserId: number,
 };
 
+/* eslint-disable no-console */
 class ChatPageClass extends Block {
 
   async componentDidMount() {
@@ -80,8 +81,8 @@ class ChatPageClass extends Block {
   }
 
   sendMessage() {
-    const messageInput = document.getElementById('message');
-    if(!messageInput) {
+    const messageInput = <HTMLInputElement>document.getElementById('message');
+    if(!messageInput || !messageInput.value.trim()) {
       return;
     }
 
@@ -95,9 +96,9 @@ class ChatPageClass extends Block {
 
     ChatController.connections[selectedChatId as number].sendMessage(messageInput.value as string);
     messageInput.value = '';
-  };
+  }
 
-  render() {
+  protected initChildren() {
     const {
       profileLink,
       chatMenu,
@@ -105,7 +106,6 @@ class ChatPageClass extends Block {
       searchInput,
       sendIcon,
       messageInput,
-      searchInputPlaceholder,
     } = getChatData(this.deleteChat);
 
 
@@ -123,15 +123,13 @@ class ChatPageClass extends Block {
     this._children.messageInput = new Input({
       ...messageInput,
       events: {
-        keydown: (e: InputEvent) => {
+        keydown: (e:KeyboardEvent) => {
           if(e.keyCode === 13) {
             return this.sendMessage();
           }
         },
       },
     });
-
-    console.log('chat render');
 
     this._children.dialogsSection = new DialogsSection({});
     this._children.messagesSection = new MessagesSection({});
@@ -276,11 +274,14 @@ class ChatPageClass extends Block {
         },
       },
     });
+  }
 
+  render() {
     return this.compile(
       compileTemplate,
       {
-        searchInputPlaceholder,
+        searchInputPlaceholder: 'sad',
+        disabled: !this.props.selectedChatId,
         ...this._children,
       },
     );

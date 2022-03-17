@@ -12,7 +12,8 @@ import { UserController } from './controllers/UserController';
 
 document.addEventListener('DOMContentLoaded', async() => {
   await UserController.fetchAndSetSignedUserData()
-    .catch(error => console.log('no logged in user', error));
+    // eslint-disable-next-line no-console
+    .catch(error => console.log('Пользователь не авторизован в системе', error));
 
   Router
     .use(ROUTES.LOGIN, LoginForm)

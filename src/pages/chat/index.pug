@@ -23,7 +23,7 @@
       | !{messagesSection}
 
 
-    .chat__bottom-panel
+    .chat__bottom-panel(class = disabled ? 'hidden' : undefined)
       .chat__bottom-panel-attach-menu-icon
         | !{attachMenu}
       .chat__bottom-panel-message-field

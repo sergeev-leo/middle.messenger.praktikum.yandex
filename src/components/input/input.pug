@@ -1,6 +1,15 @@
 .input-wrapper
     label(for=id) #{label}
-    input(id=id name=id value=value || '' type=type || "text" required=required || true placeholder=placeholder pattern=pattern accept=accept)
+    input(
+        id=id
+        name=id
+        value=value || ''
+        type=type || "text"
+        required=required || true
+        placeholder=placeholder
+        pattern=pattern
+        accept=accept
+    )
     if(type==="file")
       .file-chosen
     span.error #{error}

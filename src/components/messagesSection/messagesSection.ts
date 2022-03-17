@@ -28,9 +28,6 @@ class MessagesSectionClass extends Block {
       messages = [],
     } = this.props as TMessagesSectionProps;
 
-
-    console.log('messagesSection render');
-
     this._children.messages = messages
       .sort((a, b) => Date.parse(a.time) - Date.parse(b.time))
       .map(

@@ -20,7 +20,7 @@ type THttpRequestOptions = {
 
 type THttpRequestOptionsWithoutMethod = Omit<THttpRequestOptions, 'method'>;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/* eslint-disable no-console */
 export class HTTPTransport {
   host: string;
 
