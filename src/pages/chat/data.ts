@@ -19,7 +19,7 @@ export const getChatData = (deleteChat: TCallback) => ({
       keyup: (e: InputEvent) => {
         const { value } = e.target as HTMLInputElement;
 
-        ChatController.setDialogFilter(value.trim());
+        ChatController.setDialogFilter(value.trim().toLowerCase());
 
         // eslint-disable-next-line no-console
         return console.log(`поиск ${value}`);

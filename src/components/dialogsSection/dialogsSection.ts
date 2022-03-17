@@ -25,7 +25,7 @@ class DialogsSectionClass extends Block {
     } = this.props as TDialogsSectionProps;
 
     this._children.dialogs = dialogs
-      .filter(({ title }) => title.includes(dialogFilter))
+      .filter(({ title }) => title.toLowerCase().trim().includes(dialogFilter))
       .sort((a, b) => Date.parse(b.last_message?.time) - Date.parse(a.last_message?.time))
       .map(
         dialog => new Dialog({
