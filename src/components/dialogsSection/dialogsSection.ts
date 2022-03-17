@@ -11,6 +11,7 @@ export type TDialogsSectionProps = {
   dialogs: TChatDialog[] | [],
   selectedChatId: number,
   currentUserLogin: string,
+  dialogFilter: string,
 };
 
 class DialogsSectionClass extends Block {
@@ -20,25 +21,28 @@ class DialogsSectionClass extends Block {
       selectedChatId,
       currentUserLogin,
       dialogs = [],
+      dialogFilter,
     } = this.props as TDialogsSectionProps;
 
-    this._children.dialogs = dialogs.map(
-      dialog => new Dialog({
-        id: dialog.id,
-        name: dialog.title,
-        avatar: {
-          src: dialog.avatar,
-        },
-        isSelected: dialog.id === selectedChatId,
-        lastMessageTime: dialog.last_message?.time,
-        currentUserMessage: dialog.last_message?.user.login === currentUserLogin,
-        amountOfUnreadMessages: dialog.unread_count,
-        messagePreview: dialog.last_message?.content,
-        events: {
-          click: () => ChatController.selectChat(dialog.id),
-        },
-      }),
-    );
+    this._children.dialogs = dialogs
+      .filter(({ title }) => title.includes(dialogFilter))
+      .map(
+        dialog => new Dialog({
+          id: dialog.id,
+          name: dialog.title,
+          avatar: {
+            src: dialog.avatar,
+          },
+          isSelected: dialog.id === selectedChatId,
+          lastMessageTime: dialog.last_message?.time,
+          currentUserMessage: dialog.last_message?.user.login === currentUserLogin,
+          amountOfUnreadMessages: dialog.unread_count,
+          messagePreview: dialog.last_message?.content,
+          events: {
+            click: () => ChatController.selectChat(dialog.id),
+          },
+        }),
+      );
 
     return this.compile(
       compileTemplate,
@@ -56,6 +60,7 @@ const mapStateToProps = (state: TStore) => {
 
   const {
     dialogs,
+    dialogFilter,
     selectedChatId,
   } = state.chat;
 
@@ -65,6 +70,7 @@ const mapStateToProps = (state: TStore) => {
     selectedChatId,
     currentUserLogin,
     dialogs,
+    dialogFilter,
   };
 };
 

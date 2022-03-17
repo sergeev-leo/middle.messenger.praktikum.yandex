@@ -21,6 +21,7 @@ const INITIAL_STORE_VALUE = {
     error: null,
   },
   chat: {
+    dialogFilter: '',
     selectedChatId: null,
     dialogs: [],
     messages: {},
@@ -43,6 +44,7 @@ export type TUserStore = {
 };
 
 export type TChatStore = {
+  dialogFilter: string,
   selectedChatId: number | null,
   dialogs: TChatDialog[] | [],
   messages: Record<number | string, TChatMessage[]>,

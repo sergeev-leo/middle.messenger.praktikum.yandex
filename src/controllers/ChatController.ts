@@ -113,6 +113,10 @@ export class ChatControllerClass {
     store.set('chat.selectedChatId', chatId);
   }
 
+  public setDialogFilter(filter: string) {
+    store.set('chat.dialogFilter', filter);
+  }
+
   public async connectToChat(chatId: number, userId: number) {
     try {
       const { token } = await ChatAPI.getToken(chatId);

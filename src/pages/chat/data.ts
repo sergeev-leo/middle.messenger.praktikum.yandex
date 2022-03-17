@@ -1,6 +1,7 @@
 import { ROUTES } from '../../modules/Router/constants';
 import { Router } from '../../modules/Router/Router';
 import { TCallback } from '../../modules/types';
+import { ChatController } from '../../controllers/ChatController';
 
 
 export const getChatData = (deleteChat: TCallback) => ({
@@ -17,6 +18,8 @@ export const getChatData = (deleteChat: TCallback) => ({
     events: {
       keyup: (e: InputEvent) => {
         const { value } = e.target as HTMLInputElement;
+
+        ChatController.setDialogFilter(value.trim());
 
         // eslint-disable-next-line no-console
         return console.log(`поиск ${value}`);

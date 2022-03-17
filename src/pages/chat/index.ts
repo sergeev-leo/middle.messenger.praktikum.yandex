@@ -280,7 +280,7 @@ class ChatPageClass extends Block {
     return this.compile(
       compileTemplate,
       {
-        searchInputPlaceholder: 'sad',
+        searchInputPlaceholder: 'Поиск',
         disabled: !this.props.selectedChatId,
         ...this._children,
       },
