@@ -73,7 +73,7 @@ const mapStateToProps = (state: TStore) => {
 
   return {
     currentUserId,
-    messages: messages[selectedChatId] ? messages[selectedChatId] : [],
+    messages: selectedChatId && messages[selectedChatId] ? messages[selectedChatId] : [],
   };
 };
 
