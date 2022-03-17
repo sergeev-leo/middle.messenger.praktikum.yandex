@@ -1,4 +1,4 @@
-import { RouterClass } from '../modules/Router/Router';
+import { RouterClass } from '../src/modules/Router/Router';
 
 class TestRouteComponent {
   render() {

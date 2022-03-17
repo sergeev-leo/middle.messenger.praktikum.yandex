@@ -1,4 +1,4 @@
-import { HTTPTransport } from '../modules/api/fetch';
+import { HTTPTransport } from '../src/modules/api/fetch';
 import { newServer } from 'mock-xmlhttprequest';
 
 const fetch = new HTTPTransport('http://test.ru');

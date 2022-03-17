@@ -1,5 +1,5 @@
 import { EventBus } from '../EventBus/EventBus';
-import { TComponentChildren, TComponentProps, TEventBusInstance, TEvents, TListeners } from '../types';
+import {TCallback, TComponentChildren, TComponentProps, TEventBusInstance, TEvents, TListeners} from '../types';
 import { v4 as makeUUID } from 'uuid';
 import { isEqual } from '../../utils/isEqual';
 
@@ -224,7 +224,7 @@ export class Block {
     } = this.props;
 
     Object
-      .keys(events)
+      .keys(events as TEvents)
       .forEach(eventName => {
         if(!this._listeners[eventName]) {
           this._listeners[eventName] = [];
@@ -233,12 +233,14 @@ export class Block {
         /*
         * сохраняем обработчики событий чтобы была возможность их позже удалить
         * */
-        this._listeners[eventName].push(events[eventName]);
+        // @ts-ignore
+        this._listeners[eventName].push(events[eventName] as TCallback);
 
         /*
         * добавляем обработчики на созданный элемент
         * */
-        this._element.addEventListener(eventName, events[eventName]);
+        // @ts-ignore
+        this._element.addEventListener(eventName, events[eventName] as TCallback);
       });
   }
 
@@ -279,9 +281,10 @@ export class Block {
       });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
   protected componentDidMount(props: TComponentProps) {
     // метод должен быть переопределен в компоненте-наследнике
+    console.log(props)
   }
 
   /*
@@ -436,6 +439,9 @@ export class Block {
   * */
   hide() {
     this.eventBus().emit(Block.EVENTS.FLOW_CWU);
-    this.getContent().remove();
+    const element  = this.getContent()
+    if(element) {
+      element.remove();
+    }
   }
 }
