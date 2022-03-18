@@ -5,8 +5,8 @@ import { TEvents } from '../../modules/types';
 
 export type TAvatarProps = {
   src: string,
-  withUpload: boolean,
-  title: string,
+  withUpload?: boolean,
+  title?: string,
   events?: TEvents,
 };
 

@@ -3,17 +3,13 @@
 @import "../../components/button/button";
 @import "../../components/input/input";
 
-html {
-  @include base-styles;
-}
-
 .register-form {
   display: flex;
   justify-content: center;
 
   .register-form__card {
     width: 34rem;
-    height: 61.5rem;
+    height: 68rem;
     margin-top: 12rem;
     padding: 3rem;
 
@@ -34,7 +30,14 @@ html {
 
     .input-wrapper {
       margin: 0 auto;
-      margin-bottom: 1.5rem;
+
+      &.has-error:first-child {
+        margin-bottom: 0;
+      }
+
+      &:first-child {
+        margin-bottom: 2rem;
+      }
     }
   }
 

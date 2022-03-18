@@ -1,58 +1,89 @@
-export const profileData = {
-  avatar: {
-    src: '/user.png',
-    title: 'Поменять аватар',
-    withUpload: true,
-  },
-  userName: 'User',
+import { ROUTES } from '../../modules/Router/constants';
+import { TAvatarProps } from '../../components/avatar/avatar';
+import { TLinkProps } from '../../components/link/link';
+import { UserController } from '../../controllers/UserController';
+import { Router } from '../../modules/Router/Router';
 
+
+type TUserDataRow = {
+  id: string,
+  label: string,
+  value: string,
+};
+
+export type TProfilePageProps = {
+  avatar: TAvatarProps,
+  userName: string,
+  links: TLinkProps[],
+  userData: TUserDataRow[],
+}
+
+export const getProfileData = ({
+  login,
+  email,
+  phone,
+  firstName,
+  secondName,
+  displayName,
+  avatar,
+}): TProfilePageProps => ({
+  avatar: {
+    src: avatar,
+  },
+  userName: login,
   links: [
     {
       title: 'Выйти',
       style: 'error',
-      href: '/',
+      events: {
+        click: () => UserController.logOut(),
+      },
     },
     {
       title: 'Изменить пароль',
       style: 'secondary',
-      href: '../password-edit/index.html',
+      events: {
+        click: () => Router.go(ROUTES.PASSWORD_EDIT),
+      },
     },
     {
       title: 'Изменить данные',
       style: 'secondary',
-      href: '../profile-edit/index.html',
+      events: {
+        click: () => Router.go(ROUTES.PROFILE_EDIT),
+      },
     },
   ],
   userData: [
     {
       id: 'email',
       label: 'Почта',
-      value: 'pochta@yandex.ru',
+      value: email,
     },
     {
       id: 'login',
       label: 'Логин',
-      value: 'ivanivanov',
+      value: login,
     },
     {
       id: 'first_name',
       label: 'Имя',
-      value: 'Иван',
+      value: firstName,
     },
     {
       id: 'second_name',
       label: 'Фамилия',
-      value: 'Иванов',
+      value: secondName,
     },
     {
       id: 'display_name',
       label: 'Имя в чате',
-      value: 'Иван',
+      value: displayName,
     },
     {
       id: 'phone',
       label: 'Телефон',
-      value: '+7(909)9673030',
+      value: phone,
     },
   ],
-};
+});

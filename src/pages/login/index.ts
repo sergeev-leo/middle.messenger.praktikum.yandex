@@ -2,7 +2,6 @@ import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { Input, TInputProps } from '../../components/input/input';
 import { Button, TButtonProps } from '../../components/button/button';
-import { render } from '../../modules/renderDOM';
 import { loginData } from './data';
 
 
@@ -44,5 +43,3 @@ export class LoginForm extends Block {
     );
   }
 }
-
-render('#login', new LoginForm());

@@ -1,7 +1,6 @@
 import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { ErrorPage } from '../../components/error/error';
-import { render } from '../../modules/renderDOM';
 import { clientErrorData } from './data';
 
 
@@ -19,5 +18,3 @@ export class ClientError extends Block {
     );
   }
 }
-
-render('#clientError', new ClientError());

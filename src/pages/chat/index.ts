@@ -1,64 +1,158 @@
 import compileTemplate from './index.pug';
 import { Block } from '../../modules/Block/Block';
-import { Link, TLinkProps } from '../../components/link/link';
-import { Menu, TMenuProps } from '../../components/menu/menu';
-import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
-import { IconButton, TIconButtonProps } from '../../components/icon-button/icon-button';
-import { Dialog, TDialogProps } from '../../components/dialog/dialog';
-import { Message, TMessageProps } from '../../components/message/message';
-import { Input, TInputProps } from '../../components/input/input';
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
-import { render } from '../../modules/renderDOM';
+import { Menu } from '../../components/menu/menu';
+import { IconButton } from '../../components/icon-button/icon-button';
+import { Input } from '../../components/input/input';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Modal } from '../../components/modal/modal';
-import { chatData } from './data';
+import { getChatData } from './data';
+import { Link } from '../../components/link/link';
+import { TStore, TUserStore } from '../../modules/store/store';
+import { connect } from '../../modules/store/connect';
+import { ChatController } from '../../controllers/ChatController';
+import { DialogsSection } from '../../components/dialogsSection/dialogsSection';
+import { MessagesSection } from '../../components/messagesSection/messagesSection';
+import { SelectedDialogMeta } from '../../components/selectedDialogMeta/selectedDialogMeta';
 
 
 type TChatPageProps = {
-  profileLink : TLinkProps,
-  chatMenu: TMenuProps,
-  attachMenu: TMenuProps,
-  reviewingDialogUser: {
-    name: string,
-    avatar: TAvatarProps,
-  },
-  searchInput: TInputProps,
-  searchInputPlaceholder: string,
-  sendIcon: TIconButtonProps,
-  dialogs: TDialogProps[],
-  messages: TMessageProps[],
-  messagesPanelInfoText: string,
-  messageInput: TInputProps,
+  selectedChatId: number,
+  currentUserId: number,
 };
 
-export class ChatPage extends Block {
-  constructor() {
-    super(chatData);
+/* eslint-disable no-console */
+class ChatPageClass extends Block {
+
+  async componentDidMount() {
+    const chatsData = await ChatController.getChats({});
+
+    if(!Array.isArray(chatsData)) {
+      return;
+    }
+
+    const {
+      currentUserId,
+    } = this.props as TChatPageProps;
+
+    for (const { id } of chatsData) {
+      await ChatController.getChatUsers(id);
+      await ChatController.connectToChat(id, currentUserId);
+    }
   }
 
-  initChildren() {
+  componentWillUnmount() {
+    ChatController.closeConnections();
+  }
+
+  addUser(e: InputEvent, onClose: () => void) {
+    createSubmitFn(
+    '.add-user-modal',
+    formData => ChatController.addUserToChat(
+      this.props.selectedChatId as number,
+      formData['add-user-input'] as string,
+    ),
+    )(e);
+    onClose();
+  }
+
+  deleteUser(e: InputEvent, onClose: () => void) {
+    createSubmitFn(
+    '.delete-user-modal',
+    formData => ChatController.deleteUserFromChat(
+      this.props.selectedChatId as number,
+      formData['delete-user-input'] as string,
+    ),
+    )(e);
+    onClose();
+  }
+
+  createChat(e: InputEvent, onClose: () => void) {
+    createSubmitFn(
+      '.create-chat-modal',
+      formData => ChatController.createChat({
+        title: formData['create-chat-input'] as string,
+      }),
+    )(e);
+    onClose();
+  }
+
+  deleteChat() {
+    ChatController.deleteChat(this.props.selectedChatId as number);
+  }
+
+  sendMessage() {
+    const messageInput = <HTMLInputElement>document.getElementById('message');
+    if(!messageInput || !messageInput.value.trim()) {
+      return;
+    }
+
+    const {
+      selectedChatId,
+    } = this.props;
+
+    if(!ChatController.connections[selectedChatId as number]) {
+      return;
+    }
+
+    ChatController.connections[selectedChatId as number].sendMessage(messageInput.value as string);
+    messageInput.value = '';
+  }
+
+  protected initChildren() {
     const {
       profileLink,
       chatMenu,
       attachMenu,
-      reviewingDialogUser: {
-        avatar,
-      },
       searchInput,
       sendIcon,
-      dialogs,
-      messages,
       messageInput,
-    } = this.props as TChatPageProps;
+    } = getChatData(this.deleteChat);
+
 
     this._children.profileLink = new Link(profileLink);
     this._children.chatMenu = new Menu(chatMenu);
     this._children.attachMenu = new Menu(attachMenu);
-    this._children.reviewingDialogUserAvatar = new Avatar(avatar);
-    this._children.sendIcon = new IconButton(sendIcon);
+    this._children.selectedDialogMeta = new SelectedDialogMeta({});
+    this._children.sendIcon = new IconButton({
+      ...sendIcon,
+      events: {
+        click: this.sendMessage,
+      },
+    });
     this._children.searchInput = new Input(searchInput);
-    this._children.messageInput = new Input(messageInput);
-    this._children.dialogs = dialogs.map((item: TDialogProps) => new Dialog(item));
-    this._children.messages = messages.map((item: TMessageProps) => new Message(item));
+    this._children.messageInput = new Input({
+      ...messageInput,
+      events: {
+        keydown: (e:KeyboardEvent) => {
+          if(e.keyCode === 13) {
+            return this.sendMessage();
+          }
+        },
+      },
+    });
+
+    this._children.dialogsSection = new DialogsSection({});
+    this._children.messagesSection = new MessagesSection({});
+
+    this._children.createChatModal = new Modal({
+      id: 'create-chat-modal',
+      title: 'Создать чат',
+      contentComponent: Input,
+      contentComponentProps: {
+        id: 'create-chat-input',
+        label: 'Логин',
+        pattern: VALIDATION.REQUIRED.pattern,
+        error: VALIDATION.REQUIRED.message,
+      },
+      button: {
+        title: 'Создать',
+        type: 'submit',
+        style: 'primary',
+      },
+      events: {
+        submit: this.createChat,
+      },
+    });
 
     this._children.addUserModal = new Modal({
       id: 'add-user-modal',
@@ -67,7 +161,8 @@ export class ChatPage extends Block {
       contentComponentProps: {
         id: 'add-user-input',
         label: 'Логин',
-        pattern: VALIDATION_PATTERNS.LOGIN,
+        pattern: VALIDATION.LOGIN.pattern,
+        error: VALIDATION.LOGIN.message,
       },
       button: {
         title: 'Добавить',
@@ -75,11 +170,7 @@ export class ChatPage extends Block {
         style: 'primary',
       },
       events: {
-        submit: (e: InputEvent, onClose: () => void) => {
-          e.stopPropagation();
-          createSubmitFn('.add-user-modal')(e);
-          onClose();
-        },
+        submit: this.addUser,
       },
     });
 
@@ -90,7 +181,8 @@ export class ChatPage extends Block {
       contentComponentProps: {
         id: 'delete-user-input',
         label: 'Логин',
-        pattern: VALIDATION_PATTERNS.LOGIN,
+        pattern: VALIDATION.LOGIN.pattern,
+        error: VALIDATION.LOGIN.message,
       },
       button: {
         title: 'Удалить',
@@ -98,11 +190,7 @@ export class ChatPage extends Block {
         style: 'primary',
       },
       events: {
-        submit: (e: InputEvent, onClose: () => void) => {
-          e.stopPropagation();
-          createSubmitFn('.delete-user-modal')(e);
-          onClose();
-        },
+        submit: this.deleteUser,
       },
     });
 
@@ -137,8 +225,10 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
-          e.stopPropagation();
-          createSubmitFn('.file-upload-modal')(e);
+          createSubmitFn(
+            '.file-upload-modal',
+            () => console.log('fileUploadCb'),
+          )(e);
           onClose();
         },
       },
@@ -176,8 +266,10 @@ export class ChatPage extends Block {
       },
       events: {
         submit: (e: InputEvent, onClose: () => void) => {
-          e.stopPropagation();
-          createSubmitFn('.file-upload-modal')(e);
+          createSubmitFn(
+            '.file-upload-modal',
+            () => console.log('fileUploadCb'),
+          )(e);
           onClose();
         },
       },
@@ -185,24 +277,30 @@ export class ChatPage extends Block {
   }
 
   render() {
-    const {
-      reviewingDialogUser: {
-        name,
-      },
-      searchInputPlaceholder,
-      messagesPanelInfoText,
-    } = this.props as TChatPageProps;
-
     return this.compile(
       compileTemplate,
       {
-        searchInputPlaceholder,
-        messagesPanelInfoText,
-        reviewingDialogUserName: name,
+        searchInputPlaceholder: 'Поиск',
+        disabled: !this.props.selectedChatId,
         ...this._children,
       },
     );
   }
 }
 
-render('#chat', new ChatPage());
+
+const mapStateToProps = (state: TStore) => {
+  const {
+    selectedChatId,
+  } = state.chat;
+
+  const { data } = state.user as TUserStore;
+  const currentUserId = data?.id;
+
+  return {
+    selectedChatId,
+    currentUserId,
+  };
+};
+
+export const ChatPage = connect(ChatPageClass, mapStateToProps);

@@ -1,9 +1,15 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { ROUTES } from '../../modules/Router/constants';
+import { Router } from '../../modules/Router/Router';
+import { TCallback } from '../../modules/types';
+import { ChatController } from '../../controllers/ChatController';
 
-export const chatData = {
+
+export const getChatData = (deleteChat: TCallback) => ({
   profileLink: {
     title: 'Профиль',
-    href: '../profile/index.html',
+    events: {
+      click: () => Router.go(ROUTES.PROFILE),
+    },
   },
   searchInputPlaceholder: 'Поиск',
   searchInput: {
@@ -13,49 +19,12 @@ export const chatData = {
       keyup: (e: InputEvent) => {
         const { value } = e.target as HTMLInputElement;
 
+        ChatController.setDialogFilter(value.trim().toLowerCase());
+
         // eslint-disable-next-line no-console
         return console.log(`поиск ${value}`);
       },
     },
-  },
-  dialogs: [
-    {
-      name: 'Андрей',
-      avatar: {
-        src: '/user.png',
-      },
-      lastMessageTime: '10:49',
-      currentUserMessage: false,
-      amountOfUnreadMessages: 2,
-      messagePreview: 'Изображение',
-    },
-    {
-      name: 'Киноклуб',
-      avatar: {
-        src: '/user.png',
-      },
-      lastMessageTime: '12:00',
-      currentUserMessage: true,
-      isSelected: true,
-      amountOfUnreadMessages: 0,
-      messagePreview: 'стикер',
-    },
-    {
-      name: 'Илья',
-      avatar: {
-        src: '/user.png',
-      },
-      lastMessageTime: '15:12',
-      currentUserMessage: false,
-      amountOfUnreadMessages: 4,
-      messagePreview: 'Друзья, у меня для вас особенный выпуск новостей!...',
-    },
-  ],
-  reviewingDialogUser: {
-    avatar: {
-      src: '/user.png',
-    },
-    name: 'Киноклуб',
   },
   chatMenu: {
     position: 'top-left',
@@ -65,6 +34,20 @@ export const chatData = {
       iconClassName: 'fa-ellipsis-v',
     },
     data: [
+      {
+        id: 'chat-menu-0',
+        text: 'Создать чат',
+        iconButton: {
+          outerIconClassName:'fa-circle-thin',
+          iconClassName: 'fa-plus',
+        },
+        events: {
+          click: () => {
+            const modal = document.querySelector('#create-chat-modal');
+            modal?.classList.remove('closed');
+          },
+        },
+      },
       {
         id: 'chat-menu-1',
         text: 'Добавить пользователя',
@@ -101,8 +84,7 @@ export const chatData = {
           iconClassName: 'fa-trash',
         },
         events: {
-          // eslint-disable-next-line no-console
-          click: ()  => console.log('удалить чат'),
+          click: deleteChat,
         },
       },
     ],
@@ -156,69 +138,12 @@ export const chatData = {
       },
     ],
   },
-  messages: [
-    {
-      type: 0,
-      time: '12:00',
-      status: 'read',
-      text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex?',
-      currentUserMessage: false,
-    },
-    {
-      type: 0,
-      time: '12:00',
-      status: 'read',
-      text: 'Lorem ipsum dolor, sit amet consectetur. Distinctio sed, esse cum libero obcaecati voluptate debitis.',
-      currentUserMessage: false,
-    },
-    {
-      status: 'dateTimeMsg',
-      text: '19 июля',
-    },
-    {
-      type: 0,
-      time: '12:00',
-      status: 'read',
-      text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex? Distinctio sed, esse cum libero obcaecati voluptate debitis.',
-      currentUserMessage: true,
-    },
-    {
-      type: 0,
-      time: '12:00',
-      status: 'delivered',
-      text: 'Lorem ipsum dolor',
-      currentUserMessage: true,
-    },
-    {
-      type: 0,
-      time: '12:00',
-      status: 'sent',
-      text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat maiores totam ex? Distinctio sed, esse cum libero obcaecati voluptate debitis.',
-      currentUserMessage: true,
-    },
-  ],
   sendIcon: {
     outerIconClassName: 'fa-circle',
     iconClassName: 'fa-arrow-right',
-    events: {
-      click: (e: InputEvent) => {
-        const messageInput = document.getElementById('message');
-
-        if(!messageInput?.validity.valid) {
-          return;
-        }
-
-        return createSubmitFn('.chat__bottom-panel')(e);
-      },
-    },
   },
-  messagesPanelInfoText: 'Выберите чат чтобы отправить сообщение',
   messageInput: {
     id: 'message',
     placeholder: 'Сообщение',
-    pattern: VALIDATION_PATTERNS.REQUIRED,
   },
-  events: {
-    submit: createSubmitFn('.chat__bottom-panel'),
-  },
-};
+});

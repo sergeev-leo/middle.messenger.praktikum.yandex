@@ -14,36 +14,18 @@
 
     border: none;
     border-bottom: 0.1rem solid $primary-color;
-    outline: none;
 
     font-size: 1.3rem;
   }
 
   label {
-    position: absolute;
-    bottom: 2.4rem;
-    left: 0;
-
     display: block;
 
     padding: 0;
 
-    transition: ease-in-out 0.2s;
-    transform: translate(0, 1.1rem) scale(1);
-
-    transform-origin: left top;
-
     color: $grey-color;
 
     font-size: 1.3rem;
-  }
-
-  input:focus ~ label,
-  input:invalid ~ label,
-  input:not(:invalid:required) ~ label, {
-    bottom: 2rem;
-
-    transform: translate(0, -1.5rem) scale(0.75);
   }
 
   &.has-error input {

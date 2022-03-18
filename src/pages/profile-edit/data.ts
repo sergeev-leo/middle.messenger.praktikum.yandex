@@ -1,40 +1,70 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
+import { ProfileController } from '../../controllers/ProfileController';
+import { TChangeProfileData } from '../../modules/api/profileAPI';
+import { Router } from '../../modules/Router/Router';
+import { ROUTES } from '../../modules/Router/constants';
 
 
-export const profileEditData = {
+export const getProfileEditData = ({
+  avatar,
+  login,
+  email,
+  phone,
+  firstName,
+  secondName,
+  displayName,
+}) => ({
   avatar: {
-    src:'/user.png',
+    src: avatar,
     title: 'Поменять аватар',
+    withUpload: true,
+    events: {
+      click: ()  => {
+        const modal = document.querySelector('#file-upload-modal');
+        modal?.classList.remove('closed');
+      },
+    },
   },
   inputs: [
     {
       id: 'email',
       label: 'Почта',
-      pattern: VALIDATION_PATTERNS.EMAIL,
+      value: email,
+      pattern: VALIDATION.EMAIL.pattern,
+      error: VALIDATION.EMAIL.message,
     },
     {
       id: 'login',
       label: 'Логин',
-      pattern: VALIDATION_PATTERNS.LOGIN,
+      value: login,
+      pattern: VALIDATION.LOGIN.pattern,
+      error: VALIDATION.LOGIN.message,
     },
     {
       id: 'first_name',
       label: 'Имя',
-      pattern: VALIDATION_PATTERNS.FIRST_NAME,
+      value: firstName,
+      pattern: VALIDATION.FIRST_NAME.pattern,
+      error: VALIDATION.FIRST_NAME.message,
     },
     {
       id: 'second_name',
       label: 'Фамилия',
-      pattern: VALIDATION_PATTERNS.SECOND_NAME,
+      value: secondName,
+      pattern: VALIDATION.SECOND_NAME.pattern,
+      error: VALIDATION.SECOND_NAME.message,
     },
     {
       id: 'display_name',
       label: 'Имя в чате',
+      value: displayName,
     },
     {
       id: 'phone',
       label: 'Телефон',
-      pattern: VALIDATION_PATTERNS.PHONE,
+      value: phone,
+      pattern: VALIDATION.PHONE.pattern,
+      error: VALIDATION.PHONE.message,
     },
   ],
   button: {
@@ -43,6 +73,12 @@ export const profileEditData = {
     type: 'submit',
   },
   events: {
-    submit: createSubmitFn('.profile-edit'),
+    submit: createSubmitFn(
+      '.profile-edit',
+      async formData => {
+        await ProfileController.changeProfile(formData as TChangeProfileData);
+        Router.go(ROUTES.PROFILE);
+      },
+    ),
   },
-};
+});

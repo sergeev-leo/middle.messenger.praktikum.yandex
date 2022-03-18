@@ -5,10 +5,6 @@
 @import "../../components/input/input";
 @import "../../components/goBackButtonPanel/goBackButtonPanel";
 
-html {
-  @include base-styles;
-}
-
 .password-edit__content-section {
   display: flex;
   align-items: center;
@@ -28,7 +24,15 @@ html {
 
     .input-wrapper {
       width: 51rem;
-      margin: 1.5rem 0;
+      margin: 1.5rem auto;
+
+      &.has-error:first-child {
+        margin-bottom: 0;
+      }
+
+      &:first-child {
+        margin-bottom: 2rem;
+      }
     }
   }
 

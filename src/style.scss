@@ -1,0 +1,12 @@
+@import "pages/chat/style";
+@import "pages/login/style";
+@import "pages/register/style";
+@import "pages/profile/style";
+@import "pages/profile-edit/style";
+@import "pages/password-edit/style";
+@import "pages/client-error/style";
+@import "pages/server-error/style";
+
+html {
+  @include base-styles;
+}

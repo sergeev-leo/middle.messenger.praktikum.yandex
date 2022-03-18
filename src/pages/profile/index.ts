@@ -1,30 +1,14 @@
 import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
-import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
+import { Avatar } from '../../components/avatar/avatar';
 import { Link, TLinkProps } from '../../components/link/link';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
-import { render } from '../../modules/renderDOM';
-import { profileData } from './data';
+import { getProfileData, TProfilePageProps } from './data';
+import { connect } from '../../modules/store/connect';
+import { TStore } from '../../modules/store/store';
 
 
-type TUserDataRow = {
-  id: string,
-  label: string,
-  value: string,
-};
-
-export type TProfilePageProps = {
-  avatar: TAvatarProps,
-  userName: string,
-  links: TLinkProps[],
-  userData: TUserDataRow[],
-}
-
-export class ProfilePage extends Block {
-  constructor() {
-    super(profileData);
-  }
-
+class ProfilePageClass extends Block {
   render() {
     const {
       avatar,
@@ -48,4 +32,16 @@ export class ProfilePage extends Block {
   }
 }
 
-render('#profile', new ProfilePage());
+const mapStateToProps = (state: TStore) => {
+  const {
+    data: userData,
+    error,
+  } = state.user;
+  return {
+    ...getProfileData(userData),
+    error,
+  };
+};
+
+
+export const ProfilePage = connect(ProfilePageClass, mapStateToProps);

@@ -21,16 +21,11 @@ export class MenuItem extends Block {
   }
 
   render() {
-    const {
-      text,
-      id,
-    } = this.props as TMenuItemProps;
-
     return this.compile(
       compileTemplate,
       {
-        id,
-        text,
+        id: this.props.id,
+        text: this.props.text,
       },
     );
   }
