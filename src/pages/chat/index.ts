@@ -44,61 +44,9 @@ class ChatPageClass extends Block {
     ChatController.closeConnections();
   }
 
-  addUser(e: InputEvent, onClose: () => void) {
-    createSubmitFn(
-    '.add-user-modal',
-    formData => ChatController.addUserToChat(
-      this.props.selectedChatId as number,
-      formData['add-user-input'] as string,
-    ),
-    )(e);
-    onClose();
-  }
-
-  deleteUser(e: InputEvent, onClose: () => void) {
-    createSubmitFn(
-    '.delete-user-modal',
-    formData => ChatController.deleteUserFromChat(
-      this.props.selectedChatId as number,
-      formData['delete-user-input'] as string,
-    ),
-    )(e);
-    onClose();
-  }
-
-  createChat(e: InputEvent, onClose: () => void) {
-    createSubmitFn(
-      '.create-chat-modal',
-      formData => ChatController.createChat({
-        title: formData['create-chat-input'] as string,
-      }),
-    )(e);
-    onClose();
-  }
-
-  deleteChat() {
-    ChatController.deleteChat(this.props.selectedChatId as number);
-  }
-
-  sendMessage() {
-    const messageInput = <HTMLInputElement>document.getElementById('message');
-    if(!messageInput || !messageInput.value.trim()) {
-      return;
-    }
-
-    const {
-      selectedChatId,
-    } = this.props;
-
-    if(!ChatController.connections[selectedChatId as number]) {
-      return;
-    }
-
-    ChatController.connections[selectedChatId as number].sendMessage(messageInput.value as string);
-    messageInput.value = '';
-  }
-
   protected initChildren() {
+    const deleteChatCb = () => ChatController.deleteChat(this.props.selectedChatId as number);
+
     const {
       profileLink,
       chatMenu,
@@ -106,8 +54,25 @@ class ChatPageClass extends Block {
       searchInput,
       sendIcon,
       messageInput,
-    } = getChatData(this.deleteChat);
+    } = getChatData(deleteChatCb);
 
+    const sendMessage = () => {
+      const messageInput = <HTMLInputElement>document.getElementById('message');
+      if(!messageInput || !messageInput.value.trim()) {
+        return;
+      }
+
+      const {
+        selectedChatId,
+      } = this.props;
+
+      if(!ChatController.connections[selectedChatId as number]) {
+        return;
+      }
+
+      ChatController.connections[selectedChatId as number].sendMessage(messageInput.value as string);
+      messageInput.value = '';
+    };
 
     this._children.profileLink = new Link(profileLink);
     this._children.chatMenu = new Menu(chatMenu);
@@ -116,7 +81,7 @@ class ChatPageClass extends Block {
     this._children.sendIcon = new IconButton({
       ...sendIcon,
       events: {
-        click: this.sendMessage,
+        click: sendMessage,
       },
     });
     this._children.searchInput = new Input(searchInput);
@@ -125,7 +90,7 @@ class ChatPageClass extends Block {
       events: {
         keydown: (e:KeyboardEvent) => {
           if(e.keyCode === 13) {
-            return this.sendMessage();
+            return sendMessage();
           }
         },
       },
@@ -150,7 +115,15 @@ class ChatPageClass extends Block {
         style: 'primary',
       },
       events: {
-        submit: this.createChat,
+        submit: (e: InputEvent, onClose: () => void) => {
+          createSubmitFn(
+            '.create-chat-modal',
+            formData => ChatController.createChat({
+              title: formData['create-chat-input'] as string,
+            }),
+          )(e);
+          onClose();
+        },
       },
     });
 
@@ -170,7 +143,16 @@ class ChatPageClass extends Block {
         style: 'primary',
       },
       events: {
-        submit: this.addUser,
+        submit: (e: InputEvent, onClose: () => void) => {
+          createSubmitFn(
+            '.add-user-modal',
+            formData => ChatController.addUserToChat(
+              this.props.selectedChatId as number,
+              formData['add-user-input'] as string,
+            ),
+          )(e);
+          onClose();
+        },
       },
     });
 
@@ -190,7 +172,16 @@ class ChatPageClass extends Block {
         style: 'primary',
       },
       events: {
-        submit: this.deleteUser,
+        submit: (e: InputEvent, onClose: () => void) => {
+          createSubmitFn(
+            '.delete-user-modal',
+            formData => ChatController.deleteUserFromChat(
+              this.props.selectedChatId as number,
+              formData['delete-user-input'] as string,
+            ),
+          )(e);
+          onClose();
+        },
       },
     });
 

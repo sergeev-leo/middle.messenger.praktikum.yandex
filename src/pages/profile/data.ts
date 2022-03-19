@@ -18,72 +18,88 @@ export type TProfilePageProps = {
   userData: TUserDataRow[],
 }
 
-export const getProfileData = ({
-  login,
-  email,
-  phone,
-  firstName,
-  secondName,
-  displayName,
-  avatar,
-}): TProfilePageProps => ({
-  avatar: {
-    src: avatar,
-  },
-  userName: login,
-  links: [
-    {
-      title: 'Выйти',
-      style: 'error',
-      events: {
-        click: () => UserController.logOut(),
+export const getProfileData = (userData): TProfilePageProps => {
+
+  if(userData === null) {
+    return {
+      avatar: {
+        src: '',
       },
+      userName: '',
+      links: [],
+      userData: [],
+    };
+  }
+
+  const {
+    login,
+    email,
+    phone,
+    firstName,
+    secondName,
+    displayName,
+    avatar,
+  } = userData;
+
+  return {
+    avatar: {
+      src: avatar,
     },
-    {
-      title: 'Изменить пароль',
-      style: 'secondary',
-      events: {
-        click: () => Router.go(ROUTES.PASSWORD_EDIT),
+    userName: login,
+    links: [
+      {
+        title: 'Выйти',
+        style: 'error',
+        events: {
+          click: () => UserController.logOut(),
+        },
       },
-    },
-    {
-      title: 'Изменить данные',
-      style: 'secondary',
-      events: {
-        click: () => Router.go(ROUTES.PROFILE_EDIT),
+      {
+        title: 'Изменить пароль',
+        style: 'secondary',
+        events: {
+          click: () => Router.go(ROUTES.PASSWORD_EDIT),
+        },
       },
-    },
-  ],
-  userData: [
-    {
-      id: 'email',
-      label: 'Почта',
-      value: email,
-    },
-    {
-      id: 'login',
-      label: 'Логин',
-      value: login,
-    },
-    {
-      id: 'first_name',
-      label: 'Имя',
-      value: firstName,
-    },
-    {
-      id: 'second_name',
-      label: 'Фамилия',
-      value: secondName,
-    },
-    {
-      id: 'display_name',
-      label: 'Имя в чате',
-      value: displayName,
-    },
-    {
-      id: 'phone',
-      label: 'Телефон',
-      value: phone,
-    },
-  ],
-});
+      {
+        title: 'Изменить данные',
+        style: 'secondary',
+        events: {
+          click: () => Router.go(ROUTES.PROFILE_EDIT),
+        },
+      },
+    ],
+    userData: [
+      {
+        id: 'email',
+        label: 'Почта',
+        value: email,
+      },
+      {
+        id: 'login',
+        label: 'Логин',
+        value: login,
+      },
+      {
+        id: 'first_name',
+        label: 'Имя',
+        value: firstName,
+      },
+      {
+        id: 'second_name',
+        label: 'Фамилия',
+        value: secondName,
+      },
+      {
+        id: 'display_name',
+        label: 'Имя в чате',
+        value: displayName,
+      },
+      {
+        id: 'phone',
+        label: 'Телефон',
+        value: phone,
+      },
+    ],
+  };
+};

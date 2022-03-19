@@ -15,7 +15,7 @@ class ProfilePageClass extends Block {
       userName,
       links,
       userData,
-    } = this.props as TProfilePageProps;
+    } = getProfileData(this.props.data) as TProfilePageProps;
 
     this._children.avatar = new Avatar(avatar);
     this._children.links = links.map((item: TLinkProps) => new Link(item));
@@ -32,16 +32,7 @@ class ProfilePageClass extends Block {
   }
 }
 
-const mapStateToProps = (state: TStore) => {
-  const {
-    data: userData,
-    error,
-  } = state.user;
-  return {
-    ...getProfileData(userData),
-    error,
-  };
-};
+const mapStateToProps = (state: TStore) => state.user;
 
 
 export const ProfilePage = connect(ProfilePageClass, mapStateToProps);

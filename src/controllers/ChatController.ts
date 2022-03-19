@@ -91,6 +91,7 @@ export class ChatControllerClass {
     try {
       await ChatAPI.deleteChat({ chatId });
       await this.getChats();
+      this.selectChat(null);
       ChatControllerClass.setError(null);
     } catch (error) {
       ChatControllerClass.setError(error);
@@ -109,7 +110,7 @@ export class ChatControllerClass {
     }
   }
 
-  public selectChat(chatId: number) {
+  public selectChat(chatId: number | null) {
     store.set('chat.selectedChatId', chatId);
   }
 
