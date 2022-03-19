@@ -1,4 +1,3 @@
-import { BaseApi } from './baseApi';
 import { HTTPTransport } from './fetch';
 import { AUTH_API_ENDPOINTS, DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST } from './constants';
 
@@ -21,49 +20,54 @@ export type TSignInData = {
 
 
 
-class AuthAPIClass extends BaseApi {
+class AuthAPIClass {
 
-  signUp(data: TSignUpData) {
-    return authHTTPTransportInstance.post(
+  async signUp(data: TSignUpData) {
+    const xhr = await authHTTPTransportInstance.post(
       AUTH_API_ENDPOINTS.SIGN_UP,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-    .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  signIn(data: TSignInData) {
-    return authHTTPTransportInstance.post(
+  async signIn(data: TSignInData) {
+    const xhr = await authHTTPTransportInstance.post(
       AUTH_API_ENDPOINTS.SIGN_IN,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  logOut() {
-    return authHTTPTransportInstance.post(
+  async logOut() {
+    const xhr = await authHTTPTransportInstance.post(
       AUTH_API_ENDPOINTS.LOG_OUT,
       {
         withCredentials: true,
       },
     );
+
+    return xhr.response;
   }
 
-  getUserData() {
-    return authHTTPTransportInstance.get(
+  async getUserData() {
+    const xhr = await authHTTPTransportInstance.get(
       AUTH_API_ENDPOINTS.USER_DATA,
       {
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 }
 

@@ -1,4 +1,3 @@
-import { BaseApi } from './baseApi';
 import { HTTPTransport } from './fetch';
 import { USER_API_ENDPOINTS, DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST } from './constants';
 
@@ -19,64 +18,68 @@ export type TChangePasswordData = {
   newPassword: string,
 };
 
-class ProfileAPIClass extends BaseApi {
+class ProfileAPIClass {
 
-  changeProfile(data: TChangeProfileData) {
-    return userHTTPTransportInstance.put(
+  async changeProfile(data: TChangeProfileData) {
+    const xhr = await userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_PROFILE,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+    return xhr.response;
   }
 
-  changePassword(data: TChangePasswordData) {
-    return userHTTPTransportInstance.put(
+  async changePassword(data: TChangePasswordData) {
+    const xhr = await userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_PASSWORD,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  changeAvatar(data: FormData) {
-    return userHTTPTransportInstance.put(
+  async changeAvatar(data: FormData) {
+    const xhr = await userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_AVATAR,
       {
         data,
         isFile: true,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  getUsersByLogin(login: string) {
-    return userHTTPTransportInstance.post(
+  async getUsersByLogin(login: string) {
+    const xhr = await userHTTPTransportInstance.post(
       USER_API_ENDPOINTS.SEARCH_USER,
       {
         data: { login },
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  getUserById(userId: number) {
-    return userHTTPTransportInstance.get(
+  async getUserById(userId: number) {
+    const xhr = await userHTTPTransportInstance.get(
       [USER_API_ENDPOINTS.GET_USER_BY_ID, userId].join('/'),
       {
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 }
 

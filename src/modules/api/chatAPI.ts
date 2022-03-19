@@ -1,4 +1,3 @@
-import { BaseApi } from './baseApi';
 import { HTTPTransport } from './fetch';
 import { DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST, CHAT_API_ENDPOINTS } from './constants';
 
@@ -45,46 +44,49 @@ export type TAddOrDeleteUsersToChatData = {
   chatId: number,
 };
 
-class ChatAPIClass extends BaseApi {
+class ChatAPIClass {
 
-  getChats(data: TGetChatsData = {}): Promise<TChatDialog[]> {
-    return chatHTTPTransportInstance.get(
+  async getChats(data: TGetChatsData = {}): Promise<TChatDialog[]> {
+    const xhr = await chatHTTPTransportInstance.get(
       CHAT_API_ENDPOINTS.CHATS,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  createChat(data: TCreateChatData) {
-    return chatHTTPTransportInstance.post(
+  async createChat(data: TCreateChatData) {
+    const xhr = await chatHTTPTransportInstance.post(
       CHAT_API_ENDPOINTS.CHATS,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  deleteChat(data: TDeleteChatData) {
-    return chatHTTPTransportInstance.delete(
+  async deleteChat(data: TDeleteChatData) {
+    const xhr = await chatHTTPTransportInstance.delete(
       CHAT_API_ENDPOINTS.CHATS,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  addUsersToChat(data: TAddOrDeleteUsersToChatData) {
-    return chatHTTPTransportInstance.put(
+  async addUsersToChat(data: TAddOrDeleteUsersToChatData) {
+    const xhr = await chatHTTPTransportInstance.put(
       CHAT_API_ENDPOINTS.CHATS_USERS,
       {
         data,
@@ -92,51 +94,57 @@ class ChatAPIClass extends BaseApi {
         withCredentials: true,
       },
     );
+
+    return xhr.response;
   }
 
-  deleteUsersFromChat(data: TAddOrDeleteUsersToChatData) {
-    return chatHTTPTransportInstance.delete(
+  async deleteUsersFromChat(data: TAddOrDeleteUsersToChatData) {
+    const xhr = await chatHTTPTransportInstance.delete(
       CHAT_API_ENDPOINTS.CHATS_USERS,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  getChatUsers(chatId: number) {
-    return chatHTTPTransportInstance.get(
+  async getChatUsers(chatId: number) {
+    const xhr = await chatHTTPTransportInstance.get(
       [CHAT_API_ENDPOINTS.CHATS, chatId, 'users'].join('/'),
       {
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  getToken(chatId: number) {
-    return chatHTTPTransportInstance.post(
+  async getToken(chatId: number) {
+    const xhr = await chatHTTPTransportInstance.post(
       [CHAT_API_ENDPOINTS.REQUEST_TOKEN, chatId].join('/'),
       {
         headers: DEFAULT_POST_REQUEST_HEADERS,
         withCredentials: true,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 
-  changeAvatar(data: FormData) {
-    return chatHTTPTransportInstance.put(
+  async changeAvatar(data: FormData) {
+    const xhr = await chatHTTPTransportInstance.put(
       [CHAT_API_ENDPOINTS.CHATS, 'avatar'].join('/'),
       {
         withCredentials: true,
         isFile: true,
         data,
       },
-    )
-      .then(xhr => xhr.response);
+    );
+
+    return xhr.response;
   }
 }
 
