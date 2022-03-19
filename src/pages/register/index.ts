@@ -3,6 +3,8 @@ import { Button, TButtonProps } from '../../components/button/button';
 import { Block } from '../../modules/Block/Block';
 import compileTemplate from './index.pug';
 import { registerData } from './data';
+import { connect } from '../../modules/store/connect';
+import { TStore } from '../../modules/store/store';
 
 
 export type TRegisterFormProps = {
@@ -10,12 +12,10 @@ export type TRegisterFormProps = {
   header: string,
   inputs: TInputProps[],
   buttons: TButtonProps[],
+  registerError: string | null,
 }
 
-export class RegisterForm extends Block {
-  constructor() {
-    super(registerData);
-  }
+class RegisterForm extends Block {
 
   initChildren() {
     const {
@@ -30,6 +30,7 @@ export class RegisterForm extends Block {
   render() {
     const {
       header,
+      registerError,
     } = this.props as TRegisterFormProps;
 
     return this.compile(
@@ -37,7 +38,23 @@ export class RegisterForm extends Block {
       {
         header,
         ...this._children,
+        registerError,
       },
     );
   }
 }
+
+const mapStateToProps = (state: TStore) => {
+  const {
+    user: {
+      registerError,
+    },
+  } = state;
+
+  return {
+    ...registerData,
+    registerError,
+  };
+};
+
+export const RegisterPage = connect(RegisterForm, mapStateToProps);

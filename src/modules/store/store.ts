@@ -19,6 +19,8 @@ const INITIAL_STORE_VALUE = {
   user: {
     data: null,
     error: null,
+    registerError: null,
+    loginError: null,
   },
   chat: {
     dialogFilter: '',
@@ -41,6 +43,8 @@ export type TUserStore = {
     avatar?: string,
   } | null,
   error: string | null,
+  registerError: string | null,
+  loginError: string | null,
 };
 
 export type TChatStore = {

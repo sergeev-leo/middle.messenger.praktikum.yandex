@@ -150,6 +150,9 @@ export class HTTPTransport {
       Router.go(Routes.CLIENT_ERROR);
       return Promise.reject({ reason: 'Запрашиваемый адрес не существует' });
     }
+    case 409: {
+      return Promise.reject({ reason: `Пользователь с такими данными уже существует: ${xhr.response.reason.split(' ')[0]}` });
+    }
     case 500: {
       Router.go(Routes.SERVER_ERROR);
       return Promise.reject({ reason: 'Ошибка сервера' });

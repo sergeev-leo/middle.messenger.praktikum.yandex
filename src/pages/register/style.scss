@@ -47,6 +47,11 @@
     flex-direction: column;
   }
 
+  .register-form__error {
+    color: $error-color;
+    text-align: center;
+  }
+
   li {
     padding: 0;
 

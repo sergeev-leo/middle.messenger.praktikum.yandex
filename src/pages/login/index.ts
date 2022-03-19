@@ -3,6 +3,8 @@ import compileTemplate from './index.pug';
 import { Input, TInputProps } from '../../components/input/input';
 import { Button, TButtonProps } from '../../components/button/button';
 import { loginData } from './data';
+import { TStore } from '../../modules/store/store';
+import { connect } from '../../modules/store/connect';
 
 
 export type TLoginFormProps = {
@@ -10,13 +12,10 @@ export type TLoginFormProps = {
   header: string,
   inputs: TInputProps[],
   buttons: TButtonProps[],
+  loginError: string,
 }
 
 export class LoginForm extends Block {
-  constructor() {
-    super(loginData);
-  }
-
   initChildren() {
     const {
       inputs,
@@ -31,6 +30,7 @@ export class LoginForm extends Block {
     const {
       title,
       header,
+      loginError,
     } = this.props as TLoginFormProps;
 
     return this.compile(
@@ -38,8 +38,25 @@ export class LoginForm extends Block {
       {
         title,
         header,
+        loginError,
         ...this._children,
       },
     );
   }
 }
+
+
+const mapStateToProps = (state: TStore) => {
+  const {
+    user: {
+      loginError,
+    },
+  } = state;
+
+  return {
+    ...loginData,
+    loginError,
+  };
+};
+
+export const LoginPage = connect(LoginForm, mapStateToProps);

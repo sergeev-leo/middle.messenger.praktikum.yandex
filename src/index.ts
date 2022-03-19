@@ -1,6 +1,6 @@
 import { ChatPage } from './pages/chat';
-import { LoginForm } from './pages/login';
-import { RegisterForm } from './pages/register';
+import { LoginPage } from './pages/login';
+import { RegisterPage } from './pages/register';
 import { ProfilePage } from './pages/profile';
 import { ProfileEditPage } from './pages/profile-edit';
 import { ClientError } from './pages/client-error';
@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', async() => {
     .catch(error => console.log('Пользователь не авторизован в системе', error));
 
   Router
-    .use(Routes.LOGIN, LoginForm)
+    .use(Routes.LOGIN, LoginPage)
     .use(Routes.CHAT, ChatPage)
-    .use(Routes.REGISTER, RegisterForm)
+    .use(Routes.REGISTER, RegisterPage)
     .use(Routes.PROFILE, ProfilePage)
     .use(Routes.PROFILE_EDIT, ProfileEditPage)
     .use(Routes.PASSWORD_EDIT, PasswordEditPage)

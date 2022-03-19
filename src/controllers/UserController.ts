@@ -48,7 +48,7 @@ export class UserControllerClass {
       store.set('user.data', { ...formData, id });
       UserControllerClass.setError(null);
     } catch (error) {
-      UserControllerClass.setError(error);
+      store.set('user.registerError', error.reason);
       return Promise.reject();
     }
   }
@@ -64,7 +64,7 @@ export class UserControllerClass {
         return Promise.resolve();
       }
 
-      UserControllerClass.setError(error);
+      store.set('user.loginError', error.reason);
       return Promise.reject();
     }
   }
