@@ -36,8 +36,13 @@ class ChatControllerClass {
 
   public async createChat(data: TCreateChatData) {
     try {
-      await ChatAPI.createChat(data);
+      const { id } = await ChatAPI.createChat(data);
       await this.getChats();
+
+      const userId = store.getState().user.data?.id;
+
+      await this.connectToChat(id, userId as number);
+
       ChatControllerClass.setError(null);
     } catch (error) {
       ChatControllerClass.setError(error);
