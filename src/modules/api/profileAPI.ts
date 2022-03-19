@@ -2,7 +2,6 @@ import { HTTPTransport } from './fetch';
 import { USER_API_ENDPOINTS, DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST } from './constants';
 
 
-const userHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST);
 
 export type TChangeProfileData = {
   first_name: string,
@@ -19,26 +18,29 @@ export type TChangePasswordData = {
 };
 
 class ProfileAPIClass {
+  userHTTPTransportInstance: HTTPTransport;
+
+  constructor() {
+    this.userHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST, { withCredentials: true });
+  }
 
   async changeProfile(data: TChangeProfileData) {
-    const xhr = await userHTTPTransportInstance.put(
+    const xhr = await this.userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_PROFILE,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
-        withCredentials: true,
       },
     );
     return xhr.response;
   }
 
   async changePassword(data: TChangePasswordData) {
-    const xhr = await userHTTPTransportInstance.put(
+    const xhr = await this.userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_PASSWORD,
       {
         data,
         headers: DEFAULT_POST_REQUEST_HEADERS,
-        withCredentials: true,
       },
     );
 
@@ -46,12 +48,11 @@ class ProfileAPIClass {
   }
 
   async changeAvatar(data: FormData) {
-    const xhr = await userHTTPTransportInstance.put(
+    const xhr = await this.userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_AVATAR,
       {
         data,
         isFile: true,
-        withCredentials: true,
       },
     );
 
@@ -59,12 +60,11 @@ class ProfileAPIClass {
   }
 
   async getUsersByLogin(login: string) {
-    const xhr = await userHTTPTransportInstance.post(
+    const xhr = await this.userHTTPTransportInstance.post(
       USER_API_ENDPOINTS.SEARCH_USER,
       {
         data: { login },
         headers: DEFAULT_POST_REQUEST_HEADERS,
-        withCredentials: true,
       },
     );
 
@@ -72,11 +72,8 @@ class ProfileAPIClass {
   }
 
   async getUserById(userId: number) {
-    const xhr = await userHTTPTransportInstance.get(
+    const xhr = await this.userHTTPTransportInstance.get(
       [USER_API_ENDPOINTS.GET_USER_BY_ID, userId].join('/'),
-      {
-        withCredentials: true,
-      },
     );
 
     return xhr.response;

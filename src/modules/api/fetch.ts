@@ -9,7 +9,7 @@ export enum HTTP_METHOD {
 }
 
 type THttpRequestOptions = {
-  method: HTTP_METHOD,
+  method?: HTTP_METHOD,
   data?: Record<string, unknown> | FormData,
   headers?: Record<string, string>,
   timeout?: number,
@@ -23,38 +23,40 @@ type THttpRequestOptionsWithoutMethod = Omit<THttpRequestOptions, 'method'>;
 /* eslint-disable no-console */
 export class HTTPTransport {
   host: string;
+  defaultOptions: THttpRequestOptions;
 
-  constructor(host: string) {
+  constructor(host: string, defaultOptions?: THttpRequestOptions) {
     this.host = host;
+    this.defaultOptions = defaultOptions || {} as THttpRequestOptions;
   }
 
   public get(url: string, options: THttpRequestOptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.makeHTTPRequest(url, { ...options, method: HTTP_METHOD.GET }, options.timeout)
+    return this.makeHTTPRequest(url, { ...options, ...this.defaultOptions, method: HTTP_METHOD.GET }, options.timeout)
       .catch(xhr => HTTPTransport.handleCommonErrors(xhr));
   }
 
   public post(url: string, options: THttpRequestOptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.makeHTTPRequest(url, { ...options, method: HTTP_METHOD.POST }, options.timeout)
+    return this.makeHTTPRequest(url, { ...options, ...this.defaultOptions, method: HTTP_METHOD.POST }, options.timeout)
       .catch(xhr => HTTPTransport.handleCommonErrors(xhr));
   }
 
   public put(url: string, options: THttpRequestOptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.makeHTTPRequest(url, { ...options, method: HTTP_METHOD.PUT }, options.timeout)
+    return this.makeHTTPRequest(url, { ...options, ...this.defaultOptions, method: HTTP_METHOD.PUT }, options.timeout)
       .catch(xhr => HTTPTransport.handleCommonErrors(xhr));
   }
 
   public delete(url: string, options: THttpRequestOptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.makeHTTPRequest(url, { ...options, method: HTTP_METHOD.DELETE }, options.timeout)
+    return this.makeHTTPRequest(url, { ...options, ...this.defaultOptions, method: HTTP_METHOD.DELETE }, options.timeout)
       .catch(xhr => HTTPTransport.handleCommonErrors(xhr));
   }
 
   public makeHTTPRequest(
     url: string,
-    options: THttpRequestOptions = { method: HTTP_METHOD.GET },
+    options: THttpRequestOptions,
     timeout = 60000,
   ): Promise<XMLHttpRequest> {
     const {
-      method,
+      method = HTTP_METHOD.GET,
       data,
       headers,
       withCredentials = true,

@@ -2,8 +2,6 @@ import { HTTPTransport } from './fetch';
 import { AUTH_API_ENDPOINTS, DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST } from './constants';
 
 
-const authHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST);
-
 export type TSignUpData = {
   first_name: 'string',
   second_name: 'string',
@@ -21,9 +19,14 @@ export type TSignInData = {
 
 
 class AuthAPIClass {
+  authHTTPTransportInstance: HTTPTransport;
+
+  constructor() {
+    this.authHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST, { withCredentials: true });
+  }
 
   async signUp(data: TSignUpData) {
-    const xhr = await authHTTPTransportInstance.post(
+    const xhr = await this.authHTTPTransportInstance.post(
       AUTH_API_ENDPOINTS.SIGN_UP,
       {
         data,
@@ -36,7 +39,7 @@ class AuthAPIClass {
   }
 
   async signIn(data: TSignInData) {
-    const xhr = await authHTTPTransportInstance.post(
+    const xhr = await this.authHTTPTransportInstance.post(
       AUTH_API_ENDPOINTS.SIGN_IN,
       {
         data,
@@ -49,7 +52,7 @@ class AuthAPIClass {
   }
 
   async logOut() {
-    const xhr = await authHTTPTransportInstance.post(
+    const xhr = await this.authHTTPTransportInstance.post(
       AUTH_API_ENDPOINTS.LOG_OUT,
       {
         withCredentials: true,
@@ -60,7 +63,7 @@ class AuthAPIClass {
   }
 
   async getUserData() {
-    const xhr = await authHTTPTransportInstance.get(
+    const xhr = await this.authHTTPTransportInstance.get(
       AUTH_API_ENDPOINTS.USER_DATA,
       {
         withCredentials: true,

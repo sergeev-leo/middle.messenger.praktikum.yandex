@@ -2,10 +2,6 @@ import { HTTPTransport } from './fetch';
 import { DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST, CHAT_API_ENDPOINTS } from './constants';
 
 
-const chatHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST);
-
-
-
 export type TGetChatsData = {
   offset?: number,
   limit?: number,
@@ -45,9 +41,14 @@ export type TAddOrDeleteUsersToChatData = {
 };
 
 class ChatAPIClass {
+  chatHTTPTransportInstance: HTTPTransport;
+
+  constructor() {
+    this.chatHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST, { withCredentials: true });
+  }
 
   async getChats(data: TGetChatsData = {}): Promise<TChatDialog[]> {
-    const xhr = await chatHTTPTransportInstance.get(
+    const xhr = await this.chatHTTPTransportInstance.get(
       CHAT_API_ENDPOINTS.CHATS,
       {
         data,
@@ -60,7 +61,7 @@ class ChatAPIClass {
   }
 
   async createChat(data: TCreateChatData) {
-    const xhr = await chatHTTPTransportInstance.post(
+    const xhr = await this.chatHTTPTransportInstance.post(
       CHAT_API_ENDPOINTS.CHATS,
       {
         data,
@@ -73,7 +74,7 @@ class ChatAPIClass {
   }
 
   async deleteChat(data: TDeleteChatData) {
-    const xhr = await chatHTTPTransportInstance.delete(
+    const xhr = await this.chatHTTPTransportInstance.delete(
       CHAT_API_ENDPOINTS.CHATS,
       {
         data,
@@ -86,7 +87,7 @@ class ChatAPIClass {
   }
 
   async addUsersToChat(data: TAddOrDeleteUsersToChatData) {
-    const xhr = await chatHTTPTransportInstance.put(
+    const xhr = await this.chatHTTPTransportInstance.put(
       CHAT_API_ENDPOINTS.CHATS_USERS,
       {
         data,
@@ -99,7 +100,7 @@ class ChatAPIClass {
   }
 
   async deleteUsersFromChat(data: TAddOrDeleteUsersToChatData) {
-    const xhr = await chatHTTPTransportInstance.delete(
+    const xhr = await this.chatHTTPTransportInstance.delete(
       CHAT_API_ENDPOINTS.CHATS_USERS,
       {
         data,
@@ -112,7 +113,7 @@ class ChatAPIClass {
   }
 
   async getChatUsers(chatId: number) {
-    const xhr = await chatHTTPTransportInstance.get(
+    const xhr = await this.chatHTTPTransportInstance.get(
       [CHAT_API_ENDPOINTS.CHATS, chatId, 'users'].join('/'),
       {
         withCredentials: true,
@@ -123,7 +124,7 @@ class ChatAPIClass {
   }
 
   async getToken(chatId: number) {
-    const xhr = await chatHTTPTransportInstance.post(
+    const xhr = await this.chatHTTPTransportInstance.post(
       [CHAT_API_ENDPOINTS.REQUEST_TOKEN, chatId].join('/'),
       {
         headers: DEFAULT_POST_REQUEST_HEADERS,
@@ -135,7 +136,7 @@ class ChatAPIClass {
   }
 
   async changeAvatar(data: FormData) {
-    const xhr = await chatHTTPTransportInstance.put(
+    const xhr = await this.chatHTTPTransportInstance.put(
       [CHAT_API_ENDPOINTS.CHATS, 'avatar'].join('/'),
       {
         withCredentials: true,
