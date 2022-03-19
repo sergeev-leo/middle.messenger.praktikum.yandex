@@ -6,24 +6,17 @@ import { UserControllerClass } from './UserController';
 class ProfileControllerClass {
   public async changeProfile(data: TChangeProfileData) {
     try {
-      const {
-        first_name,
-        second_name,
-        display_name,
-        login,
-        email,
-        phone,
-      } = await ProfileAPI.changeProfile(data);
+      const response = await ProfileAPI.changeProfile(data);
 
       store.set(
         'user.data',
         {
-          firstName: first_name,
-          secondName: second_name,
-          displayName: display_name,
-          login,
-          email,
-          phone,
+          firstName: response.first_name,
+          secondName: response.second_name,
+          displayName: response.display_name,
+          login: response.login,
+          email: response.email,
+          phone: response.phone,
         },
       );
       UserControllerClass.setError(null);

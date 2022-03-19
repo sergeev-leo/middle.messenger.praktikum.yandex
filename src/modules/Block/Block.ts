@@ -76,7 +76,7 @@ export class Block {
   /*
   * выделяем из переданных пропсов экземпляры класса Block и сохраняем их в this._children, оставшиеся пропсы - в props
   * */
-  _getChildren(propsWithChildren: TComponentProps) {
+  private _getChildren(propsWithChildren: TComponentProps) {
     const children: TComponentChildren = {};
     const props: TComponentProps = {};
 
@@ -184,7 +184,7 @@ export class Block {
   /*
   * метод добавляет в eventBus обработчики для событий жизненного цикла компонента из Block.EVENTS
   * */
-  _registerEvents(eventBus: TEventBusInstance) {
+  private _registerEvents(eventBus: TEventBusInstance) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -197,14 +197,14 @@ export class Block {
   * - создает элемент тега компонента
   * - делает вызов события первоначальной отрисовки
   * */
-  init() {
+  private init() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   /*
   * непосредственное создание элемента с заданным тегом + назначение ему уникального идентификатора в поле _id
   * */
-  _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string) {
     const element = document.createElement(tagName);
 
     if(this._id !== null) {
@@ -218,7 +218,7 @@ export class Block {
   * Назначение обработчиков событий на элемент компонента. Обработчики передаются строго в props.events, где ключи -
   * события DOM-элементов, а значения - функции обработчиков.
   * */
-  _addEvents() {
+  private _addEvents() {
     const {
       events = {} as TEvents,
     } = this.props;
@@ -249,7 +249,7 @@ export class Block {
   /*
   * удаление всех назначенных обработчиков событий
   * */
-  _removeEvents() {
+  private _removeEvents() {
     Object
       .keys(this._listeners)
       .forEach(eventName => {
@@ -266,7 +266,7 @@ export class Block {
   * - вызывает переопределенный метод непосредственно у компонента-экземпляра
   * - делает триггер события монтирования для всех children компонента-экземпляра
   * */
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount(this.props);
 
     Object
@@ -300,7 +300,7 @@ export class Block {
   /*
   * метод жизненного цикла компонента. Вызывается при обновлении значений пропсов.
   * */
-  _componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
+  private _componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
 
     if(response) {
@@ -313,7 +313,7 @@ export class Block {
     return !isEqual(oldProps, newProps);
   }
 
-  _componentWillUnmount() {
+  private _componentWillUnmount() {
     Object
       .keys(this._children)
       .forEach((key: string) => {
@@ -351,7 +351,7 @@ export class Block {
   * метод жизненного цикла компонента. Вызывается, когда наступает событие перерисовки.
   * Триггер данного события срабатывает при первоначальной инициализации и в рамках метода жизненного цикла componentDidUpdate
   * */
-  _render() {
+  private _render() {
 
     /*
     * получаем итоговую разметку компонента
@@ -408,7 +408,7 @@ export class Block {
   * - запрет на удаление любых свойств
   * - при обновлении значений пропсов вызов componentDidUpdate
   * */
-  _makePropsProxy(props: TComponentProps) {
+  private _makePropsProxy(props: TComponentProps) {
     return new Proxy(
       props,
       {
