@@ -1,5 +1,6 @@
 import { HTTPTransport } from './fetch';
 import { AUTH_API_ENDPOINTS, DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST } from './constants';
+import { TUserModelResponse } from './profileAPI';
 
 
 export type TSignUpData = {
@@ -16,7 +17,9 @@ export type TSignInData = {
   password: 'string',
 }
 
-
+type TSignUpResponse = {
+  id: number,
+}
 
 class AuthAPIClass {
   authHTTPTransportInstance: HTTPTransport;
@@ -25,7 +28,7 @@ class AuthAPIClass {
     this.authHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST, { withCredentials: true });
   }
 
-  async signUp(data: TSignUpData) {
+  async signUp(data: TSignUpData): Promise<TSignUpResponse> {
     const xhr = await this.authHTTPTransportInstance.post(
       AUTH_API_ENDPOINTS.SIGN_UP,
       {
@@ -62,7 +65,7 @@ class AuthAPIClass {
     return xhr.response;
   }
 
-  async getUserData() {
+  async getUserData(): Promise<TUserModelResponse> {
     const xhr = await this.authHTTPTransportInstance.get(
       AUTH_API_ENDPOINTS.USER_DATA,
       {

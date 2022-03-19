@@ -1,5 +1,6 @@
 import { HTTPTransport } from './fetch';
 import { DEFAULT_POST_REQUEST_HEADERS, YANDEX_API_HOST, CHAT_API_ENDPOINTS } from './constants';
+import { TUserModelResponse } from './profileAPI';
 
 
 export type TGetChatsData = {
@@ -34,6 +35,21 @@ export type TCreateChatData = {
 export type TDeleteChatData = {
   chatId: number,
 };
+
+type TDeleteChatResponse = {
+  'userId': number,
+  'result': {
+    'id': number,
+    'title': string,
+    'avatar': string
+  }
+};
+
+type TGetTokenResponse = [
+  {
+    token: string,
+  }
+];
 
 export type TAddOrDeleteUsersToChatData = {
   users: number[],
@@ -73,7 +89,7 @@ class ChatAPIClass {
     return xhr.response;
   }
 
-  async deleteChat(data: TDeleteChatData) {
+  async deleteChat(data: TDeleteChatData): Promise<TDeleteChatResponse> {
     const xhr = await this.chatHTTPTransportInstance.delete(
       CHAT_API_ENDPOINTS.CHATS,
       {
@@ -112,7 +128,7 @@ class ChatAPIClass {
     return xhr.response;
   }
 
-  async getChatUsers(chatId: number) {
+  async getChatUsers(chatId: number): Promise<TUserModelResponse[]> {
     const xhr = await this.chatHTTPTransportInstance.get(
       [CHAT_API_ENDPOINTS.CHATS, chatId, 'users'].join('/'),
       {
@@ -123,7 +139,7 @@ class ChatAPIClass {
     return xhr.response;
   }
 
-  async getToken(chatId: number) {
+  async getToken(chatId: number): Promise<TGetTokenResponse> {
     const xhr = await this.chatHTTPTransportInstance.post(
       [CHAT_API_ENDPOINTS.REQUEST_TOKEN, chatId].join('/'),
       {
@@ -135,7 +151,7 @@ class ChatAPIClass {
     return xhr.response;
   }
 
-  async changeAvatar(data: FormData) {
+  async changeAvatar(data: FormData): Promise<TChatDialog> {
     const xhr = await this.chatHTTPTransportInstance.put(
       [CHAT_API_ENDPOINTS.CHATS, 'avatar'].join('/'),
       {

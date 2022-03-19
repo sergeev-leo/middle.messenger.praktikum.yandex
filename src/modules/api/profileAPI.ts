@@ -17,6 +17,18 @@ export type TChangePasswordData = {
   newPassword: string,
 };
 
+
+export type TUserModelResponse = {
+  'id': number,
+  'first_name': string,
+  'second_name': string,
+  'display_name': string,
+  'login': string,
+  'email': string,
+  'phone': string,
+  'avatar': string,
+}
+
 class ProfileAPIClass {
   userHTTPTransportInstance: HTTPTransport;
 
@@ -24,7 +36,7 @@ class ProfileAPIClass {
     this.userHTTPTransportInstance = new HTTPTransport(YANDEX_API_HOST, { withCredentials: true });
   }
 
-  async changeProfile(data: TChangeProfileData) {
+  async changeProfile(data: TChangeProfileData): Promise<TUserModelResponse> {
     const xhr = await this.userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_PROFILE,
       {
@@ -47,7 +59,7 @@ class ProfileAPIClass {
     return xhr.response;
   }
 
-  async changeAvatar(data: FormData) {
+  async changeAvatar(data: FormData): Promise<TUserModelResponse> {
     const xhr = await this.userHTTPTransportInstance.put(
       USER_API_ENDPOINTS.CHANGE_AVATAR,
       {
@@ -59,7 +71,7 @@ class ProfileAPIClass {
     return xhr.response;
   }
 
-  async getUsersByLogin(login: string) {
+  async getUsersByLogin(login: string): Promise<TUserModelResponse[]> {
     const xhr = await this.userHTTPTransportInstance.post(
       USER_API_ENDPOINTS.SEARCH_USER,
       {
@@ -71,7 +83,7 @@ class ProfileAPIClass {
     return xhr.response;
   }
 
-  async getUserById(userId: number) {
+  async getUserById(userId: number): Promise<TUserModelResponse> {
     const xhr = await this.userHTTPTransportInstance.get(
       [USER_API_ENDPOINTS.GET_USER_BY_ID, userId].join('/'),
     );
