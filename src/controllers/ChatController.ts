@@ -4,7 +4,7 @@ import { SOCKET_API_MESSAGES_TYPES, SocketAPI } from '../modules/api/socketAPI';
 import { ProfileAPI } from '../modules/api/profileAPI';
 
 
-export class ChatControllerClass {
+class ChatControllerClass {
   connections: Record<string, SocketAPI> = {};
 
   public closeConnections() {

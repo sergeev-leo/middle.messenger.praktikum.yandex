@@ -3,7 +3,7 @@ import { store } from '../modules/store/store';
 import { Router } from '../modules/Router/Router';
 import { Routes } from '../modules/Router/constants';
 
-export class UserControllerClass {
+class UserControllerClass {
   public static setError(error: { reason: string } | null) {
     if(error === null) {
       return store.set('user.error', null);
