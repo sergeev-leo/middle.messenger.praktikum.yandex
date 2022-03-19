@@ -45,7 +45,15 @@ export class UserControllerClass {
         id,
       } = response;
 
-      store.set('user.data', { ...formData, id });
+      store.set(
+        'user.data',
+        {
+          ...formData,
+          id,
+          firstName: formData.first_name,
+          secondName: formData.second_name,
+        },
+        );
       UserControllerClass.setError(null);
     } catch (error) {
       store.set('user.registerError', error.reason);
