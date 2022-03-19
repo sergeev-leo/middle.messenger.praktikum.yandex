@@ -1,6 +1,6 @@
 import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Router } from '../../modules/Router/Router';
-import { ROUTES } from '../../modules/Router/constants';
+import { Routes } from '../../modules/Router/constants';
 import { TSignUpData } from '../../modules/api/authAPI';
 import { UserController } from '../../controllers/UserController';
 
@@ -63,7 +63,7 @@ export const registerData = {
       title: 'Войти',
       style: 'secondary',
       events: {
-        click: () => Router.go(ROUTES.LOGIN),
+        click: () => Router.go(Routes.LOGIN),
       },
     },
   ],
@@ -73,7 +73,7 @@ export const registerData = {
       formData => {
         UserController
           .signUp(formData as TSignUpData)
-          .then(() => Router.go(ROUTES.CHAT));
+          .then(() => Router.go(Routes.CHAT));
       },
     ),
   },

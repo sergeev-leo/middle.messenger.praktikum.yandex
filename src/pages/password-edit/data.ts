@@ -2,7 +2,7 @@ import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { ProfileController } from '../../controllers/ProfileController';
 import { TChangePasswordData } from '../../modules/api/profileAPI';
 import { Router } from '../../modules/Router/Router';
-import { ROUTES } from '../../modules/Router/constants';
+import { Routes } from '../../modules/Router/constants';
 
 
 export const getPasswordEditData = ({ avatar }: { avatar: string }) => ({
@@ -43,7 +43,7 @@ export const getPasswordEditData = ({ avatar }: { avatar: string }) => ({
       '.password-edit',
       async formData => {
         await ProfileController.changePassword(formData as TChangePasswordData);
-        Router.go(ROUTES.PROFILE);
+        Router.go(Routes.PROFILE);
       },
     ),
   },

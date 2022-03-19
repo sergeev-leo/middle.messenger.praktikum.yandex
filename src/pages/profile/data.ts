@@ -1,4 +1,4 @@
-import { ROUTES } from '../../modules/Router/constants';
+import { Routes } from '../../modules/Router/constants';
 import { TAvatarProps } from '../../components/avatar/avatar';
 import { TLinkProps } from '../../components/link/link';
 import { UserController } from '../../controllers/UserController';
@@ -58,14 +58,14 @@ export const getProfileData = (userData): TProfilePageProps => {
         title: 'Изменить пароль',
         style: 'secondary',
         events: {
-          click: () => Router.go(ROUTES.PASSWORD_EDIT),
+          click: () => Router.go(Routes.PASSWORD_EDIT),
         },
       },
       {
         title: 'Изменить данные',
         style: 'secondary',
         events: {
-          click: () => Router.go(ROUTES.PROFILE_EDIT),
+          click: () => Router.go(Routes.PROFILE_EDIT),
         },
       },
     ],

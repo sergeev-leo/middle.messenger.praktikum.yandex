@@ -1,6 +1,6 @@
 import { TComponent } from '../types';
 import { Route, TRoute } from './Route';
-import { ROUTES } from './constants';
+import { Routes } from './constants';
 
 
 export class RouterClass {
@@ -45,10 +45,10 @@ export class RouterClass {
 
     if(
       localStorage.getItem('isUserLoggedIn') !== 'true' &&
-      route._pathname !== ROUTES.LOGIN &&
-      route._pathname !== ROUTES.REGISTER
+      route._pathname !== Routes.LOGIN &&
+      route._pathname !== Routes.REGISTER
     ) {
-      return this.go(ROUTES.LOGIN);
+      return this.go(Routes.LOGIN);
     }
 
     if (this._currentRoute) {

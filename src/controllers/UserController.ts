@@ -1,7 +1,7 @@
 import { AuthAPI, TSignInData, TSignUpData } from '../modules/api/authAPI';
 import { store } from '../modules/store/store';
 import { Router } from '../modules/Router/Router';
-import { ROUTES } from '../modules/Router/constants';
+import { Routes } from '../modules/Router/constants';
 
 export class UserControllerClass {
   public static setError(error: { reason: string } | null) {
@@ -31,7 +31,7 @@ export class UserControllerClass {
       store.set( 'user.data', null);
       UserControllerClass.setError(null);
 
-      Router.go(ROUTES.LOGIN);
+      Router.go(Routes.LOGIN);
     } catch (error) {
       UserControllerClass.setError(error);
       return Promise.reject();

@@ -1,5 +1,5 @@
 import { Router } from '../Router/Router';
-import { ROUTES } from '../Router/constants';
+import { Routes } from '../Router/constants';
 
 export enum HTTP_METHOD {
   GET = 'GET',
@@ -137,7 +137,7 @@ export class HTTPTransport {
     }
     case 401: {
       console.log('Неизвестный пользователь');
-      Router.go(ROUTES.LOGIN);
+      Router.go(Routes.LOGIN);
       return Promise.reject({ reason: 'Неизвестный пользователь' });
     }
     case 403: {
@@ -145,11 +145,11 @@ export class HTTPTransport {
       return Promise.reject({ reason: 'Недостаточно прав для выполнения действия' });
     }
     case 404: {
-      Router.go(ROUTES.CLIENT_ERROR);
+      Router.go(Routes.CLIENT_ERROR);
       return Promise.reject({ reason: 'Запрашиваемый адрес не существует' });
     }
     case 500: {
-      Router.go(ROUTES.SERVER_ERROR);
+      Router.go(Routes.SERVER_ERROR);
       return Promise.reject({ reason: 'Ошибка сервера' });
     }
     default: {

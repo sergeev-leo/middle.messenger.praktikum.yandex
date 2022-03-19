@@ -1,4 +1,4 @@
-import { ROUTES } from '../../modules/Router/constants';
+import { Routes } from '../../modules/Router/constants';
 import { Router } from '../../modules/Router/Router';
 
 export const serverErrorData = {
@@ -8,7 +8,7 @@ export const serverErrorData = {
     style: 'primary',
     title: 'Назад к чатам',
     events: {
-      click: () => Router.go(ROUTES.CHAT),
+      click: () => Router.go(Routes.CHAT),
     },
   },
 };

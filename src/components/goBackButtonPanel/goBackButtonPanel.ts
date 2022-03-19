@@ -3,7 +3,7 @@ import compileTemplate from './goBackButtonPanel.pug';
 import { IconButton } from '../icon-button/icon-button';
 import { TEvents } from '../../modules/types';
 import { Router } from '../../modules/Router/Router';
-import { ROUTES } from '../../modules/Router/constants';
+import { Routes } from '../../modules/Router/constants';
 
 
 export type TGoBackButtonPanelProps = {
@@ -16,7 +16,7 @@ export class GoBackButtonPanel extends Block {
       outerIconClassName: 'fa-circle',
       iconClassName: 'inner fa-arrow-left',
       events: {
-        click: () => Router.go(ROUTES.CHAT),
+        click: () => Router.go(Routes.CHAT),
       },
     });
   }

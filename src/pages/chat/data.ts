@@ -1,4 +1,4 @@
-import { ROUTES } from '../../modules/Router/constants';
+import { Routes } from '../../modules/Router/constants';
 import { Router } from '../../modules/Router/Router';
 import { TCallback } from '../../modules/types';
 import { ChatController } from '../../controllers/ChatController';
@@ -8,7 +8,7 @@ export const getChatData = (deleteChat: TCallback) => ({
   profileLink: {
     title: 'Профиль',
     events: {
-      click: () => Router.go(ROUTES.PROFILE),
+      click: () => Router.go(Routes.PROFILE),
     },
   },
   searchInputPlaceholder: 'Поиск',

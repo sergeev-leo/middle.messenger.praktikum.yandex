@@ -1,6 +1,6 @@
 import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { Router } from '../../modules/Router/Router';
-import { ROUTES } from '../../modules/Router/constants';
+import { Routes } from '../../modules/Router/constants';
 import { UserController } from '../../controllers/UserController';
 import { TSignInData } from '../../modules/api/authAPI';
 
@@ -33,7 +33,7 @@ export const loginData = {
       title: 'Нет аккаунта?',
       style: 'secondary',
       events: {
-        click: () => Router.go(ROUTES.REGISTER),
+        click: () => Router.go(Routes.REGISTER),
       },
     },
   ],
@@ -42,7 +42,7 @@ export const loginData = {
       '.login-form',
       formData => UserController
         .signIn(formData as TSignInData)
-        .then(() => Router.go(ROUTES.CHAT)),
+        .then(() => Router.go(Routes.CHAT)),
     ),
   },
 };

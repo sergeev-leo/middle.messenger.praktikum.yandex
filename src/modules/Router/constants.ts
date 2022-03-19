@@ -1,4 +1,4 @@
-export enum ROUTES {
+export enum Routes {
   CHAT = '/messenger',
   LOGIN = '/',
   REGISTER = '/sign-up',

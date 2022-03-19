@@ -2,7 +2,7 @@ import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
 import { ProfileController } from '../../controllers/ProfileController';
 import { TChangeProfileData } from '../../modules/api/profileAPI';
 import { Router } from '../../modules/Router/Router';
-import { ROUTES } from '../../modules/Router/constants';
+import { Routes } from '../../modules/Router/constants';
 
 
 export const getProfileEditData = ({
@@ -77,7 +77,7 @@ export const getProfileEditData = ({
       '.profile-edit',
       async formData => {
         await ProfileController.changeProfile(formData as TChangeProfileData);
-        Router.go(ROUTES.PROFILE);
+        Router.go(Routes.PROFILE);
       },
     ),
   },
