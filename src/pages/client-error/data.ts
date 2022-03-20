@@ -1,9 +1,14 @@
+import { Routes } from '../../modules/Router/constants';
+import { Router } from '../../modules/Router/Router';
+
 export const clientErrorData = {
   errorCode: '404',
   errorText: 'Не туда попали',
   link: {
     style: 'primary',
     title: 'Назад к чатам',
-    href: '../chat/index.html',
+    events: {
+      click: () => Router.go(Routes.CHAT),
+    },
   },
 };

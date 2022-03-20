@@ -9,10 +9,6 @@
 @import "../../components/icon-button/icon-button";
 @import "../../components/modal/modal";
 
-html {
-  @include base-styles;
-}
-
 .chat {
   display: grid;
   grid-template-columns: 25% 75%;
@@ -32,6 +28,10 @@ html {
   font-size: 1.3rem;
   grid-column: 2/3;
   grid-row: 3/4;
+
+  &.hidden {
+    display: none;
+  }
 
   .chat__bottom-panel-attach-menu-icon {
     margin: 0 1.5rem;
@@ -102,6 +102,7 @@ html {
         padding: 0;
 
         color: $grey-color;
+
         outline: none;
       }
 
@@ -111,6 +112,8 @@ html {
     }
 
     .chat_search-field {
+      position: relative;
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -184,7 +187,7 @@ html {
   grid-column: 2/3;
   grid-row: 1/2;
 
-  .chat__top-panel-user-avatar {
+  .selected-dialog-meta {
     display: flex;
     align-items: center;
 
@@ -195,7 +198,7 @@ html {
       height: 3.5rem;
     }
 
-    .chat__top-panel-user-name {
+    .selected-dialog-meta-user-name {
       margin-left: 1rem;
 
       font-size: 1.3rem;
@@ -208,52 +211,58 @@ html {
 }
 
 .chat__messages-panel {
-  position: relative;
-
-  display: flex;
-  overflow-y: auto;
-  flex-direction: column;
   grid-column: 2/3;
   grid-row: 2/3;
 
-  .messages-panel-info-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  overflow-y: auto;
 
-    transform: translate(-50%, -50%);
-
-    color: $grey-color;
-  }
-
-  .date-string-line {
+  .wrapper {
     position: relative;
 
-    margin: 2rem;
+    display: flex;
+    flex-direction: column;
 
-    color: $grey-color;
-    border-top: 0.1rem solid $light-grey-color;
-
-    .no-messages-text,
-    .date-string-label {
+    .messages-panel-info-text {
       position: absolute;
       top: 50%;
       left: 50%;
 
       transform: translate(-50%, -50%);
-    }
-  }
 
-  .current-user-message {
-    align-self: flex-end;
+      color: $grey-color;
+    }
+
+    .date-string-line {
+      position: relative;
+
+      margin: 2rem;
+
+      color: $grey-color;
+      border-top: 0.1rem solid $light-grey-color;
+
+      .no-messages-text,
+      .date-string-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .current-user-message {
+      align-self: flex-end;
+    }
   }
 }
 
+#avatar-upload-input,
 #media-upload-input,
 #file-upload-input {
   display: none;
 }
 
+label[for="avatar-upload-input"],
 label[for="media-upload-input"],
 label[for="file-upload-input"] {
   position: absolute;

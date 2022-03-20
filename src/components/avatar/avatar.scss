@@ -6,6 +6,10 @@
 
   width: 13rem;
 
+  &.clickable:hover {
+    cursor: pointer;
+  }
+
   img,
   .backdrop {
     display: block;

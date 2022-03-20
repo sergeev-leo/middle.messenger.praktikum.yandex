@@ -1,6 +1,7 @@
 import { EventBus } from '../EventBus/EventBus';
-import { TComponentChildren, TComponentProps, TEventBusInstance, TEvents, TListeners } from '../types';
+import { TCallback, TComponentChildren, TComponentProps, TEventBusInstance, TEvents, TListeners } from '../types';
 import { v4 as makeUUID } from 'uuid';
+import { isEqual } from '../../utils/isEqual';
 
 
 export class Block {
@@ -9,6 +10,7 @@ export class Block {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
+    FLOW_CWU: 'flow:component-will-unmount',
   };
 
   _element: HTMLElement;
@@ -74,7 +76,7 @@ export class Block {
   /*
   * выделяем из переданных пропсов экземпляры класса Block и сохраняем их в this._children, оставшиеся пропсы - в props
   * */
-  _getChildren(propsWithChildren: TComponentProps) {
+  private _getChildren(propsWithChildren: TComponentProps) {
     const children: TComponentChildren = {};
     const props: TComponentProps = {};
 
@@ -182,11 +184,12 @@ export class Block {
   /*
   * метод добавляет в eventBus обработчики для событий жизненного цикла компонента из Block.EVENTS
   * */
-  _registerEvents(eventBus: TEventBusInstance) {
+  private _registerEvents(eventBus: TEventBusInstance) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
   }
 
   /*
@@ -194,14 +197,14 @@ export class Block {
   * - создает элемент тега компонента
   * - делает вызов события первоначальной отрисовки
   * */
-  init() {
+  private init() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   /*
   * непосредственное создание элемента с заданным тегом + назначение ему уникального идентификатора в поле _id
   * */
-  _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string) {
     const element = document.createElement(tagName);
 
     if(this._id !== null) {
@@ -215,13 +218,13 @@ export class Block {
   * Назначение обработчиков событий на элемент компонента. Обработчики передаются строго в props.events, где ключи -
   * события DOM-элементов, а значения - функции обработчиков.
   * */
-  _addEvents() {
+  private _addEvents() {
     const {
       events = {} as TEvents,
     } = this.props;
 
     Object
-      .keys(events)
+      .keys(events as TEvents)
       .forEach(eventName => {
         if(!this._listeners[eventName]) {
           this._listeners[eventName] = [];
@@ -230,19 +233,23 @@ export class Block {
         /*
         * сохраняем обработчики событий чтобы была возможность их позже удалить
         * */
-        this._listeners[eventName].push(events[eventName]);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        this._listeners[eventName].push(events[eventName] as TCallback);
 
         /*
         * добавляем обработчики на созданный элемент
         * */
-        this._element.addEventListener(eventName, events[eventName]);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        this._element.addEventListener(eventName, events[eventName] as TCallback);
       });
   }
 
   /*
   * удаление всех назначенных обработчиков событий
   * */
-  _removeEvents() {
+  private _removeEvents() {
     Object
       .keys(this._listeners)
       .forEach(eventName => {
@@ -259,7 +266,7 @@ export class Block {
   * - вызывает переопределенный метод непосредственно у компонента-экземпляра
   * - делает триггер события монтирования для всех children компонента-экземпляра
   * */
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount(this.props);
 
     Object
@@ -276,9 +283,11 @@ export class Block {
       });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected componentDidMount(oldProps: TComponentProps) {
+  // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
+  protected componentDidMount(props: TComponentProps) {
     // метод должен быть переопределен в компоненте-наследнике
+    // eslint-disable-next-line no-console
+    console.log(props);
   }
 
   /*
@@ -291,7 +300,7 @@ export class Block {
   /*
   * метод жизненного цикла компонента. Вызывается при обновлении значений пропсов.
   * */
-  _componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
+  private _componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
 
     if(response) {
@@ -301,7 +310,29 @@ export class Block {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidUpdate(oldProps: TComponentProps, newProps: TComponentProps) {
-    return true;
+    return !isEqual(oldProps, newProps);
+  }
+
+  private _componentWillUnmount() {
+    Object
+      .keys(this._children)
+      .forEach((key: string) => {
+        const child = this._children[key];
+
+        if (Array.isArray(child)) {
+          child.forEach(item => item.hide());
+          return;
+        }
+
+        child.hide();
+      });
+
+    this.componentWillUnmount();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  protected componentWillUnmount() {
+    // метод должен быть переопределен в компоненте-наследнике
   }
 
   /*
@@ -320,7 +351,7 @@ export class Block {
   * метод жизненного цикла компонента. Вызывается, когда наступает событие перерисовки.
   * Триггер данного события срабатывает при первоначальной инициализации и в рамках метода жизненного цикла componentDidUpdate
   * */
-  _render() {
+  private _render() {
 
     /*
     * получаем итоговую разметку компонента
@@ -351,6 +382,7 @@ export class Block {
     * очищаем все вложенные узлы компонента и вставляем итоговую разметку
     * */
     this._element.replaceWith(newElement);
+    this._element = newElement;
 
     /*
     * добавляем новые обработчики событий
@@ -376,7 +408,7 @@ export class Block {
   * - запрет на удаление любых свойств
   * - при обновлении значений пропсов вызов componentDidUpdate
   * */
-  _makePropsProxy(props: TComponentProps) {
+  private _makePropsProxy(props: TComponentProps) {
     return new Proxy(
       props,
       {
@@ -390,7 +422,6 @@ export class Block {
           const oldProps = { ...target };
 
           target[prop] = value;
-
           this.eventBus().emit(
             Block.EVENTS.FLOW_CDU,
             oldProps,
@@ -407,16 +438,13 @@ export class Block {
   }
 
   /*
-  *
-  * */
-  show() {
-    this.getContent().style.display = 'block';
-  }
-
-  /*
-  *
+  * метод размонтирует компонент из разметки
   * */
   hide() {
-    this.getContent().style.display = 'none';
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU);
+    const element  = this.getContent();
+    if(element) {
+      element.remove();
+    }
   }
 }

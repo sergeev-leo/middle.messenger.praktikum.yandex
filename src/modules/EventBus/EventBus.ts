@@ -26,7 +26,9 @@ export class EventBus {
 
   emit(event: string, ...args: never[]) {
     if(!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      // eslint-disable-next-line no-console
+      console.log(`На событие нет обработчиков: ${event}`);
+      return;
     }
 
     this.listeners[event]

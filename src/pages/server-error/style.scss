@@ -1,7 +1,3 @@
 @import "../../utils/mixins";
 @import "../../utils/variables";
 @import "../../components/error/error";
-
-html {
-  @include base-styles;
-}

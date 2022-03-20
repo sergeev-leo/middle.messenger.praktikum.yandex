@@ -1,4 +1,8 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
+import { Router } from '../../modules/Router/Router';
+import { Routes } from '../../modules/Router/constants';
+import { UserController } from '../../controllers/UserController';
+import { TSignInData } from '../../modules/api/authAPI';
 
 
 export const loginData = {
@@ -8,13 +12,15 @@ export const loginData = {
       id: 'login',
       label: 'Логин',
       type: 'text',
-      pattern: VALIDATION_PATTERNS.LOGIN,
+      pattern: VALIDATION.LOGIN.pattern,
+      error: VALIDATION.LOGIN.message,
     },
     {
       id: 'password',
       label: 'Пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
   ],
   buttons: [
@@ -26,9 +32,17 @@ export const loginData = {
     {
       title: 'Нет аккаунта?',
       style: 'secondary',
+      events: {
+        click: () => Router.go(Routes.REGISTER),
+      },
     },
   ],
   events: {
-    submit: createSubmitFn('.login-form'),
+    submit: createSubmitFn(
+      '.login-form',
+      formData => UserController
+        .signIn(formData as TSignInData)
+        .then(() => Router.go(Routes.CHAT)),
+    ),
   },
 };

@@ -1,9 +1,13 @@
-import { createSubmitFn, VALIDATION_PATTERNS } from '../../modules/formValidation';
+import { createSubmitFn, VALIDATION } from '../../modules/formValidation';
+import { ProfileController } from '../../controllers/ProfileController';
+import { TChangePasswordData } from '../../modules/api/profileAPI';
+import { Router } from '../../modules/Router/Router';
+import { Routes } from '../../modules/Router/constants';
 
 
-export const passwordEditData = {
+export const getPasswordEditData = ({ avatar }: { avatar: string }) => ({
   avatar: {
-    src:'/user.png',
+    src: avatar,
     title: 'Поменять аватар',
   },
   inputs: [
@@ -11,19 +15,22 @@ export const passwordEditData = {
       id: 'oldPassword',
       label: 'Старый пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
     {
       id: 'newPassword',
       label: 'Новый пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
     {
       id: 'repeatNewPassword',
       label: 'Повторите пароль',
       type: 'password',
-      pattern: VALIDATION_PATTERNS.PASSWORD,
+      pattern: VALIDATION.PASSWORD.pattern,
+      error: VALIDATION.PASSWORD.message,
     },
   ],
   button: {
@@ -32,6 +39,12 @@ export const passwordEditData = {
     type: 'submit',
   },
   events: {
-    submit: createSubmitFn('.password-edit'),
+    submit: createSubmitFn(
+      '.password-edit',
+      async formData => {
+        await ProfileController.changePassword(formData as TChangePasswordData);
+        Router.go(Routes.PROFILE);
+      },
+    ),
   },
-};
+});

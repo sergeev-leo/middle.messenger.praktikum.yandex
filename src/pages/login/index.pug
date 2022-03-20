@@ -1,10 +1,13 @@
-form.login-form
-  .login-form__card
-    .login-form__header
-      p #{header}
-    .login-form__inputs-section
-      each item in inputs
-        | !{item}
-    .login-form__buttons-section
-      each item in buttons
-        | !{item}
+.login-form-wrapper
+  form.login-form
+    .login-form__card
+      .login-form__header
+        p #{header}
+      .login-form__inputs-section
+        each item in inputs
+          | !{item}
+      .login-form__buttons-section
+        each item in buttons
+          | !{item}
+      .login-form__error
+        | !{loginError}

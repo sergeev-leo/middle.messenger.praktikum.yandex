@@ -1,7 +1,5 @@
-.avatar-wrapper
-  img(src=src)
-  if(withUpload === true)
-    .backdrop-container
-      label(for="avatar").backdrop
-        .title #{title}
-        input(id="avatar" name="avatar" type="file")
+.avatar-wrapper(class =`${withUpload === true ? 'clickable' : ''}`)
+  if(src !== null)
+    img(src=`https://ya-praktikum.tech/api/v2/resources/${src}`)
+  else
+    img(src='blank_image.png')
