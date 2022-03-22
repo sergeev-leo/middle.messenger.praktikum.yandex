@@ -195,7 +195,9 @@ class ChatPageClass extends Block {
         label: 'Выберите файл',
         events: {
           change: function(e: InputEvent) {
-            if(!e.target) {
+            const inputElement = e.target as HTMLInputElement;
+
+            if(!inputElement) {
               return;
             }
 
@@ -205,7 +207,13 @@ class ChatPageClass extends Block {
               return;
             }
 
-            fileChosen.textContent = e.target.files[0].name;
+            const file = inputElement.files && inputElement.files[0];
+
+            if(!file) {
+              return;
+            }
+
+            fileChosen.textContent = file.name;
           },
         },
       },
@@ -236,7 +244,9 @@ class ChatPageClass extends Block {
         accept: 'image/*, video/*',
         events: {
           change: function(e: InputEvent) {
-            if(!e.target) {
+            const inputElement = e.target as HTMLInputElement;
+
+            if(!inputElement) {
               return;
             }
 
@@ -246,7 +256,13 @@ class ChatPageClass extends Block {
               return;
             }
 
-            fileChosen.textContent = e.target.files[0].name;
+            const file = inputElement.files && inputElement.files[0];
+
+            if(!file) {
+              return;
+            }
+
+            fileChosen.textContent = file.name;
           },
         },
       },

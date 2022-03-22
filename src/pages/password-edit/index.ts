@@ -6,7 +6,7 @@ import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButt
 import compileTemplate from '../password-edit/index.pug';
 import { TStore } from '../../modules/store/store';
 import { connect } from '../../modules/store/connect';
-import { getPasswordEditData } from './data';
+import {getPasswordEditData, TGetPasswordEditData} from './data';
 
 
 export type TPasswordEditPageProps = {
@@ -55,7 +55,7 @@ const mapStateToProps = (state: TStore) => {
     error,
   } = state.user;
   return {
-    ...getPasswordEditData(userData),
+    ...getPasswordEditData(userData as TGetPasswordEditData),
     error,
   };
 };

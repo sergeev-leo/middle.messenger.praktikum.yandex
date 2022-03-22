@@ -5,7 +5,11 @@ import { Router } from '../../modules/Router/Router';
 import { Routes } from '../../modules/Router/constants';
 
 
-export const getPasswordEditData = ({ avatar }: { avatar: string }) => ({
+export type TGetPasswordEditData = {
+  avatar: string,
+}
+
+export const getPasswordEditData = ({ avatar }: TGetPasswordEditData) => ({
   avatar: {
     src: avatar,
     title: 'Поменять аватар',

@@ -147,7 +147,7 @@ class ChatControllerClass {
         token,
       });
 
-      const setNewMessagesCb = data => {
+      const setNewMessagesCb = (data: Record<string, unknown>) => {
         if(Array.isArray(data)) {
 
           if(data[0] && data[0].type === SOCKET_API_MESSAGES_TYPES.MESSAGE) {

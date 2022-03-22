@@ -5,7 +5,17 @@ import { Router } from '../../modules/Router/Router';
 import { Routes } from '../../modules/Router/constants';
 
 
-export const getProfileEditData = data => {
+export type TGetProfileEditData = {
+  avatar: string,
+  login: string,
+  email: string,
+  phone: string,
+  firstName: string,
+  secondName: string,
+  displayName: string,
+};
+
+export const getProfileEditData = (data: TGetProfileEditData | null) => {
   if(data === null) {
     return {
       avatar: {
