@@ -4,6 +4,7 @@
     "target": "es2016",
     "declaration": false,
     "module": "es2020",
+    "moduleResolution": "node",
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true,

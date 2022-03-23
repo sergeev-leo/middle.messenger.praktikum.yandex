@@ -9,6 +9,7 @@ import { Routes } from './modules/Router/constants';
 import { Router } from './modules/Router/Router';
 import { PasswordEditPage } from './pages/password-edit';
 import { UserController } from './controllers/UserController';
+import './style.scss';
 
 document.addEventListener('DOMContentLoaded', async() => {
   await UserController.fetchAndSetSignedUserData()

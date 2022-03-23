@@ -4,7 +4,7 @@ import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
 import { Button, TButtonProps } from '../../components/button/button';
 import { Input, TInputProps } from '../../components/input/input';
-import {getProfileEditData, TGetProfileEditData} from './data';
+import { getProfileEditData, TGetProfileEditData } from './data';
 import { Modal } from '../../components/modal/modal';
 import { TStore } from '../../modules/store/store';
 import { connect } from '../../modules/store/connect';
