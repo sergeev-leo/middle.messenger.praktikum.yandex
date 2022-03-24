@@ -6,10 +6,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(`${__dirname}/dist`));
 
-/*
-* делаем редирект, чтобы на любой роут возвращался index.html, например, когда пользователь входит по прямой ссылке
-* или нажимает ф5
-* */
 app.get('*', (request, response) => {
     return response.sendFile(path.resolve(`${__dirname}/dist/index.html`));
 });
