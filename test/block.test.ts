@@ -7,7 +7,7 @@ describe('модуль Block', () => {
       events: {},
     });
 
-    const didMount = jest.spOn(Component, 'getContent');
+    const didMount = jest.spyOn(Component, 'getContent');
 
     Component.hide();
 
