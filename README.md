@@ -58,7 +58,7 @@
 
 ## Heroku
 
-[heroku](http://shrouded-earth-28874.herokuapp.com/) - падает по таймауту из-за блокировки, но вдруг у Вас откроется
+[heroku](http://shrouded-earth-28874.herokuapp.com/)
 
 ## запуск с Docker
 
