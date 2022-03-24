@@ -67,3 +67,7 @@
 - соберите образ на основе _Dockerfile_ командой `docker build -t {имя образа} .` 
 - запустите контейнер с образом выполнив команду `docker run -p 3000:3000 {имя образа}`
 - перейдите по адресу `http://localhost:3000/`
+
+## PR
+
+[Ссылка на ПР четвертого спринта](https://github.com/sergeev-leo/middle.messenger.praktikum.yandex/pull/4)
