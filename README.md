@@ -53,4 +53,4 @@
 
 ## PR
 
-[Ссылка на ПР третьего спринта](https://github.com/sergeev-leo/middle.messenger.praktikum.yandex/pull/3)
+[Ссылка на ПР четвертого спринта](https://github.com/sergeev-leo/middle.messenger.praktikum.yandex/pull/4)
