@@ -40,7 +40,9 @@ class SelectedDialogMetaClass extends Block {
           label: 'Выберите файл',
           events: {
             change: function(e: InputEvent) {
-              if(!e.target) {
+              const inputElement = e.target as HTMLInputElement;
+
+              if(!inputElement) {
                 return;
               }
 
@@ -50,7 +52,13 @@ class SelectedDialogMetaClass extends Block {
                 return;
               }
 
-              fileChosen.textContent = e.target.files[0].name;
+              const file = inputElement.files && inputElement.files[0];
+
+              if(!file) {
+                return;
+              }
+
+              fileChosen.textContent = file.name;
             },
           },
         },
@@ -63,9 +71,20 @@ class SelectedDialogMetaClass extends Block {
           submit: async(e: InputEvent, onClose: () => void) => {
             e.preventDefault();
 
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            const inputElement = e.target && e.target[0] as HTMLInputElement;
+
+            if(!inputElement) {
+              return;
+            }
+
+
+            const file = inputElement.files ? inputElement.files[0] : null;
+
             const formData = new FormData();
-            formData.append('avatar', e.target[0].files[0]);
-            formData.append('chatId', selectedChatId);
+            formData.append('avatar', file as Blob);
+            formData.append('chatId', String(selectedChatId));
 
             await ChatController.changeAvatar(formData);
             onClose();

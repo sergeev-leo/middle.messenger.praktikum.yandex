@@ -15,7 +15,7 @@ class ProfilePageClass extends Block {
       userName,
       links,
       userData,
-    } = getProfileData(this.props.data) as TProfilePageProps;
+    } = getProfileData(this.props.data as Record<string, string> | null) as TProfilePageProps;
 
     this._children.avatar = new Avatar(avatar);
     this._children.links = links.map((item: TLinkProps) => new Link(item));

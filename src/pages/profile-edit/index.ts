@@ -4,7 +4,7 @@ import { Avatar, TAvatarProps } from '../../components/avatar/avatar';
 import { GoBackButtonPanel } from '../../components/goBackButtonPanel/goBackButtonPanel';
 import { Button, TButtonProps } from '../../components/button/button';
 import { Input, TInputProps } from '../../components/input/input';
-import { getProfileEditData } from './data';
+import { getProfileEditData, TGetProfileEditData } from './data';
 import { Modal } from '../../components/modal/modal';
 import { TStore } from '../../modules/store/store';
 import { connect } from '../../modules/store/connect';
@@ -41,7 +41,9 @@ class ProfileEditPageClass extends Block {
         label: 'Выберите файл',
         events: {
           change: function(e: InputEvent) {
-            if(!e.target) {
+            const inputElement = e.target as HTMLInputElement;
+
+            if(!inputElement) {
               return;
             }
 
@@ -51,7 +53,13 @@ class ProfileEditPageClass extends Block {
               return;
             }
 
-            fileChosen.textContent = e.target.files[0].name;
+            const file = inputElement.files && inputElement.files[0];
+
+            if(!file) {
+              return;
+            }
+
+            fileChosen.textContent = file.name;
           },
         },
       },
@@ -64,7 +72,18 @@ class ProfileEditPageClass extends Block {
         submit: async(e: InputEvent, onClose: () => void) => {
           e.preventDefault();
           const formData = new FormData();
-          formData.append('avatar', e.target[0].files[0]);
+
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          const inputElement = e.target && e.target[0] as HTMLInputElement;
+
+          if(!inputElement) {
+            return;
+          }
+
+          const file = inputElement.files ? inputElement.files[0] : null;
+
+          formData.append('avatar', file as Blob);
           await ProfileController.changeAvatar(formData);
           onClose();
         },
@@ -87,7 +106,7 @@ const mapStateToProps = (state: TStore) => {
   } = state.user;
 
   return {
-    ...getProfileEditData(userData),
+    ...getProfileEditData(userData as TGetProfileEditData),
     error,
   };
 };

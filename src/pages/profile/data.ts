@@ -18,7 +18,7 @@ export type TProfilePageProps = {
   userData: TUserDataRow[],
 }
 
-export const getProfileData = (userData): TProfilePageProps => {
+export const getProfileData = (userData: Record<string, string> | null): TProfilePageProps => {
 
   if(userData === null) {
     return {

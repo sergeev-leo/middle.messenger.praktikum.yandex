@@ -45,11 +45,9 @@ type TDeleteChatResponse = {
   }
 };
 
-type TGetTokenResponse = [
-  {
-    token: string,
-  }
-];
+type TGetTokenResponse = {
+  token: string,
+};
 
 export type TAddOrDeleteUsersToChatData = {
   users: number[],

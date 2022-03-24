@@ -8,7 +8,7 @@ export const merge = (lhs: TIndexed, rhs: TIndexed): TIndexed => {
     }
 
     try {
-      if (rhs[p].constructor === Object) {
+      if ((rhs[p] as TIndexed).constructor === Object) {
         rhs[p] = merge(lhs[p] as TIndexed, rhs[p] as TIndexed);
       } else {
         lhs[p] = rhs[p];
